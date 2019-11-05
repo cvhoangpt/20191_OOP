@@ -1,0 +1,2 @@
+INDEX VERSION 1.131+E:\HUST-BKHN\Subjects\Lap trinh huong doi tuong\MICA\BTL\eclipse_code\.metadata\.plugins\org.eclipse.jdt.core
+753799540.index
