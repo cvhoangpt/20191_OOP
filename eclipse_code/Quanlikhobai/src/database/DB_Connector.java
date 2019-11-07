@@ -29,22 +29,21 @@ public class DB_Connector
 	
 	public static void main(String args[]) 
 	{
-		try {
-           
-            Connection conn = getConnection(DB_URL, USERNAME, PASSWORD);
-            // crate statement
-            Statement stmt = conn.createStatement();
-            // get data from table 'student'
-            ResultSet rs = stmt.executeQuery("select * from student");
-            // show data
-            while (rs.next()) {
-                System.out.println(rs.getInt(1) + "  " + rs.getString(2) 
-                        + "  " + rs.getString(3));
-            }
-            // close connection
-            conn.close();
-        } catch (Exception ex) {
-            ex.printStackTrace();
+		try 
+		{   
+	        Connection conn = getConnection(DB_URL, USERNAME, PASSWORD);
+	        // crate statement
+	        Statement stmt = conn.createStatement();
+	        // get data from table 'student'
+	        ResultSet rs = stmt.executeQuery("select * from student");
+	        // show data
+	        while (rs.next()) {
+	            System.out.println(rs.getInt(1) + "  " + rs.getString(2) + "  " + rs.getString(3));
+        }
+	        // close connection
+	        conn.close();
+        } catch (Exception e) {
+            e.printStackTrace();
         }
     }
 }
