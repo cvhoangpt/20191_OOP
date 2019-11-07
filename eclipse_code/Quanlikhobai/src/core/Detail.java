@@ -126,6 +126,20 @@ class Xecon extends Phuongtien
 {
 	
 }
+
+class Xetai extends Phuongtien
+{
+	
+}
+class Hopdong
+{
+	
+}
+
+class Ve
+{
+	
+}
 public class Detail 
 {
 
