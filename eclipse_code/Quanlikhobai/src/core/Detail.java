@@ -122,12 +122,20 @@ class NhanVien extends Nguoi
 
 class Xecon extends Phuongtien
 {
-	
+	public String getLoaiXe()
+	{
+		String loaiXe = "Xe con";
+		return loaiXe;
+	}
 }
 
 class Xetai extends Phuongtien
 {
-	
+	public String getLoaiXe()
+	{
+		String loaiXe = "Xe tải";
+		return loaiXe;
+	}
 }
 class Hopdong
 {

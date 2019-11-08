@@ -1,6 +1,6 @@
 package core;
 
-abstract class Nguoi
+class Nguoi
 {
 	protected String ten;
 	protected int SDT;
@@ -14,14 +14,17 @@ abstract class Nguoi
 
 abstract class Phuongtien
 {
-	protected String bienSo, hangXe, mauSac;
+	protected String bienSo, hangXe, mauSac, loaiXe;
 	public Phuongtien() {}
-	public Phuongtien(String bienSo, String hangXe, String mauSac)
+	public Phuongtien(String bienSo, String hangXe, String mauSac, String loaiXe)
 	{
 		this.bienSo = bienSo;
 		this.hangXe = hangXe;
 		this.mauSac = mauSac;
+		this.loaiXe = loaiXe;
 	}
+	
+	public abstract String getLoaiXe();
 }
 
 
