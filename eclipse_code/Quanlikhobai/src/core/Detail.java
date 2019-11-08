@@ -9,9 +9,8 @@ class KhachHang extends Nguoi
 	public KhachHang() {}
 	public KhachHang(String ten, String diaChi, int SDT, int soCMND, String ngayCapCMND, String noiCapCMND, String thuDienTu)
 	{
-		this.ten = ten;
+		super(ten, SDT);
 		this.diaChi = diaChi;
-		this.SDT = SDT;
 		this.soCMND = soCMND;
 		this.ngayCapCMND = ngayCapCMND;
 		this.noiCapCMND = noiCapCMND;
@@ -89,9 +88,8 @@ class NhanVien extends Nguoi
 	public NhanVien() {}
 	public NhanVien(String ten, String chucVu, int SDT)
 	{
-		this.ten = ten;
+		super(ten, SDT);
 		this.chucVu = chucVu;
-		this.SDT = SDT;
 	}
 	
 	public void setTen(String ten)
