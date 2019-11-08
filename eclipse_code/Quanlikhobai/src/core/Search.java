@@ -1,6 +1,6 @@
 package core;
 
-class Search 
+public class Search 
 {
 	
 }
