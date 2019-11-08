@@ -7,7 +7,7 @@ import java.sql.Statement;
 
 public class DB_Connector 
 {
-	private static String DB_URL = "";
+	private static String DB_URL = "jdbc:mysql://localhost:3306/oop20191";
 	private static String USERNAME = "root";
 	private static String PASSWORD = "";
 	
@@ -18,15 +18,15 @@ public class DB_Connector
 		{
 			Class.forName("com.mysql.jdbc.Driver");
 			conn = DriverManager.getConnection(dbURL, userName, passWord);
-			System.out.println("Connect successfully ...");
+			System.out.println("Connection successfully ...");
 		} catch (Exception e)
 		{
-			System.out.println("Connect failure.");
+			System.out.println("Connection failure.");
             e.printStackTrace();
 		}
 		return conn;
 	}
-	
+	/*
 	public static void main(String args[]) 
 	{
 		try 
@@ -46,4 +46,5 @@ public class DB_Connector
             e.printStackTrace();
         }
     }
+    */
 }
