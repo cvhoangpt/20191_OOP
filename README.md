@@ -6,7 +6,7 @@
 - Đề tài 7: Ứng dụng quản lí kho bãi.
 - Phiên bản và thư viện
 	+ JavaJDK/JRE: 12.0.2
-	+ Java Swing (WindowsBuilder)
+	+ Java Swing (WindowsBuilder) 1.9.2
 	+ Java JDBC dành cho mySQL.
 - Bộ môn CNPM.
 - Đại học Bách Khoa Hà Nội.
