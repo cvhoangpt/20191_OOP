@@ -1,5 +1,12 @@
 # 20191_OOP
-- Đây là Project OOP kì 20191, D7 401A.
-- Nhóm 11. Đề tài 7: Ứng dụng quản lí kho bãi.
+- Project OOP kì 20191, D7 401A.
+- Nhóm 11:
+	Cai Việt Hoàng 20168205
+	Nguyễn Thành Nam
+- Đề tài 7: Ứng dụng quản lí kho bãi.
+- Phiên bản và thư viện
+	+ JavaJDK/JRE: 12.0.2
+	+ Java Swing (WindowsBuilder)
+	+ Java JDBC dành cho mySQL.
 - Bộ môn CNPM.
 - Đại học Bách Khoa Hà Nội.
