@@ -11,7 +11,7 @@ public class DB_Connector
 		Connection conn = null;
 		try
 		{
-			Class.forName("com.mysql.jdbc.Driver");
+			Class.forName("com.mysql.cj.jdbc.Driver");
 			conn = DriverManager.getConnection(dbURL, userName, passWord);
 			System.out.println("Connection successfully ...");
 		} catch (Exception e)
