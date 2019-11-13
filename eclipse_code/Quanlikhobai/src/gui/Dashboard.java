@@ -6,7 +6,6 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import java.awt.Font;
 import javax.swing.JButton;
-import javax.swing.UIManager;
 import javax.swing.JTextField;
 import javax.swing.JComboBox;
 import javax.swing.JCheckBox;
@@ -14,10 +13,10 @@ import javax.swing.JTable;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
-public class Dashboard 
+public class Dashboard extends Window
 {
 
-	private JFrame frame;
+	//private JFrame frame;
 	private JTextField txtTimKiem;
 	private JTable table;
 	private JTextField textFieldTCX;
@@ -217,5 +216,24 @@ public class Dashboard
 	public void setFrame(JFrame frame) {
 		this.frame = frame;
 		frame.getContentPane().setFont(new Font("Tahoma", Font.PLAIN, 16));
+	}
+	
+	public void start()
+	{
+		EventQueue.invokeLater(new Runnable() 
+		{
+			public void run() 
+			{
+				try 
+				{
+					getFrame().setVisible(true);
+				} catch (Exception e) 
+				{
+					Dialog ed = new Dialog();
+					ed.Crash();
+					e.printStackTrace();
+				}
+			}
+		});
 	}
 }

@@ -3,9 +3,6 @@ package database;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
-import java.sql.Statement;
-
-import javax.swing.JOptionPane;
 
 import gui.Dialog;
 
@@ -16,7 +13,6 @@ public class Connector
 	private static String PASSWORD = "";
 	private Connection conn;
 	private static Connector instance;
-	
 	
 	public Connector()
 	{
@@ -32,9 +28,7 @@ public class Connector
 		} catch (SQLException e) 
 		{
         	Dialog window = new Dialog();
-        	JOptionPane.showMessageDialog(window.getFrame(), "Kiểm tra lại kết nối hoặc truy vấn.", 
-        			"Lỗi Cơ sở dữ liệu",
-        			JOptionPane.INFORMATION_MESSAGE);
+        	window.SQLError();
             e.printStackTrace();
             System.exit(0);
 		}
@@ -45,6 +39,7 @@ public class Connector
 		return conn;
 	}
 	
+	@SuppressWarnings("unused")
 	private static Connector getInstance() throws SQLException
 	{
 		if (instance == null)
