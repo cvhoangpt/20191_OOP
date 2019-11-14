@@ -8,7 +8,7 @@ import javax.swing.JOptionPane;
 public class Dialog extends Window
 {
 
-	//private JFrame frame;
+	private JFrame frame;
 
 	public Dialog() 
 	{

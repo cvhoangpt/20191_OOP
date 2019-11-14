@@ -1,11 +1,13 @@
 package main;
 
+import java.sql.SQLException;
+
 import database.Connector;
 import gui.*;
 
 public class Main 
 {
-	public static void main(String[] args)
+	public static void main(String[] args) throws SQLException
 	{
 		Connector connecting = new Connector();
 		connecting.getConnection();

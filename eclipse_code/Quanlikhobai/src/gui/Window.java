@@ -2,7 +2,8 @@ package gui;
 
 import javax.swing.JFrame;
 
-public abstract class Window 
+public class Window
 {
 	protected JFrame frame;
+	public Window() {}
 }

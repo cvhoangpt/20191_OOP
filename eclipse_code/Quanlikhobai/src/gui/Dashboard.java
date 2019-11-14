@@ -4,41 +4,56 @@ import java.awt.EventQueue;
 
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JScrollPane;
+
 import java.awt.Font;
+
+//import javax.swing.DefaultComboBoxModel;
 import javax.swing.JButton;
 import javax.swing.JTextField;
+import javax.swing.table.DefaultTableModel;
+
+import database.Query;
+
 import javax.swing.JComboBox;
 import javax.swing.JCheckBox;
 import javax.swing.JTable;
 import java.awt.event.ActionListener;
+import java.sql.SQLException;
 import java.awt.event.ActionEvent;
+
+//import net.proteanit.sql.DbUtils;
 
 public class Dashboard extends Window
 {
-
-	//private JFrame frame;
+	private JFrame frame;
 	private JTextField txtTimKiem;
 	private JTable table;
 	private JTextField textFieldTCX;
 	private JTextField textFieldSDT;
-	private JTextField textField_2;
-	private JTextField textField_3;
-	private JTextField textField;
+	private JTextField textFieldDC;
+	private JTextField textFieldTDT;
+	private JTextField textFieldCMT;
 	private JTextField textFieldBS;
-	private JTextField textField_1;
-	private JTextField textField_4;
+	private JTextField textFieldTT;
+	private JTextField textFieldTTG;
 
 	/**
 	 * Create the application.
+	 * @throws SQLException 
 	 */
-	public Dashboard() {
+	public Dashboard() throws SQLException 
+	{
 		initialize();
 	}
 
 	/**
 	 * Initialize the contents of the frame.
+	 * @throws SQLException 
 	 */
-	private void initialize() {
+	@SuppressWarnings("unchecked")
+	private void initialize() throws SQLException 
+	{
 		setFrame(new JFrame());
 		getFrame().setTitle("Chương trình quản lí bãi gửi xe");
 		getFrame().setBounds(20, 20, 1366, 768);
@@ -50,65 +65,10 @@ public class Dashboard extends Window
 		lblCTQuanLi.setBounds(12, 13, 360, 35);
 		getFrame().getContentPane().add(lblCTQuanLi);
 		
-		JButton btnThemHD = new JButton("Thêm HD");
-		btnThemHD.setFont(new Font("Tahoma", Font.PLAIN, 16));
-		btnThemHD.setBounds(171, 510, 143, 46);
-		getFrame().getContentPane().add(btnThemHD);
-		
-		JButton btnXoaHD = new JButton("Xoá HD");
-		btnXoaHD.setFont(new Font("Tahoma", Font.PLAIN, 16));
-		btnXoaHD.setBounds(171, 569, 143, 46);
-		getFrame().getContentPane().add(btnXoaHD);
-		
 		JLabel lblBGX = new JLabel("Bãi gửi xe 692538");
 		lblBGX.setFont(new Font("Tahoma", Font.PLAIN, 18));
 		lblBGX.setBounds(12, 46, 360, 25);
 		getFrame().getContentPane().add(lblBGX);
-		
-		JButton btnCpNhtHd = new JButton("Cập nhật HD");
-		btnCpNhtHd.setFont(new Font("Tahoma", Font.PLAIN, 16));
-		btnCpNhtHd.setBounds(326, 510, 143, 46);
-		getFrame().getContentPane().add(btnCpNhtHd);
-		
-		JButton btnXoaTruong = new JButton("Xoá các trường");
-		btnXoaTruong.setFont(new Font("Tahoma", Font.PLAIN, 16));
-		btnXoaTruong.setBounds(326, 569, 143, 46);
-		getFrame().getContentPane().add(btnXoaTruong);
-		
-		txtTimKiem = new JTextField();
-		txtTimKiem.setFont(new Font("Tahoma", Font.PLAIN, 16));
-		txtTimKiem.setBounds(1079, 13, 259, 35);
-		getFrame().getContentPane().add(txtTimKiem);
-		txtTimKiem.setColumns(10);
-		
-		JButton btnTimKiem = new JButton("Tìm kiếm");
-		btnTimKiem.setFont(new Font("Tahoma", Font.PLAIN, 16));
-		btnTimKiem.setBounds(1193, 61, 143, 46);
-		getFrame().getContentPane().add(btnTimKiem);
-		
-		String elementCBB[] = {"Chủ xe", "Biển số xe", "Xe con", "Xe tải"};
-		JComboBox comboBox = new JComboBox(elementCBB);
-		comboBox.setFont(new Font("Tahoma", Font.PLAIN, 16));
-		comboBox.setBounds(956, 15, 111, 37);
-		getFrame().getContentPane().add(comboBox);
-		
-		JCheckBox chckbxPhiGui = new JCheckBox("Xe có phí gửi > 2.000.000đ");
-		chckbxPhiGui.setFont(new Font("Tahoma", Font.PLAIN, 16));
-		chckbxPhiGui.setBounds(949, 72, 236, 25);
-		getFrame().getContentPane().add(chckbxPhiGui);
-		
-		table = new JTable();
-		table.setBounds(497, 120, 839, 554);
-		getFrame().getContentPane().add(table);
-		
-		JButton btnThngKChi = new JButton("TK doanh thu");
-		btnThngKChi.setFont(new Font("Tahoma", Font.PLAIN, 16));
-		btnThngKChi.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-			}
-		});
-		btnThngKChi.setBounds(171, 628, 143, 46);
-		getFrame().getContentPane().add(btnThngKChi);
 		
 		JLabel lblTenCX = new JLabel("Tên chủ xe");
 		lblTenCX.setFont(new Font("Tahoma", Font.PLAIN, 16));
@@ -121,57 +81,12 @@ public class Dashboard extends Window
 		frame.getContentPane().add(textFieldTCX);
 		textFieldTCX.setColumns(10);
 		
-		JLabel lblNewLabel = new JLabel("SĐT");
-		lblNewLabel.setFont(new Font("Tahoma", Font.PLAIN, 16));
-		lblNewLabel.setBounds(127, 273, 30, 16);
-		frame.getContentPane().add(lblNewLabel);
-		
-		textFieldSDT = new JTextField();
-		textFieldSDT.setFont(new Font("Tahoma", Font.PLAIN, 16));
-		textFieldSDT.setColumns(10);
-		textFieldSDT.setBounds(169, 264, 300, 35);
-		frame.getContentPane().add(textFieldSDT);
-		
-		textField_2 = new JTextField();
-		textField_2.setFont(new Font("Tahoma", Font.PLAIN, 16));
-		textField_2.setColumns(10);
-		textField_2.setBounds(169, 312, 300, 35);
-		frame.getContentPane().add(textField_2);
-		
-		textField_3 = new JTextField();
-		textField_3.setFont(new Font("Tahoma", Font.PLAIN, 16));
-		textField_3.setColumns(10);
-		textField_3.setBounds(169, 360, 300, 35);
-		frame.getContentPane().add(textField_3);
-		
-		JLabel lblDC = new JLabel("Địa chỉ");
-		lblDC.setFont(new Font("Tahoma", Font.PLAIN, 16));
-		lblDC.setBounds(111, 321, 56, 16);
-		frame.getContentPane().add(lblDC);
-		
-		textField = new JTextField();
-		textField.setFont(new Font("Tahoma", Font.PLAIN, 16));
-		textField.setColumns(10);
-		textField.setBounds(169, 408, 300, 35);
-		frame.getContentPane().add(textField);
-		
-		JLabel lblTDT = new JLabel("Thư điện tử");
-		lblTDT.setFont(new Font("Tahoma", Font.PLAIN, 16));
-		lblTDT.setBounds(73, 370, 84, 16);
-		frame.getContentPane().add(lblTDT);
-		
-		JLabel lblCMT = new JLabel("CMND/CCCD");
-		lblCMT.setFont(new Font("Tahoma", Font.PLAIN, 16));
-		lblCMT.setBounds(66, 418, 91, 16);
-		frame.getContentPane().add(lblCMT);
-		
 		JLabel lblLX = new JLabel("Loại xe");
 		lblLX.setFont(new Font("Tahoma", Font.PLAIN, 16));
 		lblLX.setBounds(101, 177, 56, 16);
 		frame.getContentPane().add(lblLX);
-		
 		String loaiXe[] = {"Xe con", "Xe tải"};
-		JComboBox comboBoxLX = new JComboBox(loaiXe);
+		JComboBox comboBoxLX = new JComboBox (loaiXe);
 		comboBoxLX.setFont(new Font("Tahoma", Font.PLAIN, 16));
 		comboBoxLX.setBounds(169, 170, 84, 33);
 		frame.getContentPane().add(comboBoxLX);
@@ -180,6 +95,22 @@ public class Dashboard extends Window
 		lblTrngTitn.setFont(new Font("Tahoma", Font.PLAIN, 16));
 		lblTrngTitn.setBounds(274, 173, 111, 25);
 		frame.getContentPane().add(lblTrngTitn);
+		
+		textFieldTT = new JTextField();
+		textFieldTT.setFont(new Font("Tahoma", Font.PLAIN, 16));
+		textFieldTT.setBounds(385, 168, 84, 35);
+		frame.getContentPane().add(textFieldTT);
+		textFieldTT.setColumns(10);
+		
+		JLabel lblTGG = new JLabel("Thời gian gửi (tháng)");
+		lblTGG.setFont(new Font("Tahoma", Font.PLAIN, 16));
+		lblTGG.setBounds(12, 224, 160, 20);
+		frame.getContentPane().add(lblTGG);
+		
+		textFieldTTG = new JTextField();
+		textFieldTTG.setBounds(171, 216, 82, 35);
+		frame.getContentPane().add(textFieldTTG);
+		textFieldTTG.setColumns(10);
 		
 		JLabel lblBS = new JLabel("Biển số");
 		lblBS.setFont(new Font("Tahoma", Font.PLAIN, 16));
@@ -192,21 +123,122 @@ public class Dashboard extends Window
 		frame.getContentPane().add(textFieldBS);
 		textFieldBS.setColumns(10);
 		
-		textField_1 = new JTextField();
-		textField_1.setFont(new Font("Tahoma", Font.PLAIN, 16));
-		textField_1.setBounds(385, 168, 84, 35);
-		frame.getContentPane().add(textField_1);
-		textField_1.setColumns(10);
+		JLabel lblNewLabel = new JLabel("SĐT");
+		lblNewLabel.setFont(new Font("Tahoma", Font.PLAIN, 16));
+		lblNewLabel.setBounds(127, 273, 30, 16);
+		frame.getContentPane().add(lblNewLabel);
 		
-		JLabel lblTGG = new JLabel("Thời gian gửi (tháng)");
-		lblTGG.setFont(new Font("Tahoma", Font.PLAIN, 16));
-		lblTGG.setBounds(12, 224, 160, 20);
-		frame.getContentPane().add(lblTGG);
+		textFieldSDT = new JTextField();
+		textFieldSDT.setFont(new Font("Tahoma", Font.PLAIN, 16));
+		textFieldSDT.setColumns(10);
+		textFieldSDT.setBounds(169, 264, 300, 35);
+		frame.getContentPane().add(textFieldSDT);
 		
-		textField_4 = new JTextField();
-		textField_4.setBounds(171, 216, 82, 35);
-		frame.getContentPane().add(textField_4);
-		textField_4.setColumns(10);
+		textFieldDC = new JTextField();
+		textFieldDC.setFont(new Font("Tahoma", Font.PLAIN, 16));
+		textFieldDC.setColumns(10);
+		textFieldDC.setBounds(169, 312, 300, 35);
+		frame.getContentPane().add(textFieldDC);
+		
+		JLabel lblDC = new JLabel("Địa chỉ");
+		lblDC.setFont(new Font("Tahoma", Font.PLAIN, 16));
+		lblDC.setBounds(111, 321, 56, 16);
+		frame.getContentPane().add(lblDC);
+		
+		JLabel lblTDT = new JLabel("Thư điện tử");
+		lblTDT.setFont(new Font("Tahoma", Font.PLAIN, 16));
+		lblTDT.setBounds(73, 370, 84, 16);
+		frame.getContentPane().add(lblTDT);
+		
+		JLabel lblCMT = new JLabel("CMND/CCCD");
+		lblCMT.setFont(new Font("Tahoma", Font.PLAIN, 16));
+		lblCMT.setBounds(66, 418, 91, 16);
+		frame.getContentPane().add(lblCMT);
+		
+		textFieldCMT = new JTextField();
+		textFieldCMT.setFont(new Font("Tahoma", Font.PLAIN, 16));
+		textFieldCMT.setColumns(10);
+		textFieldCMT.setBounds(169, 408, 300, 35);
+		frame.getContentPane().add(textFieldCMT);
+		
+		textFieldTDT = new JTextField();
+		textFieldTDT.setFont(new Font("Tahoma", Font.PLAIN, 16));
+		textFieldTDT.setColumns(10);
+		textFieldTDT.setBounds(169, 360, 300, 35);
+		frame.getContentPane().add(textFieldTDT);
+		
+		JButton btnThemHD = new JButton("Thêm HD");
+		btnThemHD.setFont(new Font("Tahoma", Font.PLAIN, 16));
+		btnThemHD.setBounds(171, 510, 143, 46);
+		getFrame().getContentPane().add(btnThemHD);
+		
+		JButton btnXoaHD = new JButton("Xoá HD");
+		btnXoaHD.setFont(new Font("Tahoma", Font.PLAIN, 16));
+		btnXoaHD.setBounds(171, 569, 143, 46);
+		getFrame().getContentPane().add(btnXoaHD);
+		
+		JButton btnCpNhtHd = new JButton("Cập nhật HD");
+		btnCpNhtHd.setFont(new Font("Tahoma", Font.PLAIN, 16));
+		btnCpNhtHd.setBounds(326, 510, 143, 46);
+		getFrame().getContentPane().add(btnCpNhtHd);
+		
+		JButton btnXoaTruong = new JButton("Xoá các trường");
+		btnXoaTruong.setFont(new Font("Tahoma", Font.PLAIN, 16));
+		btnXoaTruong.setBounds(326, 569, 143, 46);
+		getFrame().getContentPane().add(btnXoaTruong);
+		
+		JButton btnThngKChi = new JButton("TK doanh thu");
+		btnThngKChi.setFont(new Font("Tahoma", Font.PLAIN, 16));
+		btnThngKChi.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+			}
+		});
+		btnThngKChi.setBounds(171, 628, 143, 46);
+		getFrame().getContentPane().add(btnThngKChi);
+		
+		JButton btnTimKiem = new JButton("Tìm kiếm");
+		btnTimKiem.setFont(new Font("Tahoma", Font.PLAIN, 16));
+		btnTimKiem.setBounds(1193, 61, 143, 46);
+		getFrame().getContentPane().add(btnTimKiem);
+		
+		txtTimKiem = new JTextField();
+		txtTimKiem.setFont(new Font("Tahoma", Font.PLAIN, 16));
+		txtTimKiem.setBounds(1077, 16, 259, 35);
+		getFrame().getContentPane().add(txtTimKiem);
+		txtTimKiem.setColumns(10);
+		
+		String loaiSearch[] = {"Chủ xe", "Biển số xe", "Xe con", "Xe tải"};
+		//DefaultComboBoxModel<String> loaiSearchModel = new DefaultComboBoxModel<String>(loaiSearch);
+		JComboBox comboBoxLS = new JComboBox(loaiSearch);
+		comboBoxLS.setFont(new Font("Tahoma", Font.PLAIN, 16));
+		comboBoxLS.setBounds(956, 15, 111, 37);
+		getFrame().getContentPane().add(comboBoxLS);
+		
+		JCheckBox chckbxPhi2 = new JCheckBox("Xe có phí gửi > 2.000.000đ");
+		chckbxPhi2.setFont(new Font("Tahoma", Font.PLAIN, 16));
+		chckbxPhi2.setBounds(956, 72, 236, 25);
+		getFrame().getContentPane().add(chckbxPhi2);
+		
+		
+		//Khối Table----------------------------------
+		//String colNames[] = {"Mã KH", "Tên KH", "Địa chỉ", "SĐT", "CMT", "Email"};
+		table = new JTable(new Object[][] {}, new Object[] {"Mã KH", "Tên KH", "Địa chỉ", "SĐT", "CMT", "Email"});
+		table.setBounds(497, 120, 816, 554);
+		getFrame().getContentPane().add(table);
+		Query qr = new Query();
+		qr.updateTable(table);
+
+		//table.setModel(new DefaultTableModel(dataTable,vctHeader));
+		
+		//JScrollPane scrollPane = new JScrollPane(table, JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED, JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
+		//JScrollPane scrollPane = new JScrollPane(table);
+		//table.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
+		//scrollPane.setBounds(1315, 120, 21, 554);
+		//getFrame().getContentPane().add(scrollPane);
+		//scrollPane.setViewportView(table);
+		//table.setModel(new DefaultTableModel(qr.updateTable(table),vctHeader));
+		
+		//---------------------------------------------
 	}
 
 	public JFrame getFrame() {

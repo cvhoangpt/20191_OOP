@@ -6,12 +6,12 @@ import java.sql.SQLException;
 
 import gui.Dialog;
 
-public class Connector 
+public class Connector
 {
 	private static String DB_URL = "jdbc:mysql://localhost:3306/oop20191?useLegacyDatetimeCode=false&serverTimezone=UTC";
 	private static String USERNAME = "root";
 	private static String PASSWORD = "";
-	private Connection conn;
+	protected Connection conn;
 	private static Connector instance;
 	
 	public Connector()
