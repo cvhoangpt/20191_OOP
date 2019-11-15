@@ -1,6 +1,6 @@
 # 20191_OOP
 - Project OOP kì 20191, D7 401A.
-- Nhóm 11:
+- Nhóm 13:
 	Cai Việt Hoàng 20168205
 	Nguyễn Thành Nam
 - Đề tài 7: Ứng dụng quản lí kho bãi.
