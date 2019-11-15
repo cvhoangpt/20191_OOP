@@ -38,7 +38,7 @@ public class Dashboard extends Window
 		frame.getContentPane().setFont(new Font("Tahoma", Font.PLAIN, 16));
 	}
 	private JTextField txtTimKiem;
-	private JTable table;
+	private JTable tableBriefs;
 	private JTextField textFieldTCX;
 	private JTextField textFieldSDT;
 	private JTextField textFieldDC;
@@ -232,11 +232,14 @@ public class Dashboard extends Window
 		
 		//Khối Table----------------------------------
 		//String colNames[] = {"Mã KH", "Tên KH", "Địa chỉ", "SĐT", "CMT", "Email"};
-		table = new JTable(new Object[][] {}, new Object[] {"Mã KH", "Tên KH", "Địa chỉ", "SĐT", "CMT", "Email"});
-		table.setBounds(497, 120, 816, 554);
-		getFrame().getContentPane().add(table);
+		tableBriefs = new JTable(new Object[][] {}, new Object[] {"Mã KH", "Tên KH", "Địa chỉ", "SĐT", "CMT", "Email"});
+		tableBriefs.setCellSelectionEnabled(true);
+		tableBriefs.setColumnSelectionAllowed(true);
+		tableBriefs.setFont(new Font("Tahoma", Font.PLAIN, 16));
+		tableBriefs.setBounds(497, 120, 816, 554);
+		getFrame().getContentPane().add(tableBriefs);
 		Query qr = new Query();
-		qr.updateTable(table);
+		qr.updateTable(tableBriefs);
 
 		//table.setModel(new DefaultTableModel(dataTable,vctHeader));
 		

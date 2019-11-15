@@ -34,7 +34,7 @@ public class Connector
 		}
 	}
 	
-	public Connection getConnection()
+	private Connection getConnection()
 	{
 		return conn;
 	}
