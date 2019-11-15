@@ -9,8 +9,8 @@ public class Main
 {
 	public static void main(String[] args) throws SQLException
 	{
-		Connector connecting = new Connector();
-		connecting.getConnection();
+		Connector.getInstance();
+
 		Dashboard begin = new Dashboard();
 		begin.start();
 	}

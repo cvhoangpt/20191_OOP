@@ -14,7 +14,7 @@ public class Connector
 	protected Connection conn;
 	private static Connector instance;
 	
-	public Connector()
+	protected Connector()
 	{
 		try 
 		{   
@@ -39,8 +39,7 @@ public class Connector
 		return conn;
 	}
 	
-	@SuppressWarnings("unused")
-	private static Connector getInstance() throws SQLException
+	public static Connector getInstance() throws SQLException
 	{
 		if (instance == null)
 		{
