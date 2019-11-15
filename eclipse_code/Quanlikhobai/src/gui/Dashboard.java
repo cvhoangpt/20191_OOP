@@ -4,14 +4,14 @@ import java.awt.EventQueue;
 
 import javax.swing.JFrame;
 import javax.swing.JLabel;
-import javax.swing.JScrollPane;
+//import javax.swing.JScrollPane;
 
 import java.awt.Font;
 
 //import javax.swing.DefaultComboBoxModel;
 import javax.swing.JButton;
 import javax.swing.JTextField;
-import javax.swing.table.DefaultTableModel;
+//import javax.swing.table.DefaultTableModel;
 
 import database.Query;
 
@@ -27,6 +27,16 @@ import java.awt.event.ActionEvent;
 public class Dashboard extends Window
 {
 	private JFrame frame;
+	public JFrame getFrame() 
+	{
+		return frame;
+	}
+
+	public void setFrame(JFrame frame) 
+	{
+		this.frame = frame;
+		frame.getContentPane().setFont(new Font("Tahoma", Font.PLAIN, 16));
+	}
 	private JTextField txtTimKiem;
 	private JTable table;
 	private JTextField textFieldTCX;
@@ -241,14 +251,7 @@ public class Dashboard extends Window
 		//---------------------------------------------
 	}
 
-	public JFrame getFrame() {
-		return frame;
-	}
-
-	public void setFrame(JFrame frame) {
-		this.frame = frame;
-		frame.getContentPane().setFont(new Font("Tahoma", Font.PLAIN, 16));
-	}
+	
 	
 	public void start()
 	{
