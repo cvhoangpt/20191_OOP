@@ -6,6 +6,14 @@ import java.sql.SQLException;
 
 import gui.Dialog;
 
+/**
+ * Phương thức liên kết cơ sở dữ liệu thông qua Java Database Connectivity API.
+ * Sử dụng cách khởi tạo Lazy initialization (đơn luồng) của mẫu thiết kế Singleton pattern.
+ * @author hoangcv
+ * @param DB_URL liên kết đến localhost qua JDBC
+ * @param USERNAME tên người dùng (mặc định là root)
+ * @param PASSWORD mật khẩu (bỏ trống)
+ */
 public class Connector
 {
 	private static String DB_URL = "jdbc:mysql://localhost:3306/oop20191?useLegacyDatetimeCode=false&serverTimezone=UTC";
@@ -14,6 +22,9 @@ public class Connector
 	protected Connection conn;
 	private static Connector instance;
 	
+	/**
+	 * Hàm khởi tạo
+	 */
 	protected Connector()
 	{
 		try 
@@ -28,7 +39,7 @@ public class Connector
 		} catch (SQLException e) 
 		{
         	Dialog window = new Dialog();
-        	window.SQLError();
+        	window.dbError();
             e.printStackTrace();
             System.exit(0);
 		}
@@ -39,6 +50,11 @@ public class Connector
 		return conn;
 	}
 	
+	/**
+	 * Phương thức "khởi tạo lười biếng"
+	 * @return instance
+	 * @throws SQLException
+	 */
 	public static Connector getInstance() throws SQLException
 	{
 		if (instance == null)

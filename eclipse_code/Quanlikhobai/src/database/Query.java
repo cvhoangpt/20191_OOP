@@ -9,11 +9,21 @@ import javax.swing.JTable;
 import gui.Dialog;
 import net.proteanit.sql.DbUtils;
 
+/**
+ * Chứa các liên kết thực thể và truy vấn
+ * @author hoang
+ *
+ */
 public class Query extends Connector 
 {
 	ResultSet rs = null;
 	PreparedStatement pst = null;
 	
+	/**
+	 * Phương thức truy vấn trích xuất csdl vào table
+	 * @param table
+	 * @throws SQLException
+	 */
 	public void updateTable(JTable table) throws SQLException
 	{
 		try
@@ -27,7 +37,7 @@ public class Query extends Connector
 		} catch(Exception e)
 		{
 			Dialog d = new Dialog();
-			d.SQLError();
+			d.dbError();
 			e.printStackTrace();
 		}
 	}

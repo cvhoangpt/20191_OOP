@@ -23,7 +23,12 @@ import java.sql.SQLException;
 import java.awt.event.ActionEvent;
 
 //import net.proteanit.sql.DbUtils;
-
+/**
+ * Phương thức Dashboard: Giao diện điều khiển chính của chương trình
+ * @version 1.0
+ * @author Hoàng
+ * @since 10/2019
+ */
 public class Dashboard extends Window
 {
 	private JFrame frame;
@@ -58,10 +63,10 @@ public class Dashboard extends Window
 	}
 
 	/**
-	 * Initialize the contents of the frame.
+	 * Khởi tạo nội dung các Frame
 	 * @throws SQLException 
 	 */
-	@SuppressWarnings("unchecked")
+	@SuppressWarnings({"rawtypes", "unchecked"})
 	private void initialize() throws SQLException 
 	{
 		setFrame(new JFrame());
@@ -253,10 +258,10 @@ public class Dashboard extends Window
 		
 		//---------------------------------------------
 	}
-
-	
-	
-	public void start()
+	/**
+	 * Phương thức khởi động Dashboard
+	 */
+	public void startDashboard()
 	{
 		EventQueue.invokeLater(new Runnable() 
 		{
@@ -268,7 +273,7 @@ public class Dashboard extends Window
 				} catch (Exception e) 
 				{
 					Dialog ed = new Dialog();
-					ed.Crash();
+					ed.crash();
 					e.printStackTrace();
 				}
 			}

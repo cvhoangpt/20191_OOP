@@ -5,6 +5,11 @@ import java.awt.Font;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 
+/**
+ * Lớp chứa các hộp thoại thông báo
+ * @author hoangcv
+ *
+ */
 public class Dialog extends Window
 {
 
@@ -34,21 +39,30 @@ public class Dialog extends Window
 		frame.getContentPane().setFont(new Font("Tahoma", Font.PLAIN, 16));
 	}
 	
-	public void SQLError()
+	/**
+	 * Phương thức in ra màn hình hộp thoại thông báo lỗi cơ sở dữ liệu
+	 */
+	public void dbError()
 	{
 		JOptionPane.showMessageDialog(getFrame(), "Kiểm tra lại kết nối hoặc truy vấn.", 
     			"Lỗi cơ sở dữ liệu",
     			JOptionPane.INFORMATION_MESSAGE);
 	}
 	
-	public void EmptyBlank()
+	/**
+	 * Phương thức in ra màn hình hộp thoại thông báo lỗi không nhập đủ các trường
+	 */
+	public void emptyBlank()
 	{
 		JOptionPane.showMessageDialog(getFrame(), "Bạn nhập chưa đủ các trường", 
 				"Lỗi nhập dữ liệu",
 				JOptionPane.INFORMATION_MESSAGE);
 	}
 	
-	public void Crash()
+	/**
+	 * Phương thức in ra màn hình hộp thoại thông báo lỗi chương trình bị treo
+	 */
+	public void crash()
 	{
 		JOptionPane.showMessageDialog(getFrame(), "Chương trình không hồi đáp", 
 				"Lỗi hệ thống",
