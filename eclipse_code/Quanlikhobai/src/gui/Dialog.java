@@ -49,13 +49,26 @@ public class Dialog extends Window
     			JOptionPane.INFORMATION_MESSAGE);
 	}
 	
+	public void checkXeTai()
+	{
+		JOptionPane.showMessageDialog(getFrame(), "Bạn cần nhập trọng tải đối với xe tải",
+				"Lỗi nhập dữ liệu",
+				JOptionPane.INFORMATION_MESSAGE);
+	}
 	/**
 	 * Phương thức in ra màn hình hộp thoại thông báo lỗi không nhập đủ các trường
 	 */
 	public void emptyBlank()
 	{
-		JOptionPane.showMessageDialog(getFrame(), "Bạn nhập chưa đủ các trường", 
+		JOptionPane.showMessageDialog(getFrame(), "Bạn nhập chưa đủ các trường (*)", 
 				"Lỗi nhập dữ liệu",
+				JOptionPane.INFORMATION_MESSAGE);
+	}
+	
+	public void dataSave()
+	{
+		JOptionPane.showMessageDialog(getFrame(), "Thêm hợp đồng thành công",
+				"Thông báo",
 				JOptionPane.INFORMATION_MESSAGE);
 	}
 	
@@ -68,4 +81,5 @@ public class Dialog extends Window
 				"Lỗi hệ thống",
 				JOptionPane.INFORMATION_MESSAGE);
 	}
+	
 }
