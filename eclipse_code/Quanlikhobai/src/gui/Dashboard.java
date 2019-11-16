@@ -14,6 +14,7 @@ import javax.swing.JButton;
 import javax.swing.JTextField;
 //import javax.swing.table.DefaultTableModel;
 
+import core.Modify;
 import database.Query;
 
 import javax.swing.JComboBox;
@@ -23,6 +24,8 @@ import java.awt.event.ActionListener;
 import java.sql.SQLException;
 import java.awt.event.ActionEvent;
 import javax.swing.JScrollPane;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 
 //import net.proteanit.sql.DbUtils;
 /**
@@ -305,6 +308,20 @@ public class Dashboard extends Window
 		getFrame().getContentPane().add(btnCpNhtHd);
 		
 		JButton btnXoaTruong = new JButton("Xoá các trường");
+		btnXoaTruong.addActionListener(new ActionListener() 
+		{
+			public void actionPerformed(ActionEvent e)
+			{
+				getTextFieldTCX().setText("");
+				getTextFieldCMT().setText("");
+				getTextFieldCTT().setText("");
+				getTextFieldDC().setText("");
+				getTextFieldSDT().setText("");
+				getTextFieldTDT().setText("");
+				getTextFieldTT().setText("");
+				getTextFieldTGG().setText("");
+			}
+		});
 		btnXoaTruong.setFont(new Font("Tahoma", Font.PLAIN, 16));
 		btnXoaTruong.setBounds(326, 569, 143, 46);
 		getFrame().getContentPane().add(btnXoaTruong);
@@ -348,10 +365,18 @@ public class Dashboard extends Window
 		
 		//Khối Table----------------------------------
 		tableBriefs = new JTable();
+		tableBriefs.addMouseListener(new MouseAdapter() 
+		{
+			@Override
+			public void mouseClicked(MouseEvent e) 
+			{
+				
+			}
+		});
 		scrollPane.setViewportView(tableBriefs);
 		tableBriefs.setCellSelectionEnabled(true);
 		tableBriefs.setColumnSelectionAllowed(true);
-		tableBriefs.setFont(new Font("Tahoma", Font.PLAIN, 16));
+		tableBriefs.setFont(new Font("Tahoma", Font.PLAIN, 14));
 		
 		qr.updateTable(tableBriefs);
 		
@@ -391,5 +416,69 @@ public class Dashboard extends Window
 				}
 			}
 		});
+	}
+
+	public JTextField getTextFieldTCX() {
+		return textFieldTCX;
+	}
+
+	public void setTextFieldTCX(JTextField textFieldTCX) {
+		this.textFieldTCX = textFieldTCX;
+	}
+
+	public JTextField getTextFieldSDT() {
+		return textFieldSDT;
+	}
+
+	public void setTextFieldSDT(JTextField textFieldSDT) {
+		this.textFieldSDT = textFieldSDT;
+	}
+
+	public JTextField getTextFieldDC() {
+		return textFieldDC;
+	}
+
+	public void setTextFieldDC(JTextField textFieldDC) {
+		this.textFieldDC = textFieldDC;
+	}
+
+	public JTextField getTextFieldTDT() {
+		return textFieldTDT;
+	}
+
+	public void setTextFieldTDT(JTextField textFieldTDT) {
+		this.textFieldTDT = textFieldTDT;
+	}
+
+	public JTextField getTextFieldCMT() {
+		return textFieldCMT;
+	}
+
+	public void setTextFieldCMT(JTextField textFieldCMT) {
+		this.textFieldCMT = textFieldCMT;
+	}
+
+	public JTextField getTextFieldTT() {
+		return textFieldTT;
+	}
+
+	public void setTextFieldTT(JTextField textFieldTT) {
+		this.textFieldTT = textFieldTT;
+	}
+
+	public JTextField getTextFieldTGG() {
+		return textFieldTGG;
+	}
+
+	public void setTextFieldTGG(JTextField textFieldTGG) {
+		this.textFieldTGG = textFieldTGG;
+	}
+
+	public JTextField getTextFieldCTT() {
+		return textFieldCTT;
+	}
+
+	public void setTextFieldCTT(JTextField textFieldCTT) {
+		this.textFieldCTT = textFieldCTT;
 	}
 }

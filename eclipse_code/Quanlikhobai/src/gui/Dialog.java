@@ -55,6 +55,13 @@ public class Dialog extends Window
 				"Lỗi nhập dữ liệu",
 				JOptionPane.INFORMATION_MESSAGE);
 	}
+	
+	public void duplicateBS()
+	{
+		JOptionPane.showMessageDialog(getFrame(), "Trùng biển số xe",
+				"Lỗi trùng lặp dữ liệu",
+				JOptionPane.INFORMATION_MESSAGE);
+	}
 	/**
 	 * Phương thức in ra màn hình hộp thoại thông báo lỗi không nhập đủ các trường
 	 */
