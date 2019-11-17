@@ -2,12 +2,14 @@ package object;
 
 public class Vehicle 
 {
-	protected String bienSo, loaiXe;
+	private String bienSo, loaiXe, trongTai; 
+	
 	public Vehicle() {}
-	public Vehicle(String bienSo, String loaiXe)
+	public Vehicle(String bienSo, String loaiXe, String trongTai)
 	{
 		this.bienSo = bienSo;
 		this.loaiXe = loaiXe;
+		this.trongTai = trongTai;
 	}
 	
 	public String getBienSo() {
@@ -21,5 +23,11 @@ public class Vehicle
 	}
 	public void setLoaiXe(String loaiXe) {
 		this.loaiXe = loaiXe;
+	}
+	public String getTrongTai() {
+		return trongTai;
+	}
+	public void setTrongTai(String trongTai) {
+		this.trongTai = trongTai;
 	}
 }

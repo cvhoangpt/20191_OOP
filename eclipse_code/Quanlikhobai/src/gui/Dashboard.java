@@ -233,7 +233,7 @@ public class Dashboard extends Window
 				ctt = textFieldCTT.getText();
 				lx = comboBoxLX.getSelectedItem().toString();
 				new Khachhang(tcx, dc, sdt, cmt, tdt);
-				new Vehicle(bs, lx);
+				new Vehicle(bs, lx, tt);
 				
 				if (tcx.isEmpty())
 				{
