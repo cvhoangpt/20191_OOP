@@ -117,17 +117,58 @@ public class EntityModify extends Connector
 			//Khối khác
 			
 			//---
-			d.dataSave();
+			//d.dataSave();
 		} catch(Exception e)
 		{
-			d.duplicateBS();
+			d.dbError();
 			e.printStackTrace();
 		}
 	}
 	
-	public void deleteHD()
+	public void deleteHD(String rowBienSo)
 	{
+		String getMaKH = null;
+		String sqlGetMaKH =
+	"SELECT kh.MaKH FROM khach_hang kh " +
+	"JOIN hop_dong hd ON kh.MaKH = hd.MaKH " +
+	"JOIN xe x ON x.Bienso = hd.Bienso " +
+	"WHERE x.Bienso = '"+rowBienSo+"'";
+		try
+		{
+			PreparedStatement pst = conn.prepareStatement(sqlGetMaKH);
+			ResultSet rs = pst.executeQuery();
+			while (rs.next()) getMaKH = rs.getString("MaKH");
+			System.out.println(getMaKH);
+			rs.close();
+			pst.close();
+		} catch (Exception e)
+		{
+			e.printStackTrace();
+		}
 		
+		String sqlDHD1 = 
+	"DELETE FROM xe WHERE Bienso = '"+rowBienSo+"'";
+		try
+		{
+			PreparedStatement pst = conn.prepareStatement(sqlDHD1);
+			pst.executeUpdate();
+			pst.close();
+		} catch (Exception e)
+		{
+			e.printStackTrace();
+		}
+		
+		String sqlDHD2 =
+	"DELETE FROM khach_hang WHERE MaKH = '"+getMaKH+"'";
+		try
+		{
+			PreparedStatement pst = conn.prepareStatement(sqlDHD2);
+			pst.executeUpdate();
+			pst.close();
+		} catch (Exception e)
+		{
+			e.printStackTrace();
+		}
 	}
 	
 	@SuppressWarnings("rawtypes")
@@ -165,5 +206,30 @@ public class EntityModify extends Connector
 			e.printStackTrace();
 		}
 		
+	}
+	
+	public boolean duplicateBSSQL(String bs)
+	{
+		String dbssql =
+	"SELECT * FROM xe WHERE Bienso=?";
+		try
+		{
+			PreparedStatement pst = conn.prepareStatement(dbssql);
+			pst.setString(1, bs);
+			ResultSet rs = pst.executeQuery();
+			int count = 0;
+			while (rs.next()) count++;
+			//System.out.println(count);
+			if (count == 1) 
+			{
+				Dialog d = new Dialog();
+				d.duplicateBS();
+				return false;
+			} 
+		} catch (Exception e)
+		{
+			e.printStackTrace();
+		}
+		return true;
 	}
 }

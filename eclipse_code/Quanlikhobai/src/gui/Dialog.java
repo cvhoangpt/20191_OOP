@@ -72,6 +72,12 @@ public class Dialog extends Window
 				JOptionPane.INFORMATION_MESSAGE);
 	}
 	
+	public void deleteException()
+	{
+		JOptionPane.showMessageDialog(getFrame(), "Không có gì để xoá", 
+				"Lỗi ngoại lệ",
+				JOptionPane.INFORMATION_MESSAGE);
+	}
 	public void dataSave()
 	{
 		JOptionPane.showMessageDialog(getFrame(), "Thêm hợp đồng thành công",

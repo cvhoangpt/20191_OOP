@@ -224,10 +224,11 @@ public class Dashboard extends Window
 					return;
 				} else cmt = Integer.parseInt(textFieldCMT.getText());
 				
-				//System.out.println(sdt);
 				dc = textFieldDC.getText();
 				tdt = textFieldTDT.getText();
 				bs = textFieldBS.getText();
+				//kiểm tra trùng biển số xe
+				if (em.duplicateBSSQL(bs) == false) return;
 				tt = textFieldTT.getText();
 				tgg = textFieldTGG.getText();
 				ctt = textFieldCTT.getText();
@@ -305,6 +306,21 @@ public class Dashboard extends Window
 		{
 			public void actionPerformed(ActionEvent e) 
 			{
+				if (textFieldTCX.getText().isEmpty())
+				{
+					d.deleteException();
+					return;
+				}
+				bs = textFieldBS.getText();
+				try
+				{
+					em.deleteHD(bs);
+					em.refreshTable(tableBriefs);
+					removeField();
+				} catch (Exception e4)
+				{
+					e4.printStackTrace();
+				}
 				
 			}
 		});
@@ -322,15 +338,7 @@ public class Dashboard extends Window
 		{
 			public void actionPerformed(ActionEvent e)
 			{
-				getTextFieldTCX().setText("");
-				getTextFieldCMT().setText("");
-				getTextFieldCTT().setText("");
-				getTextFieldDC().setText("");
-				getTextFieldSDT().setText("");
-				getTextFieldTDT().setText("");
-				getTextFieldTT().setText("");
-				getTextFieldTGG().setText("");
-				getTextFieldBS().setText("");
+				removeField();
 			}
 		});
 		btnXoaTruong.setFont(new Font("Tahoma", Font.PLAIN, 16));
@@ -414,6 +422,19 @@ public class Dashboard extends Window
 		JLabel lblBB = new JLabel("(*) bắt buộc");
 		lblBB.setBounds(169, 96, 84, 16);
 		frame.getContentPane().add(lblBB);
+	}
+	
+	public void removeField()
+	{
+		getTextFieldTCX().setText("");
+		getTextFieldCMT().setText("");
+		getTextFieldCTT().setText("");
+		getTextFieldDC().setText("");
+		getTextFieldSDT().setText("");
+		getTextFieldTDT().setText("");
+		getTextFieldTT().setText("");
+		getTextFieldTGG().setText("");
+		getTextFieldBS().setText("");
 	}
 
 	/**
