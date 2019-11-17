@@ -4,7 +4,9 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
+import javax.swing.JComboBox;
 import javax.swing.JTable;
+import javax.swing.JTextField;
 
 import core.Modify;
 
@@ -18,7 +20,7 @@ import net.proteanit.sql.DbUtils;
  * @author hoang
  *
  */
-public class Query extends Connector 
+public class EntityModify extends Connector 
 {
 	//ResultSet rs = null;
 	//PreparedStatement pst = null;
@@ -51,13 +53,12 @@ public class Query extends Connector
 	
 	public void refreshTable(JTable table) throws SQLException
 	{
+		String sqlUpdateTable = 
+				"SELECT khach_hang.MaKH, hop_dong.MaHD, khach_hang.TenKH, xe.Bienso, xe.Loaixe " + 
+				"FROM khach_hang, hop_dong, xe " + 
+				"WHERE (khach_hang.MaKH = hop_dong.MaKH AND hop_dong.Bienso = xe.Bienso)";
 		try
 		{
-			String sqlUpdateTable = 
-	"SELECT khach_hang.MaKH, hop_dong.MaHD, khach_hang.TenKH, xe.Bienso, xe.Loaixe " + 
-	"FROM khach_hang, hop_dong, xe " + 
-	"WHERE (khach_hang.MaKH = hop_dong.MaKH AND hop_dong.Bienso = xe.Bienso)";
-			
 			PreparedStatement pst = conn.prepareStatement(sqlUpdateTable);
 			ResultSet rs = pst.executeQuery();
 			table.setModel(DbUtils.resultSetToTableModel(rs));
@@ -71,24 +72,24 @@ public class Query extends Connector
 	{
 		System.out.println(Dashboard.tcx);
 	}
-	public void insertHD() throws SQLException
+	public void insertHD(String tcx, int sdt, int cmt, String dc, String tdt, String bs, String tt, String tgg, String ctt, String lx) throws SQLException
 	{
 		Dialog d = new Dialog();
 		Modify m = new Modify();
 		try
 		{
-			String value1 = String.valueOf(m.randomMKH());
-			String value2 = String.valueOf(m.randomMHD());
+			String value1 = "KH" + String.valueOf(m.randomMKH());
+			String value2 = "HD" + String.valueOf(m.randomMHD());
 			//Khối chèn bảng khach_hang
 			String sqlInsertHD1 = 
 	"INSERT INTO khach_hang (MaKH, TenKH, DiaChi, SDT, SoCMND, ThuDienTu) VALUES (?,?,?,?,?,?)";
 			PreparedStatement pst1 = conn.prepareStatement(sqlInsertHD1);
 			pst1.setString(1, value1);
-			pst1.setString(2, Dashboard.tcx);
-			pst1.setString(3, Dashboard.dc);
-			pst1.setInt(4, Dashboard.sdt);
-			pst1.setInt(5, Dashboard.cmt);
-			pst1.setString(6, Dashboard.tdt);
+			pst1.setString(2, tcx);
+			pst1.setString(3, dc);
+			pst1.setInt(4, sdt);
+			pst1.setInt(5, cmt);
+			pst1.setString(6, tdt);
 			pst1.executeUpdate();
 			//---
 			
@@ -96,9 +97,9 @@ public class Query extends Connector
 			String sqlInsertHD2 = 
 	"INSERT INTO xe (Bienso, Loaixe, Trongtai) VALUES (?,?,?)";
 			PreparedStatement pst2 = conn.prepareStatement(sqlInsertHD2);
-			pst2.setString(1, Dashboard.bs);
-			pst2.setString(2, Dashboard.lx);
-			pst2.setString(3, Dashboard.tt);
+			pst2.setString(1, bs);
+			pst2.setString(2, lx);
+			pst2.setString(3, tt);
 			pst2.executeUpdate();
 			//--
 			
@@ -107,10 +108,10 @@ public class Query extends Connector
 	"INSERT INTO hop_dong (MaHD, Hinhthucthanhtoan, Thoigiangui, MaKH, Bienso) VALUES (?,?,?,?,?)";
 			PreparedStatement pst3 = conn.prepareStatement(sqlInsertHD3);
 			pst3.setString(1, value2);
-			pst3.setString(2, Dashboard.ctt);
-			pst3.setString(3, Dashboard.tgg);
+			pst3.setString(2, ctt);
+			pst3.setString(3, tgg);
 			pst3.setString(4, value1);
-			pst3.setString(5, Dashboard.bs);
+			pst3.setString(5, bs);
 			pst3.executeUpdate();
 			//---
 			
@@ -120,8 +121,41 @@ public class Query extends Connector
 			d.dataSave();
 		} catch(Exception e)
 		{
-			d.dbError();
+			d.duplicateBS();
 			e.printStackTrace();
 		}
+	}
+	
+	@SuppressWarnings({ "rawtypes", "unchecked" })
+	public void selectRow(String rowBienSo, JTextField textFieldTCX, JTextField textFieldSDT, JTextField textFieldDC, JTextField textFieldTDT, JTextField textFieldCMT, JTextField textFieldBS, JTextField textFieldTT, JTextField textFieldTGG, JTextField textFieldCTT, JComboBox comboBoxLX)
+	{
+		String sqlSR = 
+	"SELECT kh.TenKH, kh.DiaChi, kh.SDT, kh.SoCMND, kh.ThuDienTu, hd.Hinhthucthanhtoan, hd.Thoigiangui, x.Bienso, x.Loaixe, x.Trongtai\r\n" + 
+	"FROM khach_hang kh "+ 
+	"JOIN hop_dong hd ON kh.MaKH = hd.MaKH " + 
+	"JOIN xe x ON x.Bienso = hd.Bienso " + 
+	"WHERE x.Bienso = '"+rowBienSo+"'";
+		try
+		{
+			PreparedStatement pst = conn.prepareStatement(sqlSR);
+			ResultSet rs = pst.executeQuery();
+			while (rs.next())
+			{
+				textFieldTCX.setText(rs.getString("TenKH"));
+				textFieldSDT.setText(rs.getString("SDT"));
+				textFieldDC.setText(rs.getString("DiaChi"));
+				textFieldTDT.setText(rs.getString("ThuDienTu"));
+				textFieldCMT.setText(rs.getString("SoCMND"));
+				textFieldBS.setText(rs.getString("Bienso"));
+				textFieldTT.setText(rs.getString("Trongtai"));
+				textFieldTGG.setText(rs.getString("Thoigiangui"));
+				textFieldCTT.setText(rs.getString("Hinhthucthanhtoan"));
+				comboBoxLX.setSelectedItem(rs.getString("Loaixe"));
+			}
+		} catch (Exception e)
+		{
+			e.printStackTrace();
+		}
+		
 	}
 }

@@ -4,19 +4,19 @@ import java.util.Random;
 
 public class Modify 
 {
-	public int randomMaKH;
-	public int randomMaHD;
+	private int randomMaKH;
+	private int randomMaHD;
+	Random rd = new Random();
+	
 	public int randomMKH()
 	{
-		Random rd = new Random();
-		randomMaKH = rd.nextInt(10000);
+		randomMaKH = rd.nextInt(100000);
 		return randomMaKH;
 	}
 	
 	public int randomMHD()
 	{
-		Random rd = new Random();
-		randomMaHD = rd.nextInt(10000);
+		randomMaHD = rd.nextInt(100000);
 		return randomMaHD;
 	}
 }

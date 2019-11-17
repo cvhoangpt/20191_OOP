@@ -15,7 +15,7 @@ import javax.swing.JTextField;
 //import javax.swing.table.DefaultTableModel;
 
 import core.Modify;
-import database.Query;
+import database.EntityModify;
 
 import javax.swing.JComboBox;
 import javax.swing.JCheckBox;
@@ -90,7 +90,7 @@ public class Dashboard extends Window
 	@SuppressWarnings("unchecked")
 	private void initialize() throws SQLException 
 	{
-		Query qr = new Query();
+		EntityModify em = new EntityModify();
 		Dialog d = new Dialog();
 		setFrame(new JFrame());
 		getFrame().setTitle("Chương trình quản lí bãi gửi xe");
@@ -284,8 +284,8 @@ public class Dashboard extends Window
 				
 				try 
 				{
-					qr.insertHD();
-					qr.refreshTable(tableBriefs);
+					em.insertHD(tcx, sdt, cmt, dc, tdt, bs, tt, tgg, ctt, lx);
+					em.refreshTable(tableBriefs);
 				} catch (SQLException e1) 
 				{	
 					e1.printStackTrace();
@@ -370,15 +370,24 @@ public class Dashboard extends Window
 			@Override
 			public void mouseClicked(MouseEvent e) 
 			{
-				
+				try
+				{
+					int row = tableBriefs.getSelectedRow();
+					System.out.println(row);
+					String rowBienSo = (tableBriefs.getModel().getValueAt(row, 3).toString());
+					System.out.println(rowBienSo);
+					em.selectRow(rowBienSo, textFieldTCX, textFieldSDT, textFieldDC, textFieldTDT, textFieldCMT, textFieldBS, textFieldTT, textFieldTGG, textFieldCTT, comboBoxLX);
+					
+				} catch (Exception e3)
+				{
+					e3.printStackTrace();
+				}
 			}
 		});
 		scrollPane.setViewportView(tableBriefs);
-		tableBriefs.setCellSelectionEnabled(true);
-		tableBriefs.setColumnSelectionAllowed(true);
 		tableBriefs.setFont(new Font("Tahoma", Font.PLAIN, 14));
 		
-		qr.updateTable(tableBriefs);
+		em.updateTable(tableBriefs);
 		
 		JLabel lblCTT = new JLabel("Cách thanh toán");
 		lblCTT.setFont(new Font("Tahoma", Font.PLAIN, 16));

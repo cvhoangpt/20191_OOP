@@ -22,6 +22,5 @@ public class Main
 		
 		Dashboard begin = new Dashboard();
 		begin.startDashboard();
-		
 	}
 }

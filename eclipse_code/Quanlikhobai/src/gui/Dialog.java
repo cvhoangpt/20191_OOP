@@ -58,7 +58,7 @@ public class Dialog extends Window
 	
 	public void duplicateBS()
 	{
-		JOptionPane.showMessageDialog(getFrame(), "Trùng biển số xe",
+		JOptionPane.showMessageDialog(getFrame(), "Có vẻ đã trùng biển số xe",
 				"Lỗi trùng lặp dữ liệu",
 				JOptionPane.INFORMATION_MESSAGE);
 	}
