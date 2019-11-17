@@ -8,12 +8,11 @@ import javax.swing.JComboBox;
 import javax.swing.JTable;
 import javax.swing.JTextField;
 
-import core.Modify;
-
 //import java.sql.Statement;
 
 import gui.*;
 import net.proteanit.sql.DbUtils;
+import util.Modify;
 
 /**
  * Chứa các liên kết thực thể và truy vấn
@@ -126,7 +125,12 @@ public class EntityModify extends Connector
 		}
 	}
 	
-	@SuppressWarnings({ "rawtypes", "unchecked" })
+	public void deleteHD()
+	{
+		
+	}
+	
+	@SuppressWarnings("rawtypes")
 	public void selectRow(String rowBienSo, JTextField textFieldTCX, JTextField textFieldSDT, JTextField textFieldDC, JTextField textFieldTDT, JTextField textFieldCMT, JTextField textFieldBS, JTextField textFieldTT, JTextField textFieldTGG, JTextField textFieldCTT, JComboBox comboBoxLX)
 	{
 		String sqlSR = 
@@ -154,6 +158,8 @@ public class EntityModify extends Connector
 			}
 		} catch (Exception e)
 		{
+			Dialog d = new Dialog();
+			d.dbError();
 			e.printStackTrace();
 		}
 		

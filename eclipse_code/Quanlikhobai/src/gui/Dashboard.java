@@ -14,8 +14,8 @@ import javax.swing.JButton;
 import javax.swing.JTextField;
 //import javax.swing.table.DefaultTableModel;
 
-import core.Modify;
 import database.EntityModify;
+import object.*;
 
 import javax.swing.JComboBox;
 import javax.swing.JCheckBox;
@@ -232,6 +232,9 @@ public class Dashboard extends Window
 				tgg = textFieldTGG.getText();
 				ctt = textFieldCTT.getText();
 				lx = comboBoxLX.getSelectedItem().toString();
+				new Khachhang(tcx, dc, sdt, cmt, tdt);
+				new Vehicle(bs, lx);
+				
 				if (tcx.isEmpty())
 				{
 					d.emptyBlank();
@@ -298,6 +301,13 @@ public class Dashboard extends Window
 		getFrame().getContentPane().add(btnThemHD);
 		
 		JButton btnXoaHD = new JButton("Xoá HD");
+		btnXoaHD.addActionListener(new ActionListener() 
+		{
+			public void actionPerformed(ActionEvent e) 
+			{
+				
+			}
+		});
 		btnXoaHD.setFont(new Font("Tahoma", Font.PLAIN, 16));
 		btnXoaHD.setBounds(171, 569, 143, 46);
 		getFrame().getContentPane().add(btnXoaHD);
