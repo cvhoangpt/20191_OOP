@@ -2,7 +2,6 @@ package main;
 
 import java.sql.SQLException;
 
-//import core.Modify;
 import database.Connector;
 import gui.*;
 

@@ -37,7 +37,7 @@ import java.awt.event.MouseEvent;
 @SuppressWarnings("rawtypes")
 public class Dashboard extends Window
 {
-	private JFrame frame;
+	//private JFrame frame;
 	
 	public JFrame getFrame() 
 	{
@@ -330,6 +330,7 @@ public class Dashboard extends Window
 				getTextFieldTDT().setText("");
 				getTextFieldTT().setText("");
 				getTextFieldTGG().setText("");
+				getTextFieldBS().setText("");
 			}
 		});
 		btnXoaTruong.setFont(new Font("Tahoma", Font.PLAIN, 16));
@@ -499,5 +500,13 @@ public class Dashboard extends Window
 
 	public void setTextFieldCTT(JTextField textFieldCTT) {
 		this.textFieldCTT = textFieldCTT;
+	}
+
+	public JTextField getTextFieldBS() {
+		return textFieldBS;
+	}
+
+	public void setTextFieldBS(JTextField textFieldBS) {
+		this.textFieldBS = textFieldBS;
 	}
 }

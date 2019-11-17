@@ -156,6 +156,8 @@ public class EntityModify extends Connector
 				textFieldCTT.setText(rs.getString("Hinhthucthanhtoan"));
 				comboBoxLX.setSelectedItem(rs.getString("Loaixe"));
 			}
+			rs.close();
+			pst.close();
 		} catch (Exception e)
 		{
 			Dialog d = new Dialog();
