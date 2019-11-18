@@ -5,12 +5,8 @@ import java.awt.EventQueue;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 //import javax.swing.JScrollPane;
-import javax.swing.JOptionPane;
 
 import java.awt.Font;
-
-import java.util.Timer;
-import java.util.TimerTask;
 
 //import javax.swing.DefaultComboBoxModel;
 import javax.swing.JButton;
@@ -33,7 +29,6 @@ import javax.swing.JScrollPane;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
-//import net.proteanit.sql.DbUtils;
 /**
  * Phương thức Dashboard: Giao diện điều khiển chính của chương trình
  * @version 1.0
@@ -549,6 +544,9 @@ public class Dashboard extends Window
 		frame.getContentPane().add(lblcalVehicle);
 		
 	}
+	/**
+	 * Phương thức xoá trường. Ghi đè phương thức của Interface Ability
+	 */
 	public void removeField()
 	{
 		getTextFieldTCX().setText("");

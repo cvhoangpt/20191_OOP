@@ -46,6 +46,9 @@ public class Dialog extends Window
     			JOptionPane.INFORMATION_MESSAGE);
 	}
 	
+	/**
+	 * Phương thức check xem nếu JComboBox chọn là xe tải thì cần nhập trọng tải
+	 */
 	public void checkXeTai()
 	{
 		JOptionPane.showMessageDialog(getFrame(), "Bạn cần nhập trọng tải đối với xe tải.",
@@ -69,6 +72,9 @@ public class Dialog extends Window
 				JOptionPane.INFORMATION_MESSAGE);
 	}
 	
+	/**
+	 * In ra màn hình thông báo ngoại lệ
+	 */
 	public void deleteException()
 	{
 		JOptionPane.showMessageDialog(getFrame(), "Không có gì để xoá.", 
@@ -76,6 +82,9 @@ public class Dialog extends Window
 				JOptionPane.INFORMATION_MESSAGE);
 	}
 	
+	/**
+	 * In ra màn hình thông báo ngoại lệ
+	 */
 	public void updateException()
 	{
 		JOptionPane.showMessageDialog(getFrame(), "Không có gì để cập nhật.", 
@@ -83,6 +92,10 @@ public class Dialog extends Window
 				JOptionPane.INFORMATION_MESSAGE);
 	}
 	
+	/**
+	 * Phương thức thông báo ra màn hình hợp đồng được thêm
+	 * Đang không được sử dụng
+	 */
 	public void dataSave()
 	{
 		JOptionPane.showMessageDialog(getFrame(), "Thêm hợp đồng thành công.",
@@ -90,6 +103,9 @@ public class Dialog extends Window
 				JOptionPane.INFORMATION_MESSAGE);
 	}
 	
+	/**
+	 * Phương thức thông báo lên màn hình hợp đồng được cập nhật
+	 */
 	public void updateSave()
 	{
 		JOptionPane.showMessageDialog(getFrame(), "Cập nhật hợp đồng thành công.",
@@ -97,6 +113,9 @@ public class Dialog extends Window
 				JOptionPane.INFORMATION_MESSAGE);
 	}
 	
+	/**
+	 * Phương thức in ra màn hình không cho phép sửa biển số xe
+	 */
 	public void updateBSError()
 	{
 		JOptionPane.showMessageDialog(getFrame(), "Không thể cập nhật biển số xe, chỉ có thể tạo hợp đồng với biển số xe mới.",
@@ -104,6 +123,9 @@ public class Dialog extends Window
 				JOptionPane.INFORMATION_MESSAGE);
 	}
 	
+	/**
+	 * Ngoại lệ trong tìm kiếm
+	 */
 	public void searchException()
 	{
 		JOptionPane.showMessageDialog(getFrame(), "Bạn cần nhập liệu để tìm kiếm.",

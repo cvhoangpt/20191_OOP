@@ -1,5 +1,10 @@
 package object;
 
+/**
+ * Lớp khai báo đối tượng Vehicle
+ * @author hoang
+ *
+ */
 public class Vehicle 
 {
 	private String bienSo, loaiXe, trongTai; 

@@ -11,7 +11,7 @@ import util.Modify;
 
 /**
  * Chứa các liên kết thực thể và truy vấn
- * @author hoang
+ * @author hoangcv
  *
  */
 public class ModifiedEntity extends Connector 
@@ -23,19 +23,34 @@ public class ModifiedEntity extends Connector
 	{
 		System.out.println(Dashboard.tcx);
 	}
+	
+	/**
+	 * Phương thức truy vấn thêm hợp đồng
+	 * @param tcx
+	 * @param sdt
+	 * @param cmt
+	 * @param dc
+	 * @param tdt
+	 * @param bs
+	 * @param tt
+	 * @param tgg
+	 * @param ctt
+	 * @param lx
+	 * @throws SQLException
+	 */
 	public void insertHD(String tcx, int sdt, int cmt, String dc, String tdt, String bs, String tt, String tgg, String ctt, String lx) throws SQLException
 	{
 		Dialog d = new Dialog();
 		Modify m = new Modify();
+		String valueKH = "KH" + String.valueOf(m.randomMKH());
+		String valueHD = "HD" + String.valueOf(m.randomMHD());
 		try
 		{
-			String value1 = "KH" + String.valueOf(m.randomMKH());
-			String value2 = "HD" + String.valueOf(m.randomMHD());
 			//Khối chèn bảng khach_hang
 			String sqlInsertHD1 = 
 	"INSERT INTO khach_hang (MaKH, TenKH, DiaChi, SDT, SoCMND, ThuDienTu) VALUES (?,?,?,?,?,?)";
 			PreparedStatement pst1 = conn.prepareStatement(sqlInsertHD1);
-			pst1.setString(1, value1);
+			pst1.setString(1, valueKH);
 			pst1.setString(2, tcx);
 			pst1.setString(3, dc);
 			pst1.setInt(4, sdt);
@@ -58,10 +73,10 @@ public class ModifiedEntity extends Connector
 			String sqlInsertHD3 = 
 	"INSERT INTO hop_dong (MaHD, Hinhthucthanhtoan, Thoigiangui, MaKH, Bienso) VALUES (?,?,?,?,?)";
 			PreparedStatement pst3 = conn.prepareStatement(sqlInsertHD3);
-			pst3.setString(1, value2);
+			pst3.setString(1, valueHD);
 			pst3.setString(2, ctt);
 			pst3.setString(3, tgg);
-			pst3.setString(4, value1);
+			pst3.setString(4, valueKH);
 			pst3.setString(5, bs);
 			pst3.executeUpdate();
 			//---
@@ -77,6 +92,10 @@ public class ModifiedEntity extends Connector
 		}
 	}
 	
+	/**
+	 * Phương thức truy vấn xoá hợp đồng
+	 * @param rowBienSo
+	 */
 	public void deleteHD(String rowBienSo)
 	{
 		String getMaKH = null;
@@ -123,6 +142,19 @@ public class ModifiedEntity extends Connector
 		}
 	}
 	
+	/**
+	 * Phương thức truy vấn cập nhật (sửa) hợp đồng
+	 * @param tcx
+	 * @param sdt
+	 * @param cmt
+	 * @param dc
+	 * @param tdt
+	 * @param bs
+	 * @param tt
+	 * @param tgg
+	 * @param ctt
+	 * @param lx
+	 */
 	public void updateHD(String tcx, int sdt, int cmt, String dc, String tdt, String bs, String tt, String tgg, String ctt, String lx)
 	{
 		String getMaKH = null;

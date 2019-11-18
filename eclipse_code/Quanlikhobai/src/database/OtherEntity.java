@@ -11,6 +11,11 @@ import javax.swing.JTextField;
 import gui.Dialog;
 import net.proteanit.sql.DbUtils;
 
+/**
+ * Lớp chứa các truy vấn khác
+ * @author hoangcv
+ *
+ */
 public class OtherEntity extends Connector
 {
 	/**
@@ -37,6 +42,20 @@ public class OtherEntity extends Connector
 		}
 	}
 	
+	/**
+	 * Phương thức lấy dữ liệu theo cú click chuột của hàng bất kì trong bảng
+	 * @param rowBienSo
+	 * @param textFieldTCX
+	 * @param textFieldSDT
+	 * @param textFieldDC
+	 * @param textFieldTDT
+	 * @param textFieldCMT
+	 * @param textFieldBS
+	 * @param textFieldTT
+	 * @param textFieldTGG
+	 * @param textFieldCTT
+	 * @param comboBoxLX
+	 */
 	@SuppressWarnings("rawtypes")
 	public void selectRow(String rowBienSo, JTextField textFieldTCX, JTextField textFieldSDT, JTextField textFieldDC, JTextField textFieldTDT, JTextField textFieldCMT, JTextField textFieldBS, JTextField textFieldTT, JTextField textFieldTGG, JTextField textFieldCTT, JComboBox comboBoxLX)
 	{
@@ -74,6 +93,11 @@ public class OtherEntity extends Connector
 		
 	}
 	
+	/**
+	 * Phương thức truy vấn kiểm tra trùng biển số
+	 * @param bs
+	 * @return
+	 */
 	public boolean duplicateBSSQL(String bs)
 	{
 		String dbssql =
@@ -99,6 +123,10 @@ public class OtherEntity extends Connector
 		return false;
 	}
 	
+	/**
+	 * Phương thức tính số xe đang gửi
+	 * @return
+	 */
 	public ResultSet sqlCalVehicle()
 	{
 		ResultSet rs = null;

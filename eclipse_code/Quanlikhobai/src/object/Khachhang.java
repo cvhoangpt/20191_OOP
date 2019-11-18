@@ -1,5 +1,11 @@
 package object;
 
+/**
+ * Lớp khai báo đối tượng khách hàng
+ * 
+ * @author hoangcv
+ *
+ */
 public class Khachhang extends Human
 {
 	private String diaChi, ngayCapCMND, noiCapCMND, thuDienTu;

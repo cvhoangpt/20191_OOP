@@ -1,5 +1,10 @@
 package object;
 
+/**
+ * Lớp khai báo đối tượng Hợp đồng
+ * @author hoangcv
+ *
+ */
 public class Hopdong 
 {
 	private String hinhThucThanhToan;
