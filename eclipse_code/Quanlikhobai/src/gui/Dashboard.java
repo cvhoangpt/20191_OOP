@@ -37,7 +37,7 @@ import java.awt.event.MouseEvent;
 @SuppressWarnings("rawtypes")
 public class Dashboard extends Window
 {
-	//private JFrame frame;
+	private JFrame frame;
 	
 	public JFrame getFrame() 
 	{
@@ -298,7 +298,7 @@ public class Dashboard extends Window
 			}
 		});
 		btnThemHD.setFont(new Font("Tahoma", Font.PLAIN, 16));
-		btnThemHD.setBounds(171, 510, 143, 46);
+		btnThemHD.setBounds(171, 510, 135, 46);
 		getFrame().getContentPane().add(btnThemHD);
 		
 		JButton btnXoaHD = new JButton("Xoá HD");
@@ -325,15 +325,15 @@ public class Dashboard extends Window
 			}
 		});
 		btnXoaHD.setFont(new Font("Tahoma", Font.PLAIN, 16));
-		btnXoaHD.setBounds(171, 569, 143, 46);
+		btnXoaHD.setBounds(171, 569, 135, 46);
 		getFrame().getContentPane().add(btnXoaHD);
 		
 		JButton btnCpNhtHd = new JButton("Cập nhật HD");
 		btnCpNhtHd.setFont(new Font("Tahoma", Font.PLAIN, 16));
-		btnCpNhtHd.setBounds(326, 510, 143, 46);
+		btnCpNhtHd.setBounds(334, 510, 135, 46);
 		getFrame().getContentPane().add(btnCpNhtHd);
 		
-		JButton btnXoaTruong = new JButton("Xoá các trường");
+		JButton btnXoaTruong = new JButton("CF");
 		btnXoaTruong.addActionListener(new ActionListener() 
 		{
 			public void actionPerformed(ActionEvent e)
@@ -342,7 +342,7 @@ public class Dashboard extends Window
 			}
 		});
 		btnXoaTruong.setFont(new Font("Tahoma", Font.PLAIN, 16));
-		btnXoaTruong.setBounds(326, 569, 143, 46);
+		btnXoaTruong.setBounds(334, 569, 59, 46);
 		getFrame().getContentPane().add(btnXoaTruong);
 		
 		JButton btnThngKChi = new JButton("TK doanh thu");
@@ -351,7 +351,7 @@ public class Dashboard extends Window
 			public void actionPerformed(ActionEvent e) {
 			}
 		});
-		btnThngKChi.setBounds(171, 628, 143, 46);
+		btnThngKChi.setBounds(171, 628, 135, 46);
 		getFrame().getContentPane().add(btnThngKChi);
 		
 		JButton btnTimKiem = new JButton("Tìm kiếm");
@@ -419,9 +419,27 @@ public class Dashboard extends Window
 		frame.getContentPane().add(textFieldCTT);
 		textFieldCTT.setColumns(10);
 		
-		JLabel lblBB = new JLabel("(*) bắt buộc");
-		lblBB.setBounds(169, 96, 84, 16);
-		frame.getContentPane().add(lblBB);
+		JLabel lblNote = new JLabel("(*) bắt buộc. CF: Clear Field, RT: Refresh Table");
+		lblNote.setBounds(169, 96, 300, 16);
+		frame.getContentPane().add(lblNote);
+		
+		JButton btnRt = new JButton("RT");
+		btnRt.addActionListener(new ActionListener() 
+		{
+			public void actionPerformed(ActionEvent e) 
+			{
+				try
+				{
+					em.updateTable(tableBriefs);
+				} catch (SQLException se)
+				{
+					se.printStackTrace();
+				}
+			}
+		});
+		btnRt.setFont(new Font("Tahoma", Font.PLAIN, 16));
+		btnRt.setBounds(410, 569, 59, 46);
+		frame.getContentPane().add(btnRt);
 	}
 	
 	public void removeField()
