@@ -499,7 +499,7 @@ public class Dashboard extends Window
 		scrollPane.setViewportView(tableBriefs);
 		tableBriefs.setFont(new Font("Tahoma", Font.PLAIN, 15));
 		
-		oe.updateTable(tableBriefs);
+		oe.refreshTable(tableBriefs);
 		
 		JLabel lblCTT = new JLabel("Cách thanh toán");
 		lblCTT.setFont(new Font("Tahoma", Font.PLAIN, 16));
@@ -531,7 +531,7 @@ public class Dashboard extends Window
 			{
 				try
 				{
-					oe.updateTable(tableBriefs);
+					oe.refreshTable(tableBriefs);
 				} catch (SQLException se)
 				{
 					se.printStackTrace();

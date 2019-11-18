@@ -14,11 +14,11 @@ import net.proteanit.sql.DbUtils;
 public class OtherEntity extends Connector
 {
 	/**
-	 * Phương thức truy vấn trích xuất csdl vào table
+	 * Phương thức truy vấn trích xuất csdl và làm mới table
 	 * @param table
 	 * @throws SQLException
 	 */
-	public void updateTable(JTable table) throws SQLException
+	public void refreshTable(JTable table) throws SQLException
 	{
 		String sqlUpdateTable = 
 	"SELECT khach_hang.MaKH, hop_dong.MaHD, khach_hang.TenKH, xe.Bienso, xe.Loaixe " + 
@@ -33,23 +33,6 @@ public class OtherEntity extends Connector
 		{
 			Dialog d = new Dialog();
 			d.dbError();
-			e.printStackTrace();
-		}
-	}
-	
-	public void refreshTable(JTable table) throws SQLException
-	{
-		String sqlUpdateTable = 
-	"SELECT khach_hang.MaKH, hop_dong.MaHD, khach_hang.TenKH, xe.Bienso, xe.Loaixe " + 
-	"FROM khach_hang, hop_dong, xe " + 
-	"WHERE (khach_hang.MaKH = hop_dong.MaKH AND hop_dong.Bienso = xe.Bienso)";
-		try
-		{
-			PreparedStatement pst = conn.prepareStatement(sqlUpdateTable);
-			ResultSet rs = pst.executeQuery();
-			table.setModel(DbUtils.resultSetToTableModel(rs));
-		} catch(Exception e)
-		{
 			e.printStackTrace();
 		}
 	}

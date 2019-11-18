@@ -38,8 +38,8 @@ public class Connector
         	System.out.println(e);
 		} catch (SQLException e) 
 		{
-        	Dialog window = new Dialog();
-        	window.dbError();
+        	Dialog d = new Dialog();
+        	d.dbError();
             e.printStackTrace();
             System.exit(0);
 		}
