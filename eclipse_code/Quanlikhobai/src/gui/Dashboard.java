@@ -9,6 +9,9 @@ import javax.swing.JOptionPane;
 
 import java.awt.Font;
 
+import java.util.Timer;
+import java.util.TimerTask;
+
 //import javax.swing.DefaultComboBoxModel;
 import javax.swing.JButton;
 import javax.swing.JTextField;
@@ -16,7 +19,9 @@ import javax.swing.JTextField;
 
 import database.ModifiedEntity;
 import database.OtherEntity;
+import database.SearchEntity;
 import object.*;
+import util.Calculate;
 
 import javax.swing.JComboBox;
 import javax.swing.JCheckBox;
@@ -101,7 +106,9 @@ public class Dashboard extends Window
 	{
 		ModifiedEntity me = new ModifiedEntity();
 		OtherEntity oe = new OtherEntity();
+		SearchEntity se = new SearchEntity();
 		Dialog d = new Dialog();
+		
 		setFrame(new JFrame());
 		getFrame().setTitle("Chương trình quản lí bãi gửi xe");
 		getFrame().setBounds(20, 20, 1366, 768);
@@ -251,10 +258,7 @@ public class Dashboard extends Window
 				tgg = textFieldTGG.getText();
 				ctt = textFieldCTT.getText();
 				lx = comboBoxLX.getSelectedItem().toString();
-				if (comboBoxLX.getSelectedItem().toString() == "Xe con")
-				{
-					
-				}
+				
 				new Khachhang(tcx, dc, sdt, cmt, tdt);
 				new Vehicle(bs, lx, tt);
 				
@@ -388,7 +392,6 @@ public class Dashboard extends Window
 				{
 					me.updateHD(tcx, sdt, cmt, dc, tdt, bs, tt, tgg, ctt, lx);
 					oe.refreshTable(tableBriefs);
-					d.updateSave();
 				} catch (SQLException se)
 				{
 					d.duplicateBS();
@@ -422,6 +425,22 @@ public class Dashboard extends Window
 		getFrame().getContentPane().add(btnThngKChi);
 		
 		JButton btnTimKiem = new JButton("Tìm kiếm");
+		btnTimKiem.addActionListener(new ActionListener() 
+		{
+			public void actionPerformed(ActionEvent e) 
+			{
+				if (txtTimKiem.getText().isEmpty())
+				{
+					d.searchException();
+					return;
+				}
+				String value = txtTimKiem.getText();
+				ls = comboBoxLS.getSelectedItem().toString();
+				if (ls == "Chủ xe") se.tcxSearchResult(tableBriefs, value);
+				else if (ls == "Biển số xe") se.bsSearchResult(tableBriefs, value);
+				else if (ls == "Loại xe") se.lxSearchResult(tableBriefs, value);
+			}
+		});
 		btnTimKiem.setFont(new Font("Tahoma", Font.PLAIN, 16));
 		btnTimKiem.setBounds(1193, 61, 143, 46);
 		getFrame().getContentPane().add(btnTimKiem);
@@ -435,6 +454,13 @@ public class Dashboard extends Window
 		String loaiSearch[] = {"Chủ xe", "Biển số xe", "Loại xe"};
 		//DefaultComboBoxModel<String> loaiSearchModel = new DefaultComboBoxModel<String>(loaiSearch);
 		comboBoxLS = new JComboBox(loaiSearch);
+		comboBoxLS.addActionListener(new ActionListener() 
+		{
+			public void actionPerformed(ActionEvent e) 
+			{
+				txtTimKiem.setText("");
+			}
+		});
 		comboBoxLS.setFont(new Font("Tahoma", Font.PLAIN, 16));
 		comboBoxLS.setBounds(956, 15, 111, 37);
 		getFrame().getContentPane().add(comboBoxLS);
@@ -471,7 +497,7 @@ public class Dashboard extends Window
 			}
 		});
 		scrollPane.setViewportView(tableBriefs);
-		tableBriefs.setFont(new Font("Tahoma", Font.PLAIN, 14));
+		tableBriefs.setFont(new Font("Tahoma", Font.PLAIN, 15));
 		
 		oe.updateTable(tableBriefs);
 		
@@ -515,8 +541,14 @@ public class Dashboard extends Window
 		btnRt.setFont(new Font("Tahoma", Font.PLAIN, 16));
 		btnRt.setBounds(410, 569, 59, 46);
 		frame.getContentPane().add(btnRt);
+		
+		Calculate c = new Calculate();
+		JLabel lblcalVehicle = new JLabel("Bãi gửi xe đang có "+c.calVehicle()+" xe.");
+		lblcalVehicle.setFont(new Font("Tahoma", Font.PLAIN, 16));
+		lblcalVehicle.setBounds(497, 88, 200, 30);
+		frame.getContentPane().add(lblcalVehicle);
+		
 	}
-	
 	public void removeField()
 	{
 		getTextFieldTCX().setText("");

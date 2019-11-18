@@ -4,14 +4,9 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-import javax.swing.JComboBox;
-import javax.swing.JTable;
-import javax.swing.JTextField;
-
 //import java.sql.Statement;
 
 import gui.*;
-import net.proteanit.sql.DbUtils;
 import util.Modify;
 
 /**
@@ -131,6 +126,7 @@ public class ModifiedEntity extends Connector
 	public void updateHD(String tcx, int sdt, int cmt, String dc, String tdt, String bs, String tt, String tgg, String ctt, String lx)
 	{
 		String getMaKH = null;
+		Dialog d = new Dialog();
 		String sqlGetMaKH =
 	"SELECT kh.MaKH FROM khach_hang kh " +
 	"JOIN hop_dong hd ON kh.MaKH = hd.MaKH " +
@@ -142,13 +138,18 @@ public class ModifiedEntity extends Connector
 			ResultSet rs = pst.executeQuery();
 			while (rs.next()) getMaKH = rs.getString("MaKH");
 			System.out.println("makh="+getMaKH);
+			
 			rs.close();
 			pst.close();
 		} catch (Exception e)
 		{
 			e.printStackTrace();
 		}
-		
+		if (getMaKH == null) 
+		{
+			d.updateBSError();
+			return;
+		}
 		String sqlUpdateHD1 =
 	"UPDATE khach_hang " +
 	"SET TenKH='"+tcx+"', DiaChi='"+dc+"', SDT='"+sdt+"', SoCMND='"+cmt+"', ThuDienTu='"+tdt+"'" +
@@ -189,6 +190,7 @@ public class ModifiedEntity extends Connector
 		} catch (Exception e)
 		{
 			e.printStackTrace();
-		}			
+		}	
+		d.updateSave();
 	}
 }

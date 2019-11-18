@@ -3,13 +3,14 @@ package object;
 public class Vehicle 
 {
 	private String bienSo, loaiXe, trongTai; 
-	
+	public static int countXe = 0;
 	public Vehicle() {}
 	public Vehicle(String bienSo, String loaiXe, String trongTai)
 	{
 		this.bienSo = bienSo;
 		this.loaiXe = loaiXe;
 		this.trongTai = trongTai;
+		countXe++;
 	}
 	
 	public String getBienSo() {

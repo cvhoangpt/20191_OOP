@@ -20,13 +20,12 @@ public class OtherEntity extends Connector
 	 */
 	public void updateTable(JTable table) throws SQLException
 	{
-		try
-		{
-			String sqlUpdateTable = 
+		String sqlUpdateTable = 
 	"SELECT khach_hang.MaKH, hop_dong.MaHD, khach_hang.TenKH, xe.Bienso, xe.Loaixe " + 
 	"FROM khach_hang, hop_dong, xe " + 
 	"WHERE (khach_hang.MaKH = hop_dong.MaKH AND hop_dong.Bienso = xe.Bienso)";
-			
+		try
+		{
 			PreparedStatement pst = conn.prepareStatement(sqlUpdateTable);
 			ResultSet rs = pst.executeQuery();
 			table.setModel(DbUtils.resultSetToTableModel(rs));
@@ -41,9 +40,9 @@ public class OtherEntity extends Connector
 	public void refreshTable(JTable table) throws SQLException
 	{
 		String sqlUpdateTable = 
-				"SELECT khach_hang.MaKH, hop_dong.MaHD, khach_hang.TenKH, xe.Bienso, xe.Loaixe " + 
-				"FROM khach_hang, hop_dong, xe " + 
-				"WHERE (khach_hang.MaKH = hop_dong.MaKH AND hop_dong.Bienso = xe.Bienso)";
+	"SELECT khach_hang.MaKH, hop_dong.MaHD, khach_hang.TenKH, xe.Bienso, xe.Loaixe " + 
+	"FROM khach_hang, hop_dong, xe " + 
+	"WHERE (khach_hang.MaKH = hop_dong.MaKH AND hop_dong.Bienso = xe.Bienso)";
 		try
 		{
 			PreparedStatement pst = conn.prepareStatement(sqlUpdateTable);
@@ -115,5 +114,21 @@ public class OtherEntity extends Connector
 			e.printStackTrace();
 		}
 		return false;
+	}
+	
+	public ResultSet sqlCalVehicle()
+	{
+		ResultSet rs = null;
+		String sqlCV = "SELECT COUNT(Bienso) FROM xe";
+		try
+		{
+			PreparedStatement pst = conn.prepareStatement(sqlCV);
+			rs = pst.executeQuery();
+			rs.next();
+		} catch (SQLException e)
+		{
+			e.printStackTrace();
+		}
+		return rs;
 	}
 }

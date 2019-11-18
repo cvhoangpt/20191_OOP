@@ -3,16 +3,17 @@ package object;
 public class Khachhang extends Human
 {
 	private String diaChi, ngayCapCMND, noiCapCMND, thuDienTu;
-	private int soCMND;
-	public static int count = 0;
+	private int SDT, soCMND;
+	public static int countKH = 0;
 	public Khachhang() {}
 	public Khachhang(String ten, String diaChi, int SDT, int soCMND, String thuDienTu)
 	{
-		super(ten, SDT);
+		super(ten);
+		this.SDT = SDT;
 		this.diaChi = diaChi;
 		this.soCMND = soCMND;
 		this.thuDienTu = thuDienTu;
-		count++;
+		countKH++;
 	}
 	
 	public void setTen(String ten)

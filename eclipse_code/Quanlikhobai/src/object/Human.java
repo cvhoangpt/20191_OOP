@@ -3,11 +3,10 @@ package object;
 public class Human 
 {
 	protected String ten;
-	protected int SDT;
+	
 	public Human() {}
-	public Human(String ten, int SDT)
+	public Human(String ten)
 	{
 		this.ten = ten;
-		this.SDT = SDT;
 	}
 }

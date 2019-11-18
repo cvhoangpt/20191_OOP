@@ -1,10 +1,17 @@
 package util;
 
-import object.Khachhang;
+import java.sql.SQLException;
+
+import database.OtherEntity;
+
 public class Calculate 
 {
-	public void calKH()
+	public int calVehicle() throws SQLException
 	{
-		System.out.println(Khachhang.count);
+		int countXe;
+		OtherEntity oe = new OtherEntity();
+		
+		countXe = oe.sqlCalVehicle().getInt("COUNT(Bienso)");
+		return countXe;
 	}
 }
