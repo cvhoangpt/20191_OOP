@@ -12,9 +12,6 @@ import javax.swing.JOptionPane;
  */
 public class Dialog extends Window
 {
-
-	private JFrame frame;
-
 	public Dialog() 
 	{
 		initialize();
@@ -78,9 +75,24 @@ public class Dialog extends Window
 				"Lỗi ngoại lệ",
 				JOptionPane.INFORMATION_MESSAGE);
 	}
+	
+	public void updateException()
+	{
+		JOptionPane.showMessageDialog(getFrame(), "Không có gì để cập nhật", 
+				"Lỗi ngoại lệ",
+				JOptionPane.INFORMATION_MESSAGE);
+	}
+	
 	public void dataSave()
 	{
 		JOptionPane.showMessageDialog(getFrame(), "Thêm hợp đồng thành công",
+				"Thông báo",
+				JOptionPane.INFORMATION_MESSAGE);
+	}
+	
+	public void updateSave()
+	{
+		JOptionPane.showMessageDialog(getFrame(), "Cập nhật hợp đồng thành công",
 				"Thông báo",
 				JOptionPane.INFORMATION_MESSAGE);
 	}
@@ -94,5 +106,6 @@ public class Dialog extends Window
 				"Lỗi hệ thống",
 				JOptionPane.INFORMATION_MESSAGE);
 	}
-	
+
+	public void removeField() {}
 }

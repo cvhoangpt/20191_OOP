@@ -1,7 +1,5 @@
 package gui;
 
-import java.awt.event.ActionEvent;
-
 import javax.swing.JFrame;
 
 /**
@@ -9,7 +7,7 @@ import javax.swing.JFrame;
  * @author hoangcv
  *
  */
-public abstract class Window
+public abstract class Window implements Ability
 {
 	protected JFrame frame;
 	
@@ -24,3 +22,5 @@ public abstract class Window
 	 */
 	public abstract void setFrame(JFrame frame);
 }
+
+

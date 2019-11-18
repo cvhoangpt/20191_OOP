@@ -14,7 +14,8 @@ import javax.swing.JButton;
 import javax.swing.JTextField;
 //import javax.swing.table.DefaultTableModel;
 
-import database.EntityModify;
+import database.ModifiedEntity;
+import database.OtherEntity;
 import object.*;
 
 import javax.swing.JComboBox;
@@ -47,6 +48,14 @@ public class Dashboard extends Window
 	public void setFrame(JFrame frame) 
 	{
 		this.frame = frame;
+		frame.getContentPane().addMouseListener(new MouseAdapter() 
+		{
+			@Override
+			public void mouseClicked(MouseEvent e) 
+			{
+				tableBriefs.getSelectionModel().clearSelection();
+			}
+		});
 		frame.getContentPane().setFont(new Font("Tahoma", Font.PLAIN, 16));
 	}
 	private JTextField txtTimKiem;
@@ -90,7 +99,8 @@ public class Dashboard extends Window
 	@SuppressWarnings("unchecked")
 	private void initialize() throws SQLException 
 	{
-		EntityModify em = new EntityModify();
+		ModifiedEntity me = new ModifiedEntity();
+		OtherEntity oe = new OtherEntity();
 		Dialog d = new Dialog();
 		setFrame(new JFrame());
 		getFrame().setTitle("Chương trình quản lí bãi gửi xe");
@@ -125,6 +135,14 @@ public class Dashboard extends Window
 		frame.getContentPane().add(lblLX);
 		String loaiXe[] = {"Xe con", "Xe tải"};
 		comboBoxLX = new JComboBox (loaiXe);
+		comboBoxLX.addActionListener(new ActionListener() 
+		{
+			public void actionPerformed(ActionEvent e) 
+			{
+				if (comboBoxLX.getSelectedItem().toString() == "Xe con") textFieldTT.setText("");
+			}
+		});
+		
 		comboBoxLX.setFont(new Font("Tahoma", Font.PLAIN, 16));
 		comboBoxLX.setBounds(169, 170, 84, 33);
 		comboBoxLX.setVisible(true);
@@ -228,11 +246,15 @@ public class Dashboard extends Window
 				tdt = textFieldTDT.getText();
 				bs = textFieldBS.getText();
 				//kiểm tra trùng biển số xe
-				if (em.duplicateBSSQL(bs) == false) return;
+				if (oe.duplicateBSSQL(bs) == true) return;
 				tt = textFieldTT.getText();
 				tgg = textFieldTGG.getText();
 				ctt = textFieldCTT.getText();
 				lx = comboBoxLX.getSelectedItem().toString();
+				if (comboBoxLX.getSelectedItem().toString() == "Xe con")
+				{
+					
+				}
 				new Khachhang(tcx, dc, sdt, cmt, tdt);
 				new Vehicle(bs, lx, tt);
 				
@@ -288,8 +310,8 @@ public class Dashboard extends Window
 				
 				try 
 				{
-					em.insertHD(tcx, sdt, cmt, dc, tdt, bs, tt, tgg, ctt, lx);
-					em.refreshTable(tableBriefs);
+					me.insertHD(tcx, sdt, cmt, dc, tdt, bs, tt, tgg, ctt, lx);
+					oe.refreshTable(tableBriefs);
 				} catch (SQLException e1) 
 				{	
 					e1.printStackTrace();
@@ -311,11 +333,17 @@ public class Dashboard extends Window
 					d.deleteException();
 					return;
 				}
+				if (textFieldBS.getText().isEmpty())
+				{
+					d.deleteException();
+					return;
+				}
 				bs = textFieldBS.getText();
+				System.out.println(bs);
 				try
 				{
-					em.deleteHD(bs);
-					em.refreshTable(tableBriefs);
+					me.deleteHD(bs);
+					oe.refreshTable(tableBriefs);
 					removeField();
 				} catch (Exception e4)
 				{
@@ -329,6 +357,45 @@ public class Dashboard extends Window
 		getFrame().getContentPane().add(btnXoaHD);
 		
 		JButton btnCpNhtHd = new JButton("Cập nhật HD");
+		btnCpNhtHd.addActionListener(new ActionListener() 
+		{
+			public void actionPerformed(ActionEvent e) 
+			{
+				if (textFieldTCX.getText().isEmpty())
+				{
+					d.updateException();
+					return;
+				}
+				if (textFieldBS.getText().isEmpty())
+				{
+					d.updateException();
+					return;
+				}
+				bs = textFieldBS.getText();
+				//System.out.println("update:" + bs);
+				tcx = textFieldTCX.getText();
+				sdt = Integer.parseInt(textFieldSDT.getText());
+				cmt = Integer.parseInt(textFieldCMT.getText());
+				dc = textFieldDC.getText();
+				tdt = textFieldTDT.getText();
+				tt = textFieldTT.getText();
+				tgg = textFieldTGG.getText();
+				ctt = textFieldCTT.getText();
+				lx = comboBoxLX.getSelectedItem().toString();
+				bs = textFieldBS.getText();
+				
+				try
+				{
+					me.updateHD(tcx, sdt, cmt, dc, tdt, bs, tt, tgg, ctt, lx);
+					oe.refreshTable(tableBriefs);
+					d.updateSave();
+				} catch (SQLException se)
+				{
+					d.duplicateBS();
+					se.printStackTrace();
+				}					
+			}
+		});
 		btnCpNhtHd.setFont(new Font("Tahoma", Font.PLAIN, 16));
 		btnCpNhtHd.setBounds(334, 510, 135, 46);
 		getFrame().getContentPane().add(btnCpNhtHd);
@@ -365,14 +432,14 @@ public class Dashboard extends Window
 		getFrame().getContentPane().add(txtTimKiem);
 		txtTimKiem.setColumns(10);
 		
-		String loaiSearch[] = {"Chủ xe", "Biển số xe", "Xe con", "Xe tải"};
+		String loaiSearch[] = {"Chủ xe", "Biển số xe", "Loại xe"};
 		//DefaultComboBoxModel<String> loaiSearchModel = new DefaultComboBoxModel<String>(loaiSearch);
 		comboBoxLS = new JComboBox(loaiSearch);
 		comboBoxLS.setFont(new Font("Tahoma", Font.PLAIN, 16));
 		comboBoxLS.setBounds(956, 15, 111, 37);
 		getFrame().getContentPane().add(comboBoxLS);
 		
-		JCheckBox chckbxPhi2 = new JCheckBox("Xe có phí gửi > 2.000.000đ");
+		JCheckBox chckbxPhi2 = new JCheckBox("Xe có phí gửi >2 tr/tháng");
 		chckbxPhi2.setFont(new Font("Tahoma", Font.PLAIN, 16));
 		chckbxPhi2.setBounds(956, 72, 236, 25);
 		getFrame().getContentPane().add(chckbxPhi2);
@@ -395,7 +462,7 @@ public class Dashboard extends Window
 					System.out.println(row);
 					String rowBienSo = (tableBriefs.getModel().getValueAt(row, 3).toString());
 					System.out.println(rowBienSo);
-					em.selectRow(rowBienSo, textFieldTCX, textFieldSDT, textFieldDC, textFieldTDT, textFieldCMT, textFieldBS, textFieldTT, textFieldTGG, textFieldCTT, comboBoxLX);
+					oe.selectRow(rowBienSo, textFieldTCX, textFieldSDT, textFieldDC, textFieldTDT, textFieldCMT, textFieldBS, textFieldTT, textFieldTGG, textFieldCTT, comboBoxLX);
 					
 				} catch (Exception e3)
 				{
@@ -406,7 +473,7 @@ public class Dashboard extends Window
 		scrollPane.setViewportView(tableBriefs);
 		tableBriefs.setFont(new Font("Tahoma", Font.PLAIN, 14));
 		
-		em.updateTable(tableBriefs);
+		oe.updateTable(tableBriefs);
 		
 		JLabel lblCTT = new JLabel("Cách thanh toán");
 		lblCTT.setFont(new Font("Tahoma", Font.PLAIN, 16));
@@ -419,9 +486,17 @@ public class Dashboard extends Window
 		frame.getContentPane().add(textFieldCTT);
 		textFieldCTT.setColumns(10);
 		
-		JLabel lblNote = new JLabel("(*) bắt buộc. CF: Clear Field, RT: Refresh Table");
-		lblNote.setBounds(169, 96, 300, 16);
-		frame.getContentPane().add(lblNote);
+		JLabel lblNote1 = new JLabel("(*) bắt buộc");
+		lblNote1.setBounds(169, 96, 97, 16);
+		frame.getContentPane().add(lblNote1);
+		
+		JLabel lblNote2 = new JLabel("CF: Xoá các trường");
+		lblNote2.setBounds(334, 628, 135, 16);
+		frame.getContentPane().add(lblNote2);
+		
+		JLabel lblNote3 = new JLabel("RT: Làm mới bảng");
+		lblNote3.setBounds(334, 644, 135, 16);
+		frame.getContentPane().add(lblNote3);
 		
 		JButton btnRt = new JButton("RT");
 		btnRt.addActionListener(new ActionListener() 
@@ -430,7 +505,7 @@ public class Dashboard extends Window
 			{
 				try
 				{
-					em.updateTable(tableBriefs);
+					oe.updateTable(tableBriefs);
 				} catch (SQLException se)
 				{
 					se.printStackTrace();

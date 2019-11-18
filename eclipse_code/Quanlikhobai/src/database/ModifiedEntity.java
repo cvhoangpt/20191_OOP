@@ -19,53 +19,10 @@ import util.Modify;
  * @author hoang
  *
  */
-public class EntityModify extends Connector 
+public class ModifiedEntity extends Connector 
 {
 	//ResultSet rs = null;
 	//PreparedStatement pst = null;
-	
-	
-	/**
-	 * Phương thức truy vấn trích xuất csdl vào table
-	 * @param table
-	 * @throws SQLException
-	 */
-	public void updateTable(JTable table) throws SQLException
-	{
-		try
-		{
-			String sqlUpdateTable = 
-	"SELECT khach_hang.MaKH, hop_dong.MaHD, khach_hang.TenKH, xe.Bienso, xe.Loaixe " + 
-	"FROM khach_hang, hop_dong, xe " + 
-	"WHERE (khach_hang.MaKH = hop_dong.MaKH AND hop_dong.Bienso = xe.Bienso)";
-			
-			PreparedStatement pst = conn.prepareStatement(sqlUpdateTable);
-			ResultSet rs = pst.executeQuery();
-			table.setModel(DbUtils.resultSetToTableModel(rs));
-		} catch(Exception e)
-		{
-			Dialog d = new Dialog();
-			d.dbError();
-			e.printStackTrace();
-		}
-	}
-	
-	public void refreshTable(JTable table) throws SQLException
-	{
-		String sqlUpdateTable = 
-				"SELECT khach_hang.MaKH, hop_dong.MaHD, khach_hang.TenKH, xe.Bienso, xe.Loaixe " + 
-				"FROM khach_hang, hop_dong, xe " + 
-				"WHERE (khach_hang.MaKH = hop_dong.MaKH AND hop_dong.Bienso = xe.Bienso)";
-		try
-		{
-			PreparedStatement pst = conn.prepareStatement(sqlUpdateTable);
-			ResultSet rs = pst.executeQuery();
-			table.setModel(DbUtils.resultSetToTableModel(rs));
-		} catch(Exception e)
-		{
-			e.printStackTrace();
-		}
-	}
 	
 	public void test() throws SQLException
 	{
@@ -171,65 +128,67 @@ public class EntityModify extends Connector
 		}
 	}
 	
-	@SuppressWarnings("rawtypes")
-	public void selectRow(String rowBienSo, JTextField textFieldTCX, JTextField textFieldSDT, JTextField textFieldDC, JTextField textFieldTDT, JTextField textFieldCMT, JTextField textFieldBS, JTextField textFieldTT, JTextField textFieldTGG, JTextField textFieldCTT, JComboBox comboBoxLX)
+	public void updateHD(String tcx, int sdt, int cmt, String dc, String tdt, String bs, String tt, String tgg, String ctt, String lx)
 	{
-		String sqlSR = 
-	"SELECT kh.TenKH, kh.DiaChi, kh.SDT, kh.SoCMND, kh.ThuDienTu, hd.Hinhthucthanhtoan, hd.Thoigiangui, x.Bienso, x.Loaixe, x.Trongtai\r\n" + 
-	"FROM khach_hang kh "+ 
-	"JOIN hop_dong hd ON kh.MaKH = hd.MaKH " + 
-	"JOIN xe x ON x.Bienso = hd.Bienso " + 
-	"WHERE x.Bienso = '"+rowBienSo+"'";
+		String getMaKH = null;
+		String sqlGetMaKH =
+	"SELECT kh.MaKH FROM khach_hang kh " +
+	"JOIN hop_dong hd ON kh.MaKH = hd.MaKH " +
+	"JOIN xe x ON x.Bienso = hd.Bienso " +
+	"WHERE x.Bienso = '"+bs+"'";
 		try
 		{
-			PreparedStatement pst = conn.prepareStatement(sqlSR);
+			PreparedStatement pst = conn.prepareStatement(sqlGetMaKH);
 			ResultSet rs = pst.executeQuery();
-			while (rs.next())
-			{
-				textFieldTCX.setText(rs.getString("TenKH"));
-				textFieldSDT.setText(rs.getString("SDT"));
-				textFieldDC.setText(rs.getString("DiaChi"));
-				textFieldTDT.setText(rs.getString("ThuDienTu"));
-				textFieldCMT.setText(rs.getString("SoCMND"));
-				textFieldBS.setText(rs.getString("Bienso"));
-				textFieldTT.setText(rs.getString("Trongtai"));
-				textFieldTGG.setText(rs.getString("Thoigiangui"));
-				textFieldCTT.setText(rs.getString("Hinhthucthanhtoan"));
-				comboBoxLX.setSelectedItem(rs.getString("Loaixe"));
-			}
+			while (rs.next()) getMaKH = rs.getString("MaKH");
+			System.out.println("makh="+getMaKH);
 			rs.close();
 			pst.close();
 		} catch (Exception e)
 		{
-			Dialog d = new Dialog();
-			d.dbError();
 			e.printStackTrace();
 		}
 		
-	}
-	
-	public boolean duplicateBSSQL(String bs)
-	{
-		String dbssql =
-	"SELECT * FROM xe WHERE Bienso=?";
+		String sqlUpdateHD1 =
+	"UPDATE khach_hang " +
+	"SET TenKH='"+tcx+"', DiaChi='"+dc+"', SDT='"+sdt+"', SoCMND='"+cmt+"', ThuDienTu='"+tdt+"'" +
+	"WHERE MaKH='"+getMaKH+"'";
 		try
 		{
-			PreparedStatement pst = conn.prepareStatement(dbssql);
-			pst.setString(1, bs);
-			ResultSet rs = pst.executeQuery();
-			int count = 0;
-			while (rs.next()) count++;
-			//System.out.println(count);
-			if (count == 1) 
-			{
-				Dialog d = new Dialog();
-				d.duplicateBS();
-				return false;
-			} 
+			PreparedStatement pst = conn.prepareStatement(sqlUpdateHD1);
+			pst.executeUpdate();
+			pst.close();
 		} catch (Exception e)
 		{
 			e.printStackTrace();
 		}
-		return true;
+		
+		String sqlUpdateHD2 =
+	"UPDATE xe " +
+	"SET Bienso='"+bs+"', Loaixe='"+lx+"' "+
+	"WHERE Bienso='"+bs+"'";
+		try
+		{
+			PreparedStatement pst = conn.prepareStatement(sqlUpdateHD2);
+			pst.executeUpdate();
+			pst.close();
+		} catch (Exception e)
+		{
+			e.printStackTrace();
+		}
+		
+		String sqlUpdateHD3 =
+	"UPDATE hop_dong " +
+	"SET Hinhthucthanhtoan='"+ctt+"', Thoigiangui='"+tgg+"'" +
+	"WHERE MaKH='"+getMaKH+"'";
+		try
+		{
+			PreparedStatement pst = conn.prepareStatement(sqlUpdateHD3);
+			pst.executeUpdate();
+			pst.close();
+		} catch (Exception e)
+		{
+			e.printStackTrace();
+		}			
 	}
 }
