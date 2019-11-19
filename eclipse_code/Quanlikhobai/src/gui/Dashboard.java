@@ -249,6 +249,7 @@ public class Dashboard extends Window
 				lx = comboBoxLX.getSelectedItem().toString();
 				new Khachhang(tcx, dc, sdt, cmt, tdt);
 				new Vehicle(bs, lx, tt);
+				new Hopdong(ctt, tgg);
 				
 				try 
 				{
@@ -513,8 +514,8 @@ public class Dashboard extends Window
 					getFrame().setVisible(true);
 				} catch (Exception e2) 
 				{
-					Dialog ed = new Dialog();
-					ed.crash();
+					Dialog d = new Dialog();
+					d.crash();
 					e2.printStackTrace();
 				}
 			}
