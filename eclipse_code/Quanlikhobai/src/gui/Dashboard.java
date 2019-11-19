@@ -33,7 +33,7 @@ import java.awt.event.MouseEvent;
 /**
  * Phương thức Dashboard: Giao diện điều khiển chính của chương trình
  * @version 1.0
- * @author Hoàng
+ * @author Hoangcv
  * @since 10/2019
  */
 @SuppressWarnings("rawtypes")
@@ -293,8 +293,8 @@ public class Dashboard extends Window
 		btnXoaHD.setBounds(171, 569, 135, 46);
 		getFrame().getContentPane().add(btnXoaHD);
 		
-		JButton btnCpNhtHd = new JButton("Cập nhật HD");
-		btnCpNhtHd.addActionListener(new ActionListener() 
+		JButton btnCapNhatHD = new JButton("Cập nhật HD");
+		btnCapNhatHD.addActionListener(new ActionListener() 
 		{
 			public void actionPerformed(ActionEvent e) 
 			{
@@ -325,9 +325,9 @@ public class Dashboard extends Window
 				}					
 			}
 		});
-		btnCpNhtHd.setFont(new Font("Tahoma", Font.PLAIN, 16));
-		btnCpNhtHd.setBounds(334, 510, 135, 46);
-		getFrame().getContentPane().add(btnCpNhtHd);
+		btnCapNhatHD.setFont(new Font("Tahoma", Font.PLAIN, 16));
+		btnCapNhatHD.setBounds(334, 510, 135, 46);
+		getFrame().getContentPane().add(btnCapNhatHD);
 		
 		JButton btnXoaTruong = new JButton("CF");
 		btnXoaTruong.addActionListener(new ActionListener() 
@@ -341,14 +341,14 @@ public class Dashboard extends Window
 		btnXoaTruong.setBounds(334, 569, 59, 46);
 		getFrame().getContentPane().add(btnXoaTruong);
 		
-		JButton btnThngKChi = new JButton("TK doanh thu");
-		btnThngKChi.setFont(new Font("Tahoma", Font.PLAIN, 16));
-		btnThngKChi.addActionListener(new ActionListener() {
+		JButton btnThongKe = new JButton("TK doanh thu");
+		btnThongKe.setFont(new Font("Tahoma", Font.PLAIN, 16));
+		btnThongKe.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 			}
 		});
-		btnThngKChi.setBounds(171, 628, 135, 46);
-		getFrame().getContentPane().add(btnThngKChi);
+		btnThongKe.setBounds(171, 628, 135, 46);
+		getFrame().getContentPane().add(btnThongKe);
 		
 		JButton btnTimKiem = new JButton("Tìm kiếm");
 		btnTimKiem.addActionListener(new ActionListener() 

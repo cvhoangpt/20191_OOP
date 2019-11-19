@@ -13,6 +13,8 @@ import gui.Dialog;
  * @param DB_URL liên kết đến localhost qua JDBC
  * @param USERNAME tên người dùng (mặc định là root)
  * @param PASSWORD mật khẩu (bỏ trống)
+ * @param conn đối tượng thuộc lớp Connection
+ * @param instance đối tượng thuộc lớp Connector
  */
 public class Connector
 {
