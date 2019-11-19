@@ -18,6 +18,7 @@ import database.OtherEntity;
 import database.SearchEntity;
 import object.*;
 import util.Calculate;
+import util.Modify;
 
 import javax.swing.JComboBox;
 import javax.swing.JCheckBox;
@@ -71,6 +72,7 @@ public class Dashboard extends Window
 	private JComboBox comboBoxLX;
 	private JComboBox comboBoxLS;
 	private JTextField textFieldCTT;
+	private JLabel lblcalVehicle;
 	public static String tcx;
 	public static int sdt;
 	public static String dc;
@@ -103,6 +105,7 @@ public class Dashboard extends Window
 		OtherEntity oe = new OtherEntity();
 		SearchEntity se = new SearchEntity();
 		Dialog d = new Dialog();
+		Modify m = new Modify();
 		
 		setFrame(new JFrame());
 		getFrame().setTitle("Chương trình quản lí bãi gửi xe");
@@ -230,20 +233,11 @@ public class Dashboard extends Window
 		{
 			public void actionPerformed(ActionEvent e)
 			{
+				//kiểm tra các trường bị thiếu
+				if (m.nineElementIsEmpty(textFieldTCX, textFieldSDT, textFieldDC, textFieldCMT, textFieldBS, textFieldTGG, textFieldCTT, comboBoxLX, textFieldTT) == true) return;	
 				tcx = textFieldTCX.getText();
-				if (textFieldSDT.getText().toString().isEmpty()) 
-				{
-					d.emptyBlank();
-					return;
-				}
-				else sdt = Integer.parseInt(textFieldSDT.getText());
-				
-				if (textFieldCMT.getText().toString().isEmpty())
-				{
-					d.emptyBlank();
-					return;
-				} else cmt = Integer.parseInt(textFieldCMT.getText());
-				
+				sdt = Integer.parseInt(textFieldSDT.getText());
+				cmt = Integer.parseInt(textFieldCMT.getText());
 				dc = textFieldDC.getText();
 				tdt = textFieldTDT.getText();
 				bs = textFieldBS.getText();
@@ -253,64 +247,14 @@ public class Dashboard extends Window
 				tgg = textFieldTGG.getText();
 				ctt = textFieldCTT.getText();
 				lx = comboBoxLX.getSelectedItem().toString();
-				
 				new Khachhang(tcx, dc, sdt, cmt, tdt);
 				new Vehicle(bs, lx, tt);
-				
-				if (tcx.isEmpty())
-				{
-					d.emptyBlank();
-					return;
-				}
-				if (sdt == 0)
-				{
-					d.emptyBlank();
-					return;
-				}
-				if (dc.isEmpty())
-				{
-					d.emptyBlank();
-					return;
-				}
-				if (cmt == 0)
-				{
-					d.emptyBlank();
-					return;
-				}
-				if (bs.isEmpty())
-				{
-					d.emptyBlank();
-					return;
-				}
-				if (tgg.isEmpty())
-				{
-					d.emptyBlank();
-					return;
-				}
-				if (ctt.isEmpty())
-				{
-					d.emptyBlank();
-					return;
-				}
-				if ((lx == "Xe tải") && tt.isEmpty()) 
-				{
-					d.checkXeTai();
-					return;
-				}	
-				/*
-				try
-				{
-					qr.test();
-				} catch (SQLException e2)
-				{
-					e2.printStackTrace();
-				}
-				*/
 				
 				try 
 				{
 					me.insertHD(tcx, sdt, cmt, dc, tdt, bs, tt, tgg, ctt, lx);
 					oe.refreshTable(tableBriefs);
+					visibleCalVehicle();
 				} catch (SQLException e1) 
 				{	
 					e1.printStackTrace();
@@ -327,23 +271,16 @@ public class Dashboard extends Window
 		{
 			public void actionPerformed(ActionEvent e) 
 			{
-				if (textFieldTCX.getText().isEmpty())
-				{
-					d.deleteException();
-					return;
-				}
-				if (textFieldBS.getText().isEmpty())
-				{
-					d.deleteException();
-					return;
-				}
+				if (m.tcx_bsDeleteIsEmpty(textFieldTCX, textFieldBS) == true) return;
+				
 				bs = textFieldBS.getText();
-				System.out.println(bs);
+				//System.out.println(bs);
 				try
 				{
 					me.deleteHD(bs);
 					oe.refreshTable(tableBriefs);
 					removeField();
+					visibleCalVehicle();
 				} catch (Exception e4)
 				{
 					e4.printStackTrace();
@@ -360,16 +297,8 @@ public class Dashboard extends Window
 		{
 			public void actionPerformed(ActionEvent e) 
 			{
-				if (textFieldTCX.getText().isEmpty())
-				{
-					d.updateException();
-					return;
-				}
-				if (textFieldBS.getText().isEmpty())
-				{
-					d.updateException();
-					return;
-				}
+				if (m.tcx_bsUpdateIsEmpty(textFieldTCX, textFieldBS) == true) return;
+				
 				bs = textFieldBS.getText();
 				//System.out.println("update:" + bs);
 				tcx = textFieldTCX.getText();
@@ -387,6 +316,7 @@ public class Dashboard extends Window
 				{
 					me.updateHD(tcx, sdt, cmt, dc, tdt, bs, tt, tgg, ctt, lx);
 					oe.refreshTable(tableBriefs);
+					//visibleCalVehicle();
 				} catch (SQLException se)
 				{
 					d.duplicateBS();
@@ -538,7 +468,7 @@ public class Dashboard extends Window
 		frame.getContentPane().add(btnRt);
 		
 		Calculate c = new Calculate();
-		JLabel lblcalVehicle = new JLabel("Bãi gửi xe đang có "+c.calVehicle()+" xe.");
+		lblcalVehicle = new JLabel("Bãi gửi xe đang có "+c.calVehicle()+" xe.");
 		lblcalVehicle.setFont(new Font("Tahoma", Font.PLAIN, 16));
 		lblcalVehicle.setBounds(497, 88, 200, 30);
 		frame.getContentPane().add(lblcalVehicle);
@@ -560,6 +490,15 @@ public class Dashboard extends Window
 		getTextFieldBS().setText("");
 	}
 
+	/**
+	 * Phương thức làm mới JLabel
+	 * Chưa hoàn thiện
+	 */
+	public void visibleCalVehicle()
+	{
+		getLblcalVehicle().setVisible(false);
+		getLblcalVehicle().setVisible(true);
+	}
 	/**
 	 * Phương thức khởi động Dashboard
 	 */
@@ -652,5 +591,13 @@ public class Dashboard extends Window
 
 	public void setTextFieldBS(JTextField textFieldBS) {
 		this.textFieldBS = textFieldBS;
+	}
+
+	public JLabel getLblcalVehicle() {
+		return lblcalVehicle;
+	}
+
+	public void setLblcalVehicle(JLabel lblcalVehicle) {
+		this.lblcalVehicle = lblcalVehicle;
 	}
 }

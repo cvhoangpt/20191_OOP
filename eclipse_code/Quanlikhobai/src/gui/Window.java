@@ -10,7 +10,6 @@ import javax.swing.JFrame;
 public abstract class Window implements Ability
 {
 	protected JFrame frame;
-	
 	/**
 	 * Phương thức trừu tượng getFrame
 	 * @return nothing

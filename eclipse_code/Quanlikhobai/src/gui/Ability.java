@@ -7,5 +7,6 @@ package gui;
  */
 public interface Ability 
 {
+	public void startDashboard();
 	public void removeField();
 }

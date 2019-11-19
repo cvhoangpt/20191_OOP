@@ -143,4 +143,7 @@ public class Dialog extends Window
 	}
 
 	public void removeField() {}
+
+	@Override
+	public void startDashboard() {}
 }

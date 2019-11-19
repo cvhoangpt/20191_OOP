@@ -31,7 +31,7 @@ public class Connector
 		{   
 			Class.forName("com.mysql.cj.jdbc.Driver");
 	        this.conn = DriverManager.getConnection(DB_URL, USERNAME, PASSWORD);
-	        System.out.println("Connection successfully ...");
+	        System.out.println("Connector notice: Connection successfully ...");
 	        
         } catch (ClassNotFoundException e)
 		{
