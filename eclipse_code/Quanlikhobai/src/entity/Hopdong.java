@@ -7,21 +7,19 @@ package entity;
  */
 public class Hopdong 
 {
-	private String hinhThucThanhToan;
-	
-	
+	private String cachThanhToan;
+
 	public Hopdong() {}
-	public Hopdong(String hinhThucThanhToan, String thoiGianGui)
+	public Hopdong(String cachThanhToan)
 	{
-		this.hinhThucThanhToan = hinhThucThanhToan;
-	
+		this.cachThanhToan = cachThanhToan;
 	}
 	
 	public String getHinhThucThanhToan() {
-		return hinhThucThanhToan;
+		return cachThanhToan;
 	}
-	public void setHinhThucThanhToan(String hinhThucThanhToan) {
-		this.hinhThucThanhToan = hinhThucThanhToan;
+	public void setHinhThucThanhToan(String cachThanhToan) {
+		this.cachThanhToan = cachThanhToan;
 	}
 	
 }

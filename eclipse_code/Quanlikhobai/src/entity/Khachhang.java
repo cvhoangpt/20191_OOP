@@ -8,27 +8,18 @@ package entity;
  */
 public class Khachhang extends Human
 {
-	private String diaChi, ngayCapCMND, noiCapCMND, thuDienTu;
-	private int SDT, soCMND;
+	private String diaChi, thuDienTu;
+	private int soDienThoai, soCMND;
 	public static int countKH = 0;
 	public Khachhang() {}
-	public Khachhang(String ten, String diaChi, int SDT, int soCMND, String thuDienTu)
+	public Khachhang(String tenChuXe, String diaChi, int soDienThoai, int soCMND, String thuDienTu)
 	{
-		super(ten);
-		this.SDT = SDT;
+		super(tenChuXe);
+		this.soDienThoai = soDienThoai;
 		this.diaChi = diaChi;
 		this.soCMND = soCMND;
 		this.thuDienTu = thuDienTu;
 		countKH++;
-	}
-	
-	public void setTen(String ten)
-	{
-		this.ten = ten;
-	}
-	public String getTen()
-	{
-		return ten;
 	}
 	
 	public void setDiaChi(String diaChi)
@@ -40,13 +31,13 @@ public class Khachhang extends Human
 		return diaChi;
 	}
 	
-	public void setSDT(int SDT)
+	public void setSoDienThoai(int soDienThoai)
 	{
-		this.SDT = SDT;
+		this.soDienThoai = soDienThoai;
 	}
-	public int getSDT()
+	public int getSoDienThoai()
 	{
-		return SDT;
+		return soDienThoai;
 	}
 	
 	public void setSoCMND(int soCMND)
@@ -56,24 +47,6 @@ public class Khachhang extends Human
 	public int getSoCMND()
 	{
 		return soCMND;
-	}
-	
-	public void setNgayCapCMND(String ngayCapCMND)
-	{
-		this.ngayCapCMND = ngayCapCMND;
-	}
-	public String getNgayCapCMND()
-	{
-		return ngayCapCMND;
-	}
-	
-	public void setNoiCapCMND(String noiCapCMND)
-	{
-		this.noiCapCMND = noiCapCMND;
-	}
-	public String getNoiCapCMND()
-	{
-		return noiCapCMND;
 	}
 	
 	public void setThuDienTu(String thuDienTu)

@@ -4,10 +4,11 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-import javax.swing.JComboBox;
 import javax.swing.JTable;
-import javax.swing.JTextField;
 
+import entity.Hopdong;
+import entity.Khachhang;
+import entity.*;
 import gui.Dialog;
 import net.proteanit.sql.DbUtils;
 
@@ -19,6 +20,20 @@ import net.proteanit.sql.DbUtils;
 public class OtherQuery extends Connector
 {
 	Dialog dialog = new Dialog();
+	Khachhang khachHang = null;
+	Hopdong hopDong = null;
+	Xecon xeCon = null;
+	Xetai xeTai = null;
+	private static String tenChuXe;
+	private static int soDienThoai;
+	private static String diaChi;
+	private static String thuDienTu;
+	private static int soCMND;
+	private static String bienSo;
+	private static int trongTai;
+	private static int thoiGianGui;
+	private static String cachThanhToan;
+	private static String loaiXe;
 	/**
 	 * Phương thức truy vấn trích xuất csdl và làm mới table
 	 * @param table
@@ -56,10 +71,9 @@ public class OtherQuery extends Connector
 	 * @param textFieldCTT
 	 * @param comboBoxLX
 	 */
-	@SuppressWarnings("rawtypes")
-	public void selectRow(String rowBienSo, JTextField textFieldTCX, JTextField textFieldSDT, JTextField textFieldDC, JTextField textFieldTDT, JTextField textFieldCMT, JTextField textFieldBS, JTextField textFieldTT, JTextField textFieldTGG, JTextField textFieldCTT, JComboBox comboBoxLX)
+	//JTextField textFieldTCX, JTextField textFieldSDT, JTextField textFieldDC, JTextField textFieldTDT, JTextField textFieldCMT, JTextField textFieldBS, JTextField textFieldTT, JTextField textFieldTGG, JTextField textFieldCTT, JComboBox comboBoxLX
+	public void selectRow(String rowBienSo)
 	{
-		
 		String sqlSR = 
 	"SELECT kh.TenKH, kh.DiaChi, kh.SDT, kh.SoCMND, kh.ThuDienTu, hd.Hinhthucthanhtoan, hd.Thoigiangui, x.Bienso, x.Loaixe, x.Trongtai\r\n" + 
 	"FROM khach_hang kh "+ 
@@ -72,17 +86,33 @@ public class OtherQuery extends Connector
 			ResultSet rs = pst.executeQuery();
 			while (rs.next())
 			{
-				textFieldTCX.setText(rs.getString("TenKH"));
-				textFieldSDT.setText(rs.getString("SDT"));
-				textFieldDC.setText(rs.getString("DiaChi"));
-				textFieldTDT.setText(rs.getString("ThuDienTu"));
-				textFieldCMT.setText(rs.getString("SoCMND"));
-				textFieldBS.setText(rs.getString("Bienso"));
-				textFieldTT.setText(rs.getString("Trongtai"));
-				textFieldTGG.setText(rs.getString("Thoigiangui"));
-				textFieldCTT.setText(rs.getString("Hinhthucthanhtoan"));
-				comboBoxLX.setSelectedItem(rs.getString("Loaixe"));
+				tenChuXe = rs.getString("TenKH");
+				soDienThoai = Integer.parseInt(rs.getString("SDT"));
+				diaChi = rs.getString("DiaChi");
+				thuDienTu = rs.getString("ThuDienTu");
+				soCMND = Integer.parseInt(rs.getString("SoCMND"));
+				bienSo = rs.getString("Bienso");
+				trongTai = Integer.parseInt(rs.getString("Trongtai"));
+				thoiGianGui = Integer.parseInt(rs.getString("Thoigiangui"));
+				cachThanhToan = rs.getString("Hinhthucthanhtoan");
+				loaiXe = rs.getString("Loaixe");
 			}
+			/*
+			System.out.println(tenChuXe);
+			System.out.println(soDienThoai);
+			System.out.println(diaChi);
+			System.out.println(thuDienTu);
+			System.out.println(soCMND);
+			System.out.println(bienSo);
+			System.out.println(trongTai);
+			System.out.println(thoiGianGui);
+			System.out.println(cachThanhToan);
+			System.out.println(loaiXe);
+			
+			
+			
+			
+			*/
 			rs.close();
 			pst.close();
 		} catch (Exception e)
@@ -90,7 +120,33 @@ public class OtherQuery extends Connector
 			dialog.databaseError();
 			e.printStackTrace();
 		}
-		
+	}
+	
+	public Khachhang getTextFieldKhachHang()
+	{
+		khachHang = new Khachhang(tenChuXe, diaChi, soDienThoai, soCMND, thuDienTu);
+		return khachHang;
+	}
+	
+	public Hopdong getTextFieldHopDong()
+	{
+		hopDong = new Hopdong(cachThanhToan);
+		return hopDong;
+	}
+	
+	public Xecon getTextFieldXeCon()
+	{
+		if (loaiXe == "Xe con") xeCon = new Xecon(bienSo, loaiXe, trongTai, thoiGianGui);
+		else return null;
+		//else if (loaiXe == "Xe tải") vehicle = new Xetai(bienSo, loaiXe, trongTai, thoiGianGui);
+		return xeCon;
+	}
+	
+	public Xetai getTextFieldXeTai()
+	{
+		if (loaiXe == "Xe tải") xeTai = new Xetai(bienSo, loaiXe, trongTai, thoiGianGui);
+		else return null;
+		return xeTai;
 	}
 	
 	/**
@@ -142,5 +198,13 @@ public class OtherQuery extends Connector
 			e.printStackTrace();
 		}
 		return rs;
+	}
+
+	public String getLoaiXe() {
+		return loaiXe;
+	}
+
+	public void setLoaiXe(String loaiXe) {
+		this.loaiXe = loaiXe;
 	}
 }

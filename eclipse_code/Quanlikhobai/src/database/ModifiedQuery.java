@@ -18,7 +18,8 @@ public class ModifiedQuery extends Connector
 {
 	//ResultSet rs = null;
 	//PreparedStatement pst = null;
-	
+	Dialog dialog = new Dialog();
+	Modify modify = new Modify();
 	public void test() throws SQLException
 	{
 		System.out.println(Dashboard.tenChuXe);
@@ -40,10 +41,8 @@ public class ModifiedQuery extends Connector
 	 */
 	public void insertHopDong(String tcx, int sdt, int cmt, String dc, String tdt, String bs, String tt, String tgg, String ctt, String lx) throws SQLException
 	{
-		Dialog d = new Dialog();
-		Modify m = new Modify();
-		String valueKH = "KH" + String.valueOf(m.randomMKH());
-		String valueHD = "HD" + String.valueOf(m.randomMHD());
+		String valueKH = "KH" + String.valueOf(modify.randomMKH());
+		String valueHD = "HD" + String.valueOf(modify.randomMHD());
 		try
 		{
 			//Khối chèn bảng khach_hang
@@ -87,7 +86,7 @@ public class ModifiedQuery extends Connector
 			//d.dataSave();
 		} catch(Exception e)
 		{
-			d.databaseError();
+			dialog.databaseError();
 			e.printStackTrace();
 		}
 	}
@@ -158,7 +157,7 @@ public class ModifiedQuery extends Connector
 	public void updateHopDong(String tenChuXe, int sdt, int soCMND, String diaChi, String thuDienTu, String bienSo, String trongTai, String thoiGianGui, String cachThanhToan, String loaiXe)
 	{
 		String getMaKH = null;
-		Dialog d = new Dialog();
+		
 		String sqlGetMaKH =
 	"SELECT kh.MaKH FROM khach_hang kh " +
 	"JOIN hop_dong hd ON kh.MaKH = hd.MaKH " +
@@ -180,7 +179,7 @@ public class ModifiedQuery extends Connector
 		
 		if (getMaKH == null) 
 		{
-			d.updateBienSoError();
+			dialog.updateBienSoError();
 			return;
 		}
 		
@@ -225,6 +224,6 @@ public class ModifiedQuery extends Connector
 		{
 			e.printStackTrace();
 		}	
-		d.updateSave();
+		dialog.updateSave();
 	}
 }

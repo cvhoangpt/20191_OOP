@@ -16,6 +16,7 @@ import javax.swing.JTextField;
 import database.ModifiedQuery;
 import database.OtherQuery;
 import database.SearchQuery;
+import entity.*;
 import util.Calculate;
 import util.Modify;
 
@@ -58,19 +59,19 @@ public class Dashboard extends Window
 		});
 		frame.getContentPane().setFont(new Font("Tahoma", Font.PLAIN, 16));
 	}
-	private JTextField txtTimKiem;
+	private JTextField textTimKiem;
 	private JTable tableBriefs;
-	private JTextField textFieldTCX;
-	private JTextField textFieldSDT;
-	private JTextField textFieldDC;
-	private JTextField textFieldTDT;
-	private JTextField textFieldCMT;
-	private JTextField textFieldBS;
-	private JTextField textFieldTT;
-	private JTextField textFieldTGG;
-	private JComboBox comboBoxLX;
-	private JComboBox comboBoxLS;
-	private JTextField textFieldCTT;
+	private JTextField textTenChuXe;
+	private JTextField textSoDienThoai;
+	private JTextField textDiaChi;
+	private JTextField textThuDienTu;
+	private JTextField textSoCMND;
+	private JTextField textBienSo;
+	private JTextField textTrongTai;
+	private JTextField textThoiGianGui;
+	private JComboBox boxLoaiXe;
+	private JComboBox boxLoaiSearch;
+	private JTextField textCachThanhToan;
 	private JLabel lblcalVehicle;
 	public static String tenChuXe;
 	public static int soDienThoai;
@@ -83,6 +84,10 @@ public class Dashboard extends Window
 	public static String cachThanhToan;
 	public static String loaiXe;
 	public static String loaiSearch;
+	Khachhang khachHang = new Khachhang();
+	Xecon xeCon = new Xecon();
+	Xetai xeTai = new Xetai();
+	Hopdong hopDong = new Hopdong();
 
 	/**
 	 * Create the application.
@@ -127,78 +132,78 @@ public class Dashboard extends Window
 		lblTenCX.setBounds(60, 127, 97, 20);
 		frame.getContentPane().add(lblTenCX);
 		
-		textFieldTCX = new JTextField();
-		textFieldTCX.setFont(new Font("Tahoma", Font.PLAIN, 16));
-		textFieldTCX.setBounds(169, 120, 300, 35);
-		frame.getContentPane().add(textFieldTCX);
-		textFieldTCX.setColumns(10);
+		textTenChuXe = new JTextField();
+		textTenChuXe.setFont(new Font("Tahoma", Font.PLAIN, 16));
+		textTenChuXe.setBounds(169, 120, 300, 35);
+		frame.getContentPane().add(textTenChuXe);
+		textTenChuXe.setColumns(10);
 		
 		JLabel lblLX = new JLabel("Loại xe*");
 		lblLX.setFont(new Font("Tahoma", Font.PLAIN, 16));
 		lblLX.setBounds(82, 177, 75, 16);
 		frame.getContentPane().add(lblLX);
 		String cbloaiXe[] = {"Xe con", "Xe tải"};
-		comboBoxLX = new JComboBox (cbloaiXe);
-		comboBoxLX.addActionListener(new ActionListener() 
+		boxLoaiXe = new JComboBox (cbloaiXe);
+		boxLoaiXe.addActionListener(new ActionListener() 
 		{
 			public void actionPerformed(ActionEvent e) 
 			{
-				if (comboBoxLX.getSelectedItem().toString() == "Xe con") textFieldTT.setText("");
+				if (boxLoaiXe.getSelectedItem().toString() == "Xe con") textTrongTai.setText("");
 			}
 		});
 		
-		comboBoxLX.setFont(new Font("Tahoma", Font.PLAIN, 16));
-		comboBoxLX.setBounds(169, 170, 84, 33);
-		comboBoxLX.setVisible(true);
-		frame.getContentPane().add(comboBoxLX);
+		boxLoaiXe.setFont(new Font("Tahoma", Font.PLAIN, 16));
+		boxLoaiXe.setBounds(169, 170, 84, 33);
+		boxLoaiXe.setVisible(true);
+		frame.getContentPane().add(boxLoaiXe);
 		
 		JLabel lblTT = new JLabel("Trọng tải (tấn)");
 		lblTT.setFont(new Font("Tahoma", Font.PLAIN, 16));
 		lblTT.setBounds(274, 173, 111, 25);
-		textFieldTT = new JTextField();
-		textFieldTT.setFont(new Font("Tahoma", Font.PLAIN, 16));
-		textFieldTT.setBounds(385, 168, 84, 35);
+		textTrongTai = new JTextField();
+		textTrongTai.setFont(new Font("Tahoma", Font.PLAIN, 16));
+		textTrongTai.setBounds(385, 168, 84, 35);
 		frame.getContentPane().add(lblTT);
 		//textFieldTT.setVisible(true);
-		frame.getContentPane().add(textFieldTT);
+		frame.getContentPane().add(textTrongTai);
 		
 		JLabel lblTGG = new JLabel("TG Gửi (tháng)*");
 		lblTGG.setFont(new Font("Tahoma", Font.PLAIN, 16));
 		lblTGG.setBounds(50, 224, 122, 20);
 		frame.getContentPane().add(lblTGG);
 		
-		textFieldTGG = new JTextField();
-		textFieldTGG.setFont(new Font("Tahoma", Font.PLAIN, 16));
-		textFieldTGG.setBounds(171, 216, 82, 35);
-		frame.getContentPane().add(textFieldTGG);
+		textThoiGianGui = new JTextField();
+		textThoiGianGui.setFont(new Font("Tahoma", Font.PLAIN, 16));
+		textThoiGianGui.setBounds(171, 216, 82, 35);
+		frame.getContentPane().add(textThoiGianGui);
 		
 		JLabel lblBS = new JLabel("Biển số*");
 		lblBS.setFont(new Font("Tahoma", Font.PLAIN, 16));
 		lblBS.setBounds(277, 226, 68, 16);
 		frame.getContentPane().add(lblBS);
 		
-		textFieldBS = new JTextField();
-		textFieldBS.setFont(new Font("Tahoma", Font.PLAIN, 16));
-		textFieldBS.setBounds(347, 218, 122, 33);
-		frame.getContentPane().add(textFieldBS);
-		textFieldBS.setColumns(10);
+		textBienSo = new JTextField();
+		textBienSo.setFont(new Font("Tahoma", Font.PLAIN, 16));
+		textBienSo.setBounds(347, 218, 122, 33);
+		frame.getContentPane().add(textBienSo);
+		textBienSo.setColumns(10);
 		
 		JLabel lblNewLabel = new JLabel("SĐT*");
 		lblNewLabel.setFont(new Font("Tahoma", Font.PLAIN, 16));
 		lblNewLabel.setBounds(107, 317, 50, 16);
 		frame.getContentPane().add(lblNewLabel);
 		
-		textFieldSDT = new JTextField();
-		textFieldSDT.setFont(new Font("Tahoma", Font.PLAIN, 16));
-		textFieldSDT.setColumns(10);
-		textFieldSDT.setBounds(169, 308, 300, 35);
-		frame.getContentPane().add(textFieldSDT);
+		textSoDienThoai = new JTextField();
+		textSoDienThoai.setFont(new Font("Tahoma", Font.PLAIN, 16));
+		textSoDienThoai.setColumns(10);
+		textSoDienThoai.setBounds(169, 308, 300, 35);
+		frame.getContentPane().add(textSoDienThoai);
 		
-		textFieldDC = new JTextField();
-		textFieldDC.setFont(new Font("Tahoma", Font.PLAIN, 16));
-		textFieldDC.setColumns(10);
-		textFieldDC.setBounds(169, 356, 300, 35);
-		frame.getContentPane().add(textFieldDC);
+		textDiaChi = new JTextField();
+		textDiaChi.setFont(new Font("Tahoma", Font.PLAIN, 16));
+		textDiaChi.setColumns(10);
+		textDiaChi.setBounds(169, 356, 300, 35);
+		frame.getContentPane().add(textDiaChi);
 		
 		JLabel lblDC = new JLabel("Địa chỉ*");
 		lblDC.setFont(new Font("Tahoma", Font.PLAIN, 16));
@@ -215,17 +220,17 @@ public class Dashboard extends Window
 		lblCMT.setBounds(50, 462, 107, 16);
 		frame.getContentPane().add(lblCMT);
 		
-		textFieldCMT = new JTextField();
-		textFieldCMT.setFont(new Font("Tahoma", Font.PLAIN, 16));
-		textFieldCMT.setColumns(10);
-		textFieldCMT.setBounds(169, 452, 300, 35);
-		frame.getContentPane().add(textFieldCMT);
+		textSoCMND = new JTextField();
+		textSoCMND.setFont(new Font("Tahoma", Font.PLAIN, 16));
+		textSoCMND.setColumns(10);
+		textSoCMND.setBounds(169, 452, 300, 35);
+		frame.getContentPane().add(textSoCMND);
 		
-		textFieldTDT = new JTextField();
-		textFieldTDT.setFont(new Font("Tahoma", Font.PLAIN, 16));
-		textFieldTDT.setColumns(10);
-		textFieldTDT.setBounds(169, 404, 300, 35);
-		frame.getContentPane().add(textFieldTDT);
+		textThuDienTu = new JTextField();
+		textThuDienTu.setFont(new Font("Tahoma", Font.PLAIN, 16));
+		textThuDienTu.setColumns(10);
+		textThuDienTu.setBounds(169, 404, 300, 35);
+		frame.getContentPane().add(textThuDienTu);
 		
 		JButton btnThemHD = new JButton("Thêm HD");
 		btnThemHD.addActionListener(new ActionListener() 
@@ -233,19 +238,19 @@ public class Dashboard extends Window
 			public void actionPerformed(ActionEvent e)
 			{
 				//kiểm tra các trường bị thiếu
-				if (modify.nineElementIsEmpty(textFieldTCX, textFieldSDT, textFieldDC, textFieldCMT, textFieldBS, textFieldTGG, textFieldCTT, comboBoxLX, textFieldTT) == true) return;	
-				tenChuXe = textFieldTCX.getText();
-				soDienThoai = Integer.parseInt(textFieldSDT.getText());
-				soCMND = Integer.parseInt(textFieldCMT.getText());
-				diaChi = textFieldDC.getText();
-				thuDienTu = textFieldTDT.getText();
-				bienSo = textFieldBS.getText();
+				if (modify.nineElementIsEmpty(textTenChuXe, textSoDienThoai, textDiaChi, textSoCMND, textBienSo, textThoiGianGui, textCachThanhToan, boxLoaiXe, textTrongTai) == true) return;	
+				tenChuXe = textTenChuXe.getText();
+				soDienThoai = Integer.parseInt(textSoDienThoai.getText());
+				soCMND = Integer.parseInt(textSoCMND.getText());
+				diaChi = textDiaChi.getText();
+				thuDienTu = textThuDienTu.getText();
+				bienSo = textBienSo.getText();
 				//kiểm tra trùng biển số xe
 				if (otherQuery.duplicateBienSo(bienSo) == true) return;
-				trongTai = textFieldTT.getText();
-				thoiGianGui = textFieldTGG.getText();
-				cachThanhToan = textFieldCTT.getText();
-				loaiXe = comboBoxLX.getSelectedItem().toString();
+				trongTai = textTrongTai.getText();
+				thoiGianGui = textThoiGianGui.getText();
+				cachThanhToan = textCachThanhToan.getText();
+				loaiXe = boxLoaiXe.getSelectedItem().toString();
 				
 				try 
 				{
@@ -268,9 +273,9 @@ public class Dashboard extends Window
 		{
 			public void actionPerformed(ActionEvent e) 
 			{
-				if (modify.tcx_bsDeleteIsEmpty(textFieldTCX, textFieldBS) == true) return;
+				if (modify.tcx_bsDeleteIsEmpty(textTenChuXe, textBienSo) == true) return;
 				
-				bienSo = textFieldBS.getText();
+				bienSo = textBienSo.getText();
 				//System.out.println(bs);
 				try
 				{
@@ -294,20 +299,20 @@ public class Dashboard extends Window
 		{
 			public void actionPerformed(ActionEvent e) 
 			{
-				if (modify.tcx_bsUpdateIsEmpty(textFieldTCX, textFieldBS) == true) return;
+				if (modify.tcx_bsUpdateIsEmpty(textTenChuXe, textBienSo) == true) return;
 				
-				bienSo = textFieldBS.getText();
+				bienSo = textBienSo.getText();
 				//System.out.println("update:" + bs);
-				tenChuXe = textFieldTCX.getText();
-				soDienThoai = Integer.parseInt(textFieldSDT.getText());
-				soCMND = Integer.parseInt(textFieldCMT.getText());
-				diaChi = textFieldDC.getText();
-				thuDienTu = textFieldTDT.getText();
-				trongTai = textFieldTT.getText();
-				thoiGianGui = textFieldTGG.getText();
-				cachThanhToan = textFieldCTT.getText();
-				loaiXe = comboBoxLX.getSelectedItem().toString();
-				bienSo = textFieldBS.getText();
+				tenChuXe = textTenChuXe.getText();
+				soDienThoai = Integer.parseInt(textSoDienThoai.getText());
+				soCMND = Integer.parseInt(textSoCMND.getText());
+				diaChi = textDiaChi.getText();
+				thuDienTu = textThuDienTu.getText();
+				trongTai = textTrongTai.getText();
+				thoiGianGui = textThoiGianGui.getText();
+				cachThanhToan = textCachThanhToan.getText();
+				loaiXe = boxLoaiXe.getSelectedItem().toString();
+				bienSo = textBienSo.getText();
 				
 				try
 				{
@@ -351,13 +356,13 @@ public class Dashboard extends Window
 		{
 			public void actionPerformed(ActionEvent e) 
 			{
-				if (txtTimKiem.getText().isEmpty())
+				if (textTimKiem.getText().isEmpty())
 				{
 					dialog.searchException();
 					return;
 				}
-				String value = txtTimKiem.getText();
-				loaiSearch = comboBoxLS.getSelectedItem().toString();
+				String value = textTimKiem.getText();
+				loaiSearch = boxLoaiSearch.getSelectedItem().toString();
 				if (loaiSearch == "Chủ xe") searchQuery.tenChuXeSearchResult(tableBriefs, value);
 				else if (loaiSearch == "Biển số xe") searchQuery.bienSoSearchResult(tableBriefs, value);
 				else if (loaiSearch == "Loại xe") searchQuery.loaiXeSearchResult(tableBriefs, value);
@@ -367,25 +372,25 @@ public class Dashboard extends Window
 		btnTimKiem.setBounds(1193, 61, 143, 46);
 		getFrame().getContentPane().add(btnTimKiem);
 		
-		txtTimKiem = new JTextField();
-		txtTimKiem.setFont(new Font("Tahoma", Font.PLAIN, 16));
-		txtTimKiem.setBounds(1077, 16, 259, 35);
-		getFrame().getContentPane().add(txtTimKiem);
-		txtTimKiem.setColumns(10);
+		textTimKiem = new JTextField();
+		textTimKiem.setFont(new Font("Tahoma", Font.PLAIN, 16));
+		textTimKiem.setBounds(1077, 16, 259, 35);
+		getFrame().getContentPane().add(textTimKiem);
+		textTimKiem.setColumns(10);
 		
 		String loaiSearch[] = {"Chủ xe", "Biển số xe", "Loại xe"};
 		//DefaultComboBoxModel<String> loaiSearchModel = new DefaultComboBoxModel<String>(loaiSearch);
-		comboBoxLS = new JComboBox(loaiSearch);
-		comboBoxLS.addActionListener(new ActionListener() 
+		boxLoaiSearch = new JComboBox(loaiSearch);
+		boxLoaiSearch.addActionListener(new ActionListener() 
 		{
 			public void actionPerformed(ActionEvent e) 
 			{
-				txtTimKiem.setText("");
+				textTimKiem.setText("");
 			}
 		});
-		comboBoxLS.setFont(new Font("Tahoma", Font.PLAIN, 16));
-		comboBoxLS.setBounds(956, 15, 111, 37);
-		getFrame().getContentPane().add(comboBoxLS);
+		boxLoaiSearch.setFont(new Font("Tahoma", Font.PLAIN, 16));
+		boxLoaiSearch.setBounds(956, 15, 111, 37);
+		getFrame().getContentPane().add(boxLoaiSearch);
 		
 		JCheckBox chckbxPhi2 = new JCheckBox("Xe có phí gửi >2 tr/tháng");
 		chckbxPhi2.addActionListener(new ActionListener() {
@@ -416,7 +421,37 @@ public class Dashboard extends Window
 					System.out.println(row);
 					String rowBienSo = (tableBriefs.getModel().getValueAt(row, 3).toString());
 					System.out.println(rowBienSo);
-					otherQuery.selectRow(rowBienSo, textFieldTCX, textFieldSDT, textFieldDC, textFieldTDT, textFieldCMT, textFieldBS, textFieldTT, textFieldTGG, textFieldCTT, comboBoxLX);
+					otherQuery.selectRow(rowBienSo);
+					khachHang = otherQuery.getTextFieldKhachHang();
+					hopDong = otherQuery.getTextFieldHopDong();
+					//
+					
+					//System.out.println("hung" + khachHang.getTenChuXe());
+					
+					textTenChuXe.setText(khachHang.getTenChuXe());
+					textSoDienThoai.setText(String.valueOf(khachHang.getSoDienThoai()));
+					textDiaChi.setText(khachHang.getDiaChi());
+					textThuDienTu.setText(khachHang.getThuDienTu());
+					textSoCMND.setText(String.valueOf(khachHang.getSoCMND()));
+					textCachThanhToan.setText(hopDong.getHinhThucThanhToan());
+					System.out.println("otherQuery.getLoaiXe()=" + otherQuery.getLoaiXe());
+					if (otherQuery.getLoaiXe() == "Xe con") 
+					{
+						xeCon = otherQuery.getTextFieldXeCon();
+						//System.out.println("xeCon="+xeCon);
+						textBienSo.setText(xeCon.getBienSo());
+						textTrongTai.setText(String.valueOf(xeCon.getTrongTai()));
+						textThoiGianGui.setText(String.valueOf(xeCon.getThoiGianGui()));
+						boxLoaiXe.setSelectedItem(xeCon.getLoaiXe());
+					} else 
+					{
+						xeTai = otherQuery.getTextFieldXeTai();
+						textBienSo.setText(xeTai.getBienSo());
+						textTrongTai.setText(String.valueOf(xeTai.getTrongTai()));
+						textThoiGianGui.setText(String.valueOf(xeTai.getThoiGianGui()));
+						boxLoaiXe.setSelectedItem(xeTai.getLoaiXe());
+					}
+					
 					
 				} catch (Exception e3)
 				{
@@ -434,11 +469,11 @@ public class Dashboard extends Window
 		lblCTT.setBounds(50, 275, 122, 16);
 		frame.getContentPane().add(lblCTT);
 		
-		textFieldCTT = new JTextField();
-		textFieldCTT.setFont(new Font("Tahoma", Font.PLAIN, 16));
-		textFieldCTT.setBounds(169, 264, 300, 38);
-		frame.getContentPane().add(textFieldCTT);
-		textFieldCTT.setColumns(10);
+		textCachThanhToan = new JTextField();
+		textCachThanhToan.setFont(new Font("Tahoma", Font.PLAIN, 16));
+		textCachThanhToan.setBounds(169, 264, 300, 38);
+		frame.getContentPane().add(textCachThanhToan);
+		textCachThanhToan.setColumns(10);
 		
 		JLabel lblNote1 = new JLabel("(*) bắt buộc");
 		lblNote1.setBounds(169, 96, 97, 16);
@@ -525,75 +560,75 @@ public class Dashboard extends Window
 	}
 
 	public JTextField getTextFieldTCX() {
-		return textFieldTCX;
+		return textTenChuXe;
 	}
 
 	public void setTextFieldTCX(JTextField textFieldTCX) {
-		this.textFieldTCX = textFieldTCX;
+		this.textTenChuXe = textFieldTCX;
 	}
 
 	public JTextField getTextFieldSDT() {
-		return textFieldSDT;
+		return textSoDienThoai;
 	}
 
 	public void setTextFieldSDT(JTextField textFieldSDT) {
-		this.textFieldSDT = textFieldSDT;
+		this.textSoDienThoai = textFieldSDT;
 	}
 
 	public JTextField getTextFieldDC() {
-		return textFieldDC;
+		return textDiaChi;
 	}
 
 	public void setTextFieldDC(JTextField textFieldDC) {
-		this.textFieldDC = textFieldDC;
+		this.textDiaChi = textFieldDC;
 	}
 
 	public JTextField getTextFieldTDT() {
-		return textFieldTDT;
+		return textThuDienTu;
 	}
 
 	public void setTextFieldTDT(JTextField textFieldTDT) {
-		this.textFieldTDT = textFieldTDT;
+		this.textThuDienTu = textFieldTDT;
 	}
 
 	public JTextField getTextFieldCMT() {
-		return textFieldCMT;
+		return textSoCMND;
 	}
 
 	public void setTextFieldCMT(JTextField textFieldCMT) {
-		this.textFieldCMT = textFieldCMT;
+		this.textSoCMND = textFieldCMT;
 	}
 
 	public JTextField getTextFieldTT() {
-		return textFieldTT;
+		return textTrongTai;
 	}
 
 	public void setTextFieldTT(JTextField textFieldTT) {
-		this.textFieldTT = textFieldTT;
+		this.textTrongTai = textFieldTT;
 	}
 
 	public JTextField getTextFieldTGG() {
-		return textFieldTGG;
+		return textThoiGianGui;
 	}
 
 	public void setTextFieldTGG(JTextField textFieldTGG) {
-		this.textFieldTGG = textFieldTGG;
+		this.textThoiGianGui = textFieldTGG;
 	}
 
 	public JTextField getTextFieldCTT() {
-		return textFieldCTT;
+		return textCachThanhToan;
 	}
 
 	public void setTextFieldCTT(JTextField textFieldCTT) {
-		this.textFieldCTT = textFieldCTT;
+		this.textCachThanhToan = textFieldCTT;
 	}
 
 	public JTextField getTextFieldBS() {
-		return textFieldBS;
+		return textBienSo;
 	}
 
 	public void setTextFieldBS(JTextField textFieldBS) {
-		this.textFieldBS = textFieldBS;
+		this.textBienSo = textFieldBS;
 	}
 
 	public JLabel getLblcalVehicle() {

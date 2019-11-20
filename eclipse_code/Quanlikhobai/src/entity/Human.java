@@ -7,11 +7,19 @@ package entity;
  */
 public class Human 
 {
-	protected String ten;
+	protected String tenChuXe;
 	
 	public Human() {}
-	public Human(String ten)
+	public Human(String tenChuXe)
 	{
-		this.ten = ten;
+		this.tenChuXe = tenChuXe;
+	}
+	public void setTenChuXe(String tenChuXe)
+	{
+		this.tenChuXe = tenChuXe;
+	}
+	public String getTenChuXe()
+	{
+		return tenChuXe;
 	}
 }

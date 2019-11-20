@@ -2,6 +2,11 @@ package entity;
 
 public class Xecon extends Vehicle 
 {
+	public Xecon() {}
+	public Xecon(String bienSo, String loaiXe, int trongTai, int thoiGianGui)
+	{
+		super(bienSo, loaiXe, trongTai, thoiGianGui);
+	}
 	@Override
 	public double tinhTongTienGui(int thoiGianGui) 
 	{
