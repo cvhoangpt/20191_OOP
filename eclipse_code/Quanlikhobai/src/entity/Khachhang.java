@@ -1,4 +1,4 @@
-package object;
+package entity;
 
 /**
  * Lớp khai báo đối tượng khách hàng

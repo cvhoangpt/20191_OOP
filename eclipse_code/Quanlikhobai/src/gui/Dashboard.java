@@ -13,10 +13,9 @@ import javax.swing.JButton;
 import javax.swing.JTextField;
 //import javax.swing.table.DefaultTableModel;
 
-import database.ModifiedEntity;
-import database.OtherEntity;
-import database.SearchEntity;
-import object.*;
+import database.ModifiedQuery;
+import database.OtherQuery;
+import database.SearchQuery;
 import util.Calculate;
 import util.Modify;
 
@@ -73,17 +72,17 @@ public class Dashboard extends Window
 	private JComboBox comboBoxLS;
 	private JTextField textFieldCTT;
 	private JLabel lblcalVehicle;
-	public static String tcx;
-	public static int sdt;
-	public static String dc;
-	public static String tdt;
-	public static int cmt; 
-	public static String bs;
-	public static String tt;
-	public static String tgg;
-	public static String ctt;
-	public static String lx;
-	public static String ls;
+	public static String tenChuXe;
+	public static int soDienThoai;
+	public static String diaChi;
+	public static String thuDienTu;
+	public static int soCMND; 
+	public static String bienSo;
+	public static String trongTai;
+	public static String thoiGianGui;
+	public static String cachThanhToan;
+	public static String loaiXe;
+	public static String loaiSearch;
 
 	/**
 	 * Create the application.
@@ -101,11 +100,11 @@ public class Dashboard extends Window
 	@SuppressWarnings("unchecked")
 	private void initialize() throws SQLException 
 	{
-		ModifiedEntity me = new ModifiedEntity();
-		OtherEntity oe = new OtherEntity();
-		SearchEntity se = new SearchEntity();
-		Dialog d = new Dialog();
-		Modify m = new Modify();
+		ModifiedQuery modifiedQuery = new ModifiedQuery();
+		OtherQuery otherQuery = new OtherQuery();
+		SearchQuery searchQuery = new SearchQuery();
+		Dialog dialog = new Dialog();
+		Modify modify = new Modify();
 		
 		setFrame(new JFrame());
 		getFrame().setTitle("Chương trình quản lí bãi gửi xe");
@@ -138,8 +137,8 @@ public class Dashboard extends Window
 		lblLX.setFont(new Font("Tahoma", Font.PLAIN, 16));
 		lblLX.setBounds(82, 177, 75, 16);
 		frame.getContentPane().add(lblLX);
-		String loaiXe[] = {"Xe con", "Xe tải"};
-		comboBoxLX = new JComboBox (loaiXe);
+		String cbloaiXe[] = {"Xe con", "Xe tải"};
+		comboBoxLX = new JComboBox (cbloaiXe);
 		comboBoxLX.addActionListener(new ActionListener() 
 		{
 			public void actionPerformed(ActionEvent e) 
@@ -234,27 +233,24 @@ public class Dashboard extends Window
 			public void actionPerformed(ActionEvent e)
 			{
 				//kiểm tra các trường bị thiếu
-				if (m.nineElementIsEmpty(textFieldTCX, textFieldSDT, textFieldDC, textFieldCMT, textFieldBS, textFieldTGG, textFieldCTT, comboBoxLX, textFieldTT) == true) return;	
-				tcx = textFieldTCX.getText();
-				sdt = Integer.parseInt(textFieldSDT.getText());
-				cmt = Integer.parseInt(textFieldCMT.getText());
-				dc = textFieldDC.getText();
-				tdt = textFieldTDT.getText();
-				bs = textFieldBS.getText();
+				if (modify.nineElementIsEmpty(textFieldTCX, textFieldSDT, textFieldDC, textFieldCMT, textFieldBS, textFieldTGG, textFieldCTT, comboBoxLX, textFieldTT) == true) return;	
+				tenChuXe = textFieldTCX.getText();
+				soDienThoai = Integer.parseInt(textFieldSDT.getText());
+				soCMND = Integer.parseInt(textFieldCMT.getText());
+				diaChi = textFieldDC.getText();
+				thuDienTu = textFieldTDT.getText();
+				bienSo = textFieldBS.getText();
 				//kiểm tra trùng biển số xe
-				if (oe.duplicateBSSQL(bs) == true) return;
-				tt = textFieldTT.getText();
-				tgg = textFieldTGG.getText();
-				ctt = textFieldCTT.getText();
-				lx = comboBoxLX.getSelectedItem().toString();
-				new Khachhang(tcx, dc, sdt, cmt, tdt);
-				new Vehicle(bs, lx, tt);
-				new Hopdong(ctt, tgg);
+				if (otherQuery.duplicateBienSo(bienSo) == true) return;
+				trongTai = textFieldTT.getText();
+				thoiGianGui = textFieldTGG.getText();
+				cachThanhToan = textFieldCTT.getText();
+				loaiXe = comboBoxLX.getSelectedItem().toString();
 				
 				try 
 				{
-					me.insertHD(tcx, sdt, cmt, dc, tdt, bs, tt, tgg, ctt, lx);
-					oe.refreshTable(tableBriefs);
+					modifiedQuery.insertHopDong(tenChuXe, soDienThoai, soCMND, diaChi, thuDienTu, bienSo, trongTai, thoiGianGui, cachThanhToan, loaiXe);
+					otherQuery.refreshTable(tableBriefs);
 					visibleCalVehicle();
 				} catch (SQLException e1) 
 				{	
@@ -272,14 +268,14 @@ public class Dashboard extends Window
 		{
 			public void actionPerformed(ActionEvent e) 
 			{
-				if (m.tcx_bsDeleteIsEmpty(textFieldTCX, textFieldBS) == true) return;
+				if (modify.tcx_bsDeleteIsEmpty(textFieldTCX, textFieldBS) == true) return;
 				
-				bs = textFieldBS.getText();
+				bienSo = textFieldBS.getText();
 				//System.out.println(bs);
 				try
 				{
-					me.deleteHD(bs);
-					oe.refreshTable(tableBriefs);
+					modifiedQuery.deleteHopDong(bienSo);
+					otherQuery.refreshTable(tableBriefs);
 					removeField();
 					visibleCalVehicle();
 				} catch (Exception e4)
@@ -298,29 +294,29 @@ public class Dashboard extends Window
 		{
 			public void actionPerformed(ActionEvent e) 
 			{
-				if (m.tcx_bsUpdateIsEmpty(textFieldTCX, textFieldBS) == true) return;
+				if (modify.tcx_bsUpdateIsEmpty(textFieldTCX, textFieldBS) == true) return;
 				
-				bs = textFieldBS.getText();
+				bienSo = textFieldBS.getText();
 				//System.out.println("update:" + bs);
-				tcx = textFieldTCX.getText();
-				sdt = Integer.parseInt(textFieldSDT.getText());
-				cmt = Integer.parseInt(textFieldCMT.getText());
-				dc = textFieldDC.getText();
-				tdt = textFieldTDT.getText();
-				tt = textFieldTT.getText();
-				tgg = textFieldTGG.getText();
-				ctt = textFieldCTT.getText();
-				lx = comboBoxLX.getSelectedItem().toString();
-				bs = textFieldBS.getText();
+				tenChuXe = textFieldTCX.getText();
+				soDienThoai = Integer.parseInt(textFieldSDT.getText());
+				soCMND = Integer.parseInt(textFieldCMT.getText());
+				diaChi = textFieldDC.getText();
+				thuDienTu = textFieldTDT.getText();
+				trongTai = textFieldTT.getText();
+				thoiGianGui = textFieldTGG.getText();
+				cachThanhToan = textFieldCTT.getText();
+				loaiXe = comboBoxLX.getSelectedItem().toString();
+				bienSo = textFieldBS.getText();
 				
 				try
 				{
-					me.updateHD(tcx, sdt, cmt, dc, tdt, bs, tt, tgg, ctt, lx);
-					oe.refreshTable(tableBriefs);
+					modifiedQuery.updateHopDong(tenChuXe, soDienThoai, soCMND, diaChi, thuDienTu, bienSo, trongTai, thoiGianGui, cachThanhToan, loaiXe);
+					otherQuery.refreshTable(tableBriefs);
 					//visibleCalVehicle();
 				} catch (SQLException se)
 				{
-					d.duplicateBS();
+					dialog.duplicateBienSo();
 					se.printStackTrace();
 				}					
 			}
@@ -357,14 +353,14 @@ public class Dashboard extends Window
 			{
 				if (txtTimKiem.getText().isEmpty())
 				{
-					d.searchException();
+					dialog.searchException();
 					return;
 				}
 				String value = txtTimKiem.getText();
-				ls = comboBoxLS.getSelectedItem().toString();
-				if (ls == "Chủ xe") se.tcxSearchResult(tableBriefs, value);
-				else if (ls == "Biển số xe") se.bsSearchResult(tableBriefs, value);
-				else if (ls == "Loại xe") se.lxSearchResult(tableBriefs, value);
+				loaiSearch = comboBoxLS.getSelectedItem().toString();
+				if (loaiSearch == "Chủ xe") searchQuery.tenChuXeSearchResult(tableBriefs, value);
+				else if (loaiSearch == "Biển số xe") searchQuery.bienSoSearchResult(tableBriefs, value);
+				else if (loaiSearch == "Loại xe") searchQuery.loaiXeSearchResult(tableBriefs, value);
 			}
 		});
 		btnTimKiem.setFont(new Font("Tahoma", Font.PLAIN, 16));
@@ -392,10 +388,16 @@ public class Dashboard extends Window
 		getFrame().getContentPane().add(comboBoxLS);
 		
 		JCheckBox chckbxPhi2 = new JCheckBox("Xe có phí gửi >2 tr/tháng");
+		chckbxPhi2.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) 
+			{
+				if (chckbxPhi2.isSelected()) System.out.println("Đã được check");
+				else System.out.println("Chưa được check");
+			}
+		});
 		chckbxPhi2.setFont(new Font("Tahoma", Font.PLAIN, 16));
 		chckbxPhi2.setBounds(956, 72, 236, 25);
 		getFrame().getContentPane().add(chckbxPhi2);
-		
 		JScrollPane scrollPane = new JScrollPane();
 		scrollPane.setBounds(497, 120, 839, 554);
 		frame.getContentPane().add(scrollPane);
@@ -414,7 +416,7 @@ public class Dashboard extends Window
 					System.out.println(row);
 					String rowBienSo = (tableBriefs.getModel().getValueAt(row, 3).toString());
 					System.out.println(rowBienSo);
-					oe.selectRow(rowBienSo, textFieldTCX, textFieldSDT, textFieldDC, textFieldTDT, textFieldCMT, textFieldBS, textFieldTT, textFieldTGG, textFieldCTT, comboBoxLX);
+					otherQuery.selectRow(rowBienSo, textFieldTCX, textFieldSDT, textFieldDC, textFieldTDT, textFieldCMT, textFieldBS, textFieldTT, textFieldTGG, textFieldCTT, comboBoxLX);
 					
 				} catch (Exception e3)
 				{
@@ -425,7 +427,7 @@ public class Dashboard extends Window
 		scrollPane.setViewportView(tableBriefs);
 		tableBriefs.setFont(new Font("Tahoma", Font.PLAIN, 15));
 		
-		oe.refreshTable(tableBriefs);
+		otherQuery.refreshTable(tableBriefs);
 		
 		JLabel lblCTT = new JLabel("Cách thanh toán");
 		lblCTT.setFont(new Font("Tahoma", Font.PLAIN, 16));
@@ -457,7 +459,7 @@ public class Dashboard extends Window
 			{
 				try
 				{
-					oe.refreshTable(tableBriefs);
+					otherQuery.refreshTable(tableBriefs);
 				} catch (SQLException se)
 				{
 					se.printStackTrace();

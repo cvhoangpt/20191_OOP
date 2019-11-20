@@ -1,5 +1,6 @@
 package util;
 
+import javax.swing.JCheckBox;
 import javax.swing.JTextField;
 
 import gui.Dialog;
@@ -14,5 +15,11 @@ public class Search
 			d.searchException();
 			return true;
 		} else return false;
+	}
+	
+	public boolean checkBoxChecked(JCheckBox fff)
+	{
+		if (fff.isSelected()) return true;
+		else return false;
 	}
 }

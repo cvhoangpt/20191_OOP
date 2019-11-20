@@ -14,14 +14,14 @@ import util.Modify;
  * @author hoangcv
  *
  */
-public class ModifiedEntity extends Connector 
+public class ModifiedQuery extends Connector 
 {
 	//ResultSet rs = null;
 	//PreparedStatement pst = null;
 	
 	public void test() throws SQLException
 	{
-		System.out.println(Dashboard.tcx);
+		System.out.println(Dashboard.tenChuXe);
 	}
 	
 	/**
@@ -38,7 +38,7 @@ public class ModifiedEntity extends Connector
 	 * @param lx
 	 * @throws SQLException
 	 */
-	public void insertHD(String tcx, int sdt, int cmt, String dc, String tdt, String bs, String tt, String tgg, String ctt, String lx) throws SQLException
+	public void insertHopDong(String tcx, int sdt, int cmt, String dc, String tdt, String bs, String tt, String tgg, String ctt, String lx) throws SQLException
 	{
 		Dialog d = new Dialog();
 		Modify m = new Modify();
@@ -87,7 +87,7 @@ public class ModifiedEntity extends Connector
 			//d.dataSave();
 		} catch(Exception e)
 		{
-			d.dbError();
+			d.databaseError();
 			e.printStackTrace();
 		}
 	}
@@ -96,7 +96,7 @@ public class ModifiedEntity extends Connector
 	 * Phương thức truy vấn xoá hợp đồng
 	 * @param rowBienSo
 	 */
-	public void deleteHD(String rowBienSo)
+	public void deleteHopDong(String rowBienSo)
 	{
 		String getMaKH = null;
 		String sqlGetMaKH =
@@ -144,18 +144,18 @@ public class ModifiedEntity extends Connector
 	
 	/**
 	 * Phương thức truy vấn cập nhật (sửa) hợp đồng
-	 * @param tcx
+	 * @param tenChuXe
 	 * @param sdt
-	 * @param cmt
-	 * @param dc
-	 * @param tdt
-	 * @param bs
-	 * @param tt
-	 * @param tgg
-	 * @param ctt
-	 * @param lx
+	 * @param soCMND
+	 * @param diaChi
+	 * @param thuDienTu
+	 * @param bienSo
+	 * @param trongTai
+	 * @param thoiGianGui
+	 * @param cachThanhToan
+	 * @param loaiXe
 	 */
-	public void updateHD(String tcx, int sdt, int cmt, String dc, String tdt, String bs, String tt, String tgg, String ctt, String lx)
+	public void updateHopDong(String tenChuXe, int sdt, int soCMND, String diaChi, String thuDienTu, String bienSo, String trongTai, String thoiGianGui, String cachThanhToan, String loaiXe)
 	{
 		String getMaKH = null;
 		Dialog d = new Dialog();
@@ -163,7 +163,7 @@ public class ModifiedEntity extends Connector
 	"SELECT kh.MaKH FROM khach_hang kh " +
 	"JOIN hop_dong hd ON kh.MaKH = hd.MaKH " +
 	"JOIN xe x ON x.Bienso = hd.Bienso " +
-	"WHERE x.Bienso = '"+bs+"'";
+	"WHERE x.Bienso = '"+bienSo+"'";
 		try
 		{
 			PreparedStatement pst = conn.prepareStatement(sqlGetMaKH);
@@ -177,14 +177,16 @@ public class ModifiedEntity extends Connector
 		{
 			e.printStackTrace();
 		}
+		
 		if (getMaKH == null) 
 		{
-			d.updateBSError();
+			d.updateBienSoError();
 			return;
 		}
+		
 		String sqlUpdateHD1 =
 	"UPDATE khach_hang " +
-	"SET TenKH='"+tcx+"', DiaChi='"+dc+"', SDT='"+sdt+"', SoCMND='"+cmt+"', ThuDienTu='"+tdt+"'" +
+	"SET TenKH='"+tenChuXe+"', DiaChi='"+diaChi+"', SDT='"+sdt+"', SoCMND='"+soCMND+"', ThuDienTu='"+thuDienTu+"'" +
 	"WHERE MaKH='"+getMaKH+"'";
 		try
 		{
@@ -198,8 +200,8 @@ public class ModifiedEntity extends Connector
 		
 		String sqlUpdateHD2 =
 	"UPDATE xe " +
-	"SET Bienso='"+bs+"', Loaixe='"+lx+"' "+
-	"WHERE Bienso='"+bs+"'";
+	"SET Bienso='"+bienSo+"', Loaixe='"+loaiXe+"' "+
+	"WHERE Bienso='"+bienSo+"'";
 		try
 		{
 			PreparedStatement pst = conn.prepareStatement(sqlUpdateHD2);
@@ -212,7 +214,7 @@ public class ModifiedEntity extends Connector
 		
 		String sqlUpdateHD3 =
 	"UPDATE hop_dong " +
-	"SET Hinhthucthanhtoan='"+ctt+"', Thoigiangui='"+tgg+"'" +
+	"SET Hinhthucthanhtoan='"+cachThanhToan+"', Thoigiangui='"+thoiGianGui+"'" +
 	"WHERE MaKH='"+getMaKH+"'";
 		try
 		{

@@ -39,7 +39,7 @@ public class Dialog extends Window
 	/**
 	 * Phương thức in ra màn hình hộp thoại thông báo lỗi cơ sở dữ liệu
 	 */
-	public void dbError()
+	public void databaseError()
 	{
 		JOptionPane.showMessageDialog(getFrame(), "Kiểm tra lại kết nối hoặc truy vấn.", 
     			"Lỗi cơ sở dữ liệu",
@@ -56,7 +56,7 @@ public class Dialog extends Window
 				JOptionPane.INFORMATION_MESSAGE);
 	}
 	
-	public void duplicateBS()
+	public void duplicateBienSo()
 	{
 		JOptionPane.showMessageDialog(getFrame(), "Có vẻ đã trùng biển số xe.",
 				"Lỗi trùng lặp dữ liệu",
@@ -116,7 +116,7 @@ public class Dialog extends Window
 	/**
 	 * Phương thức in ra màn hình không cho phép sửa biển số xe
 	 */
-	public void updateBSError()
+	public void updateBienSoError()
 	{
 		JOptionPane.showMessageDialog(getFrame(), "Không thể cập nhật biển số xe, chỉ có thể tạo hợp đồng với biển số xe mới.",
 				"Thông báo",

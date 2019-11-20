@@ -16,8 +16,9 @@ import net.proteanit.sql.DbUtils;
  * @author hoangcv
  *
  */
-public class OtherEntity extends Connector
+public class OtherQuery extends Connector
 {
+	Dialog dialog = new Dialog();
 	/**
 	 * Phương thức truy vấn trích xuất csdl và làm mới table
 	 * @param table
@@ -36,8 +37,7 @@ public class OtherEntity extends Connector
 			table.setModel(DbUtils.resultSetToTableModel(rs));
 		} catch(Exception e)
 		{
-			Dialog d = new Dialog();
-			d.dbError();
+			dialog.databaseError();
 			e.printStackTrace();
 		}
 	}
@@ -59,6 +59,7 @@ public class OtherEntity extends Connector
 	@SuppressWarnings("rawtypes")
 	public void selectRow(String rowBienSo, JTextField textFieldTCX, JTextField textFieldSDT, JTextField textFieldDC, JTextField textFieldTDT, JTextField textFieldCMT, JTextField textFieldBS, JTextField textFieldTT, JTextField textFieldTGG, JTextField textFieldCTT, JComboBox comboBoxLX)
 	{
+		
 		String sqlSR = 
 	"SELECT kh.TenKH, kh.DiaChi, kh.SDT, kh.SoCMND, kh.ThuDienTu, hd.Hinhthucthanhtoan, hd.Thoigiangui, x.Bienso, x.Loaixe, x.Trongtai\r\n" + 
 	"FROM khach_hang kh "+ 
@@ -86,8 +87,7 @@ public class OtherEntity extends Connector
 			pst.close();
 		} catch (Exception e)
 		{
-			Dialog d = new Dialog();
-			d.dbError();
+			dialog.databaseError();
 			e.printStackTrace();
 		}
 		
@@ -95,31 +95,32 @@ public class OtherEntity extends Connector
 	
 	/**
 	 * Phương thức truy vấn kiểm tra trùng biển số
-	 * @param bs
+	 * @param bienSo
 	 * @return
 	 */
-	public boolean duplicateBSSQL(String bs)
+	public boolean duplicateBienSo(String bienSo)
 	{
 		String dbssql =
 	"SELECT * FROM xe WHERE Bienso=?";
+		
 		try
 		{
 			PreparedStatement pst = conn.prepareStatement(dbssql);
-			pst.setString(1, bs);
+			pst.setString(1, bienSo);
 			ResultSet rs = pst.executeQuery();
 			int count = 0;
 			while (rs.next()) count++;
 			System.out.println("countDup="+count);
 			if (count == 1) 
 			{
-				Dialog d = new Dialog();
-				d.duplicateBS();
+				dialog.duplicateBienSo();
 				return true;
 			} 
 		} catch (Exception e)
 		{
 			e.printStackTrace();
 		}
+		
 		return false;
 	}
 	
@@ -127,7 +128,7 @@ public class OtherEntity extends Connector
 	 * Phương thức tính số xe đang gửi
 	 * @return
 	 */
-	public ResultSet sqlCalVehicle()
+	public ResultSet sumVehicle()
 	{
 		ResultSet rs = null;
 		String sqlCV = "SELECT COUNT(Bienso) FROM xe";

@@ -2,7 +2,7 @@ package util;
 
 import java.sql.SQLException;
 
-import database.OtherEntity;
+import database.OtherQuery;
 
 /**
  * Lớp chứa các phương thức tính toán
@@ -19,9 +19,9 @@ public class Calculate
 	public int calVehicle() throws SQLException
 	{
 		int countXe;
-		OtherEntity oe = new OtherEntity();
+		OtherQuery oe = new OtherQuery();
 		
-		countXe = oe.sqlCalVehicle().getInt("COUNT(Bienso)");
+		countXe = oe.sumVehicle().getInt("COUNT(Bienso)");
 		return countXe;
 	}
 }

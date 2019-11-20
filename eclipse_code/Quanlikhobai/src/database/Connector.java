@@ -41,7 +41,7 @@ public class Connector
 		} catch (SQLException e) 
 		{
         	Dialog d = new Dialog();
-        	d.dbError();
+        	d.databaseError();
             e.printStackTrace();
             System.exit(0);
 		}
