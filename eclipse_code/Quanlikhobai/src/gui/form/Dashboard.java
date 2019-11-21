@@ -20,6 +20,8 @@ import entity.contract.Hopdong;
 import entity.user.*;
 import entity.vehicle.Xecon;
 import entity.vehicle.Xetai;
+import gui.can.Bootable;
+import gui.can.Erasable;
 import util.Calculate;
 import util.Modify;
 
@@ -40,7 +42,7 @@ import java.awt.event.MouseEvent;
  * @since 10/2019
  */
 @SuppressWarnings("rawtypes")
-public class Dashboard extends Window
+public class Dashboard extends Window implements Bootable, Erasable
 {
 	private JFrame frame;
 	

@@ -12,7 +12,7 @@ import gui.can.Bootable;
  * @author hoangcv
  *
  */
-public class Dialog extends Window implements Bootable
+public class Dialog extends Window
 {
 	public Dialog() 
 	{
@@ -143,9 +143,4 @@ public class Dialog extends Window implements Bootable
 				"Lỗi hệ thống",
 				JOptionPane.INFORMATION_MESSAGE);
 	}
-
-	public void removeField() {}
-
-	@Override
-	public void startDashboard() {}
 }

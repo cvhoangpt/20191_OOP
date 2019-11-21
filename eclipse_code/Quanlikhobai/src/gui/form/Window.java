@@ -9,7 +9,7 @@ import gui.can.Erasable;
  * @author hoangcv
  *
  */
-public abstract class Window implements Erasable
+public abstract class Window
 {
 	protected JFrame frame;
 	/**
