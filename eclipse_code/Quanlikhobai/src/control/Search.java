@@ -7,6 +7,11 @@ import javax.swing.JTextField;
 import database.export.SearchQuery;
 import gui.form.Dialog;
 
+/**
+ * Lớp điều khiển việc tìm kiếm, giao diện tìm kiếm
+ * @author hoangcv
+ *
+ */
 public class Search 
 {
 	public void tenChuXeSearchResult(JTable table, String tcx)

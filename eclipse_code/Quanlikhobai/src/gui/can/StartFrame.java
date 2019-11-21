@@ -1,11 +1,11 @@
 package gui.can;
 
 /**
- * Ability là một Interface thể hiện rằng GUI có thể. Mở Dashboard. Xoá trường đã điền
+ * Thể hiện rằng GUI có thể khởi động
  * @author hoangcv
  *
  */
 public interface StartFrame
 {
-	public void startDashboard();
+	public void startFrame();
 }

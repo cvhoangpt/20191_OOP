@@ -552,7 +552,7 @@ public class Dashboard extends Window implements StartFrame, Erasable
 	/**
 	 * Phương thức khởi động Dashboard
 	 */
-	public void startDashboard()
+	public void startFrame()
 	{
 		EventQueue.invokeLater(new Runnable() 
 		{

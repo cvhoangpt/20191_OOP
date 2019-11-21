@@ -4,13 +4,12 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-import control.Modify;
 import database.connect.Connector;
 import gui.form.*;
 import util.NumberProcessing;
 
 /**
- * Chứa các liên kết thực thể và truy vấn
+ * Chứa các truy vấn việc thay đổi hợp đồng
  * @author hoangcv
  *
  */

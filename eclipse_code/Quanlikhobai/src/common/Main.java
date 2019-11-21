@@ -17,6 +17,6 @@ public class Main
 	{
 		Connector.getInstance();
 		Dashboard begin = new Dashboard();
-		begin.startDashboard();
+		begin.startFrame();
 	}
 }

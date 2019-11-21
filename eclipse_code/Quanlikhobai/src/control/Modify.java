@@ -9,7 +9,7 @@ import gui.form.Dialog;
 
 /**
  * Lớp chứa các phương thức trong việc thay đổi dữ liệu csdl
- * @author hoang
+ * @author hoangcv
  *
  */
 public class Modify 

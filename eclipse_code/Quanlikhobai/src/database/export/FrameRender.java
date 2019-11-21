@@ -15,7 +15,7 @@ import gui.form.Dialog;
 import net.proteanit.sql.DbUtils;
 
 /**
- * Lớp chứa các truy vấn khác
+ * Lớp chứa các truy vấn kết xuất giao diện
  * @author hoangcv
  *
  */

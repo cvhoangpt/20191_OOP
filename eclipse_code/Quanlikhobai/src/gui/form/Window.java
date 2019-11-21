@@ -2,7 +2,6 @@ package gui.form;
 
 import javax.swing.JFrame;
 
-import gui.can.Erasable;
 
 /**
  * Lớp trừu tưởng về mọi cửa sổ giao diện chương trình
