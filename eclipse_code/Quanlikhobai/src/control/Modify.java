@@ -104,7 +104,7 @@ public class Modify
 		}
 		if ((comboBoxLX.getSelectedItem().toString() == "Xe tải") && textFieldTT.getText().isEmpty()) 
 		{
-			d.checkXeTai();
+			d.checkTrongTai();
 			return true;
 		}
 		return false;

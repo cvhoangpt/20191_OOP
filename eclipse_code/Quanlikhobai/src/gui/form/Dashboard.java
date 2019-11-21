@@ -424,16 +424,14 @@ public class Dashboard extends Window implements StartFrame, Erasable
 				try
 				{
 					int row = tableBriefs.getSelectedRow();
-					System.out.println(row);
+					//System.out.println(row);
 					String rowBienSo = (tableBriefs.getModel().getValueAt(row, 3).toString());
-					System.out.println(rowBienSo);
-					frameControl.selectRow(rowBienSo);
+					//System.out.println(rowBienSo);
+					frameRender.selectRow(rowBienSo);
 					khachHang = frameRender.getTextFieldKhachHang();
 					hopDong = frameRender.getTextFieldHopDong();
 					xeCon = frameRender.getTextFieldXeCon();
 					xeTai = frameRender.getTextFieldXeTai();
-					
-					//System.out.println("hung" + khachHang.getTenChuXe());
 					
 					textTenChuXe.setText(khachHang.getTenChuXe());
 					textSoDienThoai.setText(String.valueOf(khachHang.getSoDienThoai()));
@@ -441,7 +439,7 @@ public class Dashboard extends Window implements StartFrame, Erasable
 					textThuDienTu.setText(khachHang.getThuDienTu());
 					textSoCMND.setText(String.valueOf(khachHang.getSoCMND()));
 					textCachThanhToan.setText(hopDong.getHinhThucThanhToan());
-					System.out.println("otherQuery.getLoaiXe()=" + frameRender.getLoaiXe());
+					System.out.println("getLoaiXe()=" + frameRender.getLoaiXe());
 					System.out.println("xeCon.getBienSo()"+xeCon.getBienSo());
 					
 					if (frameRender.getLoaiXe() == "Xe con") 

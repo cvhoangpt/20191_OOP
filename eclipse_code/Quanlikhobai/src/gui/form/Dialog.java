@@ -50,7 +50,7 @@ public class Dialog extends Window
 	/**
 	 * Phương thức check xem nếu JComboBox chọn là xe tải thì cần nhập trọng tải
 	 */
-	public void checkXeTai()
+	public void checkTrongTai()
 	{
 		JOptionPane.showMessageDialog(getFrame(), "Bạn cần nhập trọng tải đối với xe tải.",
 				"Lỗi nhập dữ liệu",

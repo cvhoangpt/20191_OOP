@@ -100,7 +100,7 @@ public class FrameRender extends Connector
 				thoiGianGui = Integer.parseInt(rs.getString("Thoigiangui"));
 				cachThanhToan = rs.getString("Hinhthucthanhtoan");
 				loaiXe = rs.getString("Loaixe");
-				//System.out.println("loaiXe="+loaiXe);
+				System.out.println("loaiXe="+loaiXe);
 			}
 			rs.close();
 			pst.close();
