@@ -5,7 +5,7 @@ import java.util.Random;
 import javax.swing.JComboBox;
 import javax.swing.JTextField;
 
-import gui.Dialog;
+import gui.form.Dialog;
 
 /**
  * Lớp chứa các phương thức trong việc thay đổi dữ liệu csdl

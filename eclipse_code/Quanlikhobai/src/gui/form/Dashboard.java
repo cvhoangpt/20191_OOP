@@ -1,4 +1,4 @@
-package gui;
+package gui.form;
 
 import java.awt.EventQueue;
 
@@ -13,10 +13,13 @@ import javax.swing.JButton;
 import javax.swing.JTextField;
 //import javax.swing.table.DefaultTableModel;
 
-import database.ModifiedQuery;
-import database.OtherQuery;
-import database.SearchQuery;
-import entity.*;
+import database.export.FrameRender;
+import database.export.ModifiedQuery;
+import database.export.SearchQuery;
+import entity.contract.Hopdong;
+import entity.user.*;
+import entity.vehicle.Xecon;
+import entity.vehicle.Xetai;
 import util.Calculate;
 import util.Modify;
 
@@ -106,7 +109,7 @@ public class Dashboard extends Window
 	private void initialize() throws SQLException 
 	{
 		ModifiedQuery modifiedQuery = new ModifiedQuery();
-		OtherQuery otherQuery = new OtherQuery();
+		FrameRender frameRender = new FrameRender();
 		SearchQuery searchQuery = new SearchQuery();
 		Dialog dialog = new Dialog();
 		Modify modify = new Modify();
@@ -246,7 +249,7 @@ public class Dashboard extends Window
 				thuDienTu = textThuDienTu.getText();
 				bienSo = textBienSo.getText();
 				//kiểm tra trùng biển số xe
-				if (otherQuery.duplicateBienSo(bienSo) == true) return;
+				if (frameRender.duplicateBienSo(bienSo) == true) return;
 				trongTai = textTrongTai.getText();
 				thoiGianGui = textThoiGianGui.getText();
 				cachThanhToan = textCachThanhToan.getText();
@@ -255,7 +258,7 @@ public class Dashboard extends Window
 				try 
 				{
 					modifiedQuery.insertHopDong(tenChuXe, soDienThoai, soCMND, diaChi, thuDienTu, bienSo, trongTai, thoiGianGui, cachThanhToan, loaiXe);
-					otherQuery.refreshTable(tableBriefs);
+					frameRender.refreshTable(tableBriefs);
 					visibleCalVehicle();
 				} catch (SQLException e1) 
 				{	
@@ -280,7 +283,7 @@ public class Dashboard extends Window
 				try
 				{
 					modifiedQuery.deleteHopDong(bienSo);
-					otherQuery.refreshTable(tableBriefs);
+					frameRender.refreshTable(tableBriefs);
 					removeField();
 					visibleCalVehicle();
 				} catch (Exception e4)
@@ -317,7 +320,7 @@ public class Dashboard extends Window
 				try
 				{
 					modifiedQuery.updateHopDong(tenChuXe, soDienThoai, soCMND, diaChi, thuDienTu, bienSo, trongTai, thoiGianGui, cachThanhToan, loaiXe);
-					otherQuery.refreshTable(tableBriefs);
+					frameRender.refreshTable(tableBriefs);
 					//visibleCalVehicle();
 				} catch (SQLException se)
 				{
@@ -421,9 +424,9 @@ public class Dashboard extends Window
 					System.out.println(row);
 					String rowBienSo = (tableBriefs.getModel().getValueAt(row, 3).toString());
 					System.out.println(rowBienSo);
-					otherQuery.selectRow(rowBienSo);
-					khachHang = otherQuery.getTextFieldKhachHang();
-					hopDong = otherQuery.getTextFieldHopDong();
+					frameRender.selectRow(rowBienSo);
+					khachHang = frameRender.getTextFieldKhachHang();
+					hopDong = frameRender.getTextFieldHopDong();
 					//
 					
 					//System.out.println("hung" + khachHang.getTenChuXe());
@@ -434,19 +437,22 @@ public class Dashboard extends Window
 					textThuDienTu.setText(khachHang.getThuDienTu());
 					textSoCMND.setText(String.valueOf(khachHang.getSoCMND()));
 					textCachThanhToan.setText(hopDong.getHinhThucThanhToan());
-					System.out.println("otherQuery.getLoaiXe()=" + otherQuery.getLoaiXe());
-					if (otherQuery.getLoaiXe() == "Xe con") 
+					System.out.println("otherQuery.getLoaiXe()=" + frameRender.getLoaiXe());
+					
+					if (frameRender.getLoaiXe() == "Xe con") 
 					{
-						xeCon = otherQuery.getTextFieldXeCon();
+						xeCon = frameRender.getTextFieldXeCon();
 						//System.out.println("xeCon="+xeCon);
 						textBienSo.setText(xeCon.getBienSo());
+						System.out.println("xeCon.getBienSo()"+xeCon.getBienSo());
 						textTrongTai.setText(String.valueOf(xeCon.getTrongTai()));
 						textThoiGianGui.setText(String.valueOf(xeCon.getThoiGianGui()));
 						boxLoaiXe.setSelectedItem(xeCon.getLoaiXe());
 					} else 
 					{
-						xeTai = otherQuery.getTextFieldXeTai();
+						xeTai = frameRender.getTextFieldXeTai();
 						textBienSo.setText(xeTai.getBienSo());
+						System.out.println("xeCon.getBienSo()"+xeTai.getBienSo());
 						textTrongTai.setText(String.valueOf(xeTai.getTrongTai()));
 						textThoiGianGui.setText(String.valueOf(xeTai.getThoiGianGui()));
 						boxLoaiXe.setSelectedItem(xeTai.getLoaiXe());
@@ -462,7 +468,7 @@ public class Dashboard extends Window
 		scrollPane.setViewportView(tableBriefs);
 		tableBriefs.setFont(new Font("Tahoma", Font.PLAIN, 15));
 		
-		otherQuery.refreshTable(tableBriefs);
+		frameRender.refreshTable(tableBriefs);
 		
 		JLabel lblCTT = new JLabel("Cách thanh toán");
 		lblCTT.setFont(new Font("Tahoma", Font.PLAIN, 16));
@@ -494,7 +500,7 @@ public class Dashboard extends Window
 			{
 				try
 				{
-					otherQuery.refreshTable(tableBriefs);
+					frameRender.refreshTable(tableBriefs);
 				} catch (SQLException se)
 				{
 					se.printStackTrace();

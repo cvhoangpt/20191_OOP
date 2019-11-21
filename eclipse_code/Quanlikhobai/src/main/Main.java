@@ -2,8 +2,8 @@ package main;
 
 import java.sql.SQLException;
 
-import database.Connector;
-import gui.Dashboard;
+import database.connect.Connector;
+import gui.form.Dashboard;
 
 /**
  * Lớp chứa khối điều khiển bắt đầu của chương trình

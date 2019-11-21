@@ -1,12 +1,11 @@
-package database;
+package database.export;
 
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-//import java.sql.Statement;
-
-import gui.*;
+import database.connect.Connector;
+import gui.form.*;
 import util.Modify;
 
 /**

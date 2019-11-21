@@ -3,7 +3,7 @@ package util;
 import javax.swing.JCheckBox;
 import javax.swing.JTextField;
 
-import gui.Dialog;
+import gui.form.Dialog;
 
 public class Search 
 {

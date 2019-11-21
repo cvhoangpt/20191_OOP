@@ -1,4 +1,4 @@
-package entity;
+package entity.vehicle;
 
 /**
  * Lớp khai báo đối tượng Vehicle

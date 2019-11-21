@@ -1,4 +1,4 @@
-package entity;
+package entity.contract;
 
 /**
  * Lớp khai báo đối tượng Hợp đồng

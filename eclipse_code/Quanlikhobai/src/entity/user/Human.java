@@ -1,4 +1,4 @@
-package entity;
+package entity.user;
 
 /**
  * Lớp khai báo đối tượng Human

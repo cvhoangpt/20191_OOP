@@ -1,16 +1,18 @@
-package gui;
+package gui.form;
 
 import java.awt.Font;
 
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 
+import gui.can.Bootable;
+
 /**
  * Lớp chứa các hộp thoại thông báo
  * @author hoangcv
  *
  */
-public class Dialog extends Window
+public class Dialog extends Window implements Bootable
 {
 	public Dialog() 
 	{

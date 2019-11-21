@@ -1,4 +1,4 @@
-package database;
+package database.export;
 
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -6,10 +6,12 @@ import java.sql.SQLException;
 
 import javax.swing.JTable;
 
-import entity.Hopdong;
-import entity.Khachhang;
-import entity.*;
-import gui.Dialog;
+import database.connect.Connector;
+import entity.contract.Hopdong;
+import entity.user.*;
+import entity.vehicle.Xecon;
+import entity.vehicle.Xetai;
+import gui.form.Dialog;
 import net.proteanit.sql.DbUtils;
 
 /**
@@ -17,23 +19,23 @@ import net.proteanit.sql.DbUtils;
  * @author hoangcv
  *
  */
-public class OtherQuery extends Connector
+public class FrameRender extends Connector
 {
 	Dialog dialog = new Dialog();
-	Khachhang khachHang = null;
-	Hopdong hopDong = null;
-	Xecon xeCon = null;
-	Xetai xeTai = null;
-	private static String tenChuXe;
-	private static int soDienThoai;
-	private static String diaChi;
-	private static String thuDienTu;
-	private static int soCMND;
-	private static String bienSo;
-	private static int trongTai;
-	private static int thoiGianGui;
-	private static String cachThanhToan;
-	private static String loaiXe;
+	Khachhang khachHang;
+	Hopdong hopDong;
+	Xecon xeCon;
+	Xetai xeTai;
+	private String tenChuXe;
+	private int soDienThoai;
+	private String diaChi;
+	private String thuDienTu;
+	private int soCMND;
+	private String bienSo;
+	private int trongTai;
+	private int thoiGianGui;
+	private String cachThanhToan;
+	private String loaiXe;
 	/**
 	 * Phương thức truy vấn trích xuất csdl và làm mới table
 	 * @param table
@@ -96,23 +98,8 @@ public class OtherQuery extends Connector
 				thoiGianGui = Integer.parseInt(rs.getString("Thoigiangui"));
 				cachThanhToan = rs.getString("Hinhthucthanhtoan");
 				loaiXe = rs.getString("Loaixe");
+				System.out.println("loaiXe="+loaiXe);
 			}
-			/*
-			System.out.println(tenChuXe);
-			System.out.println(soDienThoai);
-			System.out.println(diaChi);
-			System.out.println(thuDienTu);
-			System.out.println(soCMND);
-			System.out.println(bienSo);
-			System.out.println(trongTai);
-			System.out.println(thoiGianGui);
-			System.out.println(cachThanhToan);
-			System.out.println(loaiXe);
-			
-			
-			
-			
-			*/
 			rs.close();
 			pst.close();
 		} catch (Exception e)
@@ -136,7 +123,11 @@ public class OtherQuery extends Connector
 	
 	public Xecon getTextFieldXeCon()
 	{
-		if (loaiXe == "Xe con") xeCon = new Xecon(bienSo, loaiXe, trongTai, thoiGianGui);
+		System.out.println("getTextFieldXeCon"+loaiXe);
+		if (loaiXe == "Xe con") {
+			xeCon = new Xecon(bienSo, loaiXe, trongTai, thoiGianGui);
+			System.out.println("Xe con: " + xeCon.getBienSo());
+		}
 		else return null;
 		//else if (loaiXe == "Xe tải") vehicle = new Xetai(bienSo, loaiXe, trongTai, thoiGianGui);
 		return xeCon;
@@ -144,7 +135,11 @@ public class OtherQuery extends Connector
 	
 	public Xetai getTextFieldXeTai()
 	{
-		if (loaiXe == "Xe tải") xeTai = new Xetai(bienSo, loaiXe, trongTai, thoiGianGui);
+		System.out.println("getTextFieldXeTai"+loaiXe);
+		if (loaiXe == "Xe tải") {
+			xeTai = new Xetai(bienSo, loaiXe, trongTai, thoiGianGui);
+			System.out.println("Xe tai: " + xeTai.getBienSo());
+		}
 		else return null;
 		return xeTai;
 	}

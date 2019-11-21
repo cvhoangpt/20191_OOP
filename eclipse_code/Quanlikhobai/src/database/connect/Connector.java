@@ -1,10 +1,10 @@
-package database;
+package database.connect;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 
-import gui.Dialog;
+import gui.form.Dialog;
 
 /**
  * Phương thức liên kết cơ sở dữ liệu thông qua Java Database Connectivity API.

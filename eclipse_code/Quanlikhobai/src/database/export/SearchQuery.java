@@ -1,11 +1,12 @@
-package database;
+package database.export;
 
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 
 import javax.swing.JTable;
 
-import gui.Dialog;
+import database.connect.Connector;
+import gui.form.Dialog;
 import net.proteanit.sql.DbUtils;
 
 /**
