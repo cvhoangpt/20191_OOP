@@ -4,9 +4,10 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
+import control.Modify;
 import database.connect.Connector;
 import gui.form.*;
-import util.Modify;
+import util.NumberProcessing;
 
 /**
  * Chứa các liên kết thực thể và truy vấn
@@ -18,7 +19,7 @@ public class ModifiedQuery extends Connector
 	//ResultSet rs = null;
 	//PreparedStatement pst = null;
 	Dialog dialog = new Dialog();
-	Modify modify = new Modify();
+	NumberProcessing numProcess = new NumberProcessing();
 	public void test() throws SQLException
 	{
 		System.out.println(Dashboard.tenChuXe);
@@ -40,8 +41,8 @@ public class ModifiedQuery extends Connector
 	 */
 	public void insertHopDong(String tcx, int sdt, int cmt, String dc, String tdt, String bs, String tt, String tgg, String ctt, String lx) throws SQLException
 	{
-		String valueKH = "KH" + String.valueOf(modify.randomMKH());
-		String valueHD = "HD" + String.valueOf(modify.randomMHD());
+		String valueKH = "KH" + String.valueOf(numProcess.randomMKH());
+		String valueHD = "HD" + String.valueOf(numProcess.randomMHD());
 		try
 		{
 			//Khối chèn bảng khach_hang

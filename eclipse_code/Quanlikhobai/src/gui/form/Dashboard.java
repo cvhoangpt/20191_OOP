@@ -13,6 +13,7 @@ import javax.swing.JButton;
 import javax.swing.JTextField;
 //import javax.swing.table.DefaultTableModel;
 
+import control.Modify;
 import database.export.FrameRender;
 import database.export.ModifiedQuery;
 import database.export.SearchQuery;
@@ -23,7 +24,6 @@ import entity.vehicle.Xetai;
 import gui.can.StartFrame;
 import gui.can.Erasable;
 import util.Calculate;
-import util.Modify;
 
 import javax.swing.JComboBox;
 import javax.swing.JCheckBox;

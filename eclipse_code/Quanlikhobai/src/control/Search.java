@@ -1,4 +1,4 @@
-package util;
+package control;
 
 import javax.swing.JCheckBox;
 import javax.swing.JTextField;
