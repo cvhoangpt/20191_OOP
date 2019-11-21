@@ -1,12 +1,29 @@
 package control;
 
 import javax.swing.JCheckBox;
+import javax.swing.JTable;
 import javax.swing.JTextField;
 
+import database.export.SearchQuery;
 import gui.form.Dialog;
 
 public class Search 
 {
+	public void tenChuXeSearchResult(JTable table, String tcx)
+	{
+		new SearchQuery().tenChuXeSearchResult(table, tcx);
+	}
+	
+	public void bienSoSearchResult(JTable table, String bs)
+	{
+		new SearchQuery().bienSoSearchResult(table, bs);
+	}
+	
+	public void loaiXeSearchResult(JTable table, String lx)
+	{
+		new SearchQuery().loaiXeSearchResult(table, lx);
+	}
+	
 	public boolean searchIsEmpty(JTextField txtTimKiem)
 	{
 		Dialog d = new Dialog();

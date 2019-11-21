@@ -13,10 +13,11 @@ import javax.swing.JButton;
 import javax.swing.JTextField;
 //import javax.swing.table.DefaultTableModel;
 
+import control.FrameControl;
 import control.Modify;
+import control.Search;
 import database.export.FrameRender;
-import database.export.ModifiedQuery;
-import database.export.SearchQuery;
+
 import entity.contract.Hopdong;
 import entity.user.*;
 import entity.vehicle.Xecon;
@@ -110,11 +111,12 @@ public class Dashboard extends Window implements StartFrame, Erasable
 	@SuppressWarnings("unchecked")
 	private void initialize() throws SQLException 
 	{
-		ModifiedQuery modifiedQuery = new ModifiedQuery();
-		FrameRender frameRender = new FrameRender();
-		SearchQuery searchQuery = new SearchQuery();
-		Dialog dialog = new Dialog();
 		Modify modify = new Modify();
+		FrameControl frameControl = new FrameControl();
+		FrameRender frameRender = new FrameRender();
+		Search search = new Search();
+		Dialog dialog = new Dialog();
+		
 		
 		setFrame(new JFrame());
 		getFrame().setTitle("Chương trình quản lí bãi gửi xe");
@@ -259,8 +261,8 @@ public class Dashboard extends Window implements StartFrame, Erasable
 				
 				try 
 				{
-					modifiedQuery.insertHopDong(tenChuXe, soDienThoai, soCMND, diaChi, thuDienTu, bienSo, trongTai, thoiGianGui, cachThanhToan, loaiXe);
-					frameRender.refreshTable(tableBriefs);
+					modify.insertHopDong(tenChuXe, soDienThoai, soCMND, diaChi, thuDienTu, bienSo, trongTai, thoiGianGui, cachThanhToan, loaiXe);
+					frameControl.refreshTable(tableBriefs);
 					visibleCalVehicle();
 				} catch (SQLException e1) 
 				{	
@@ -284,8 +286,8 @@ public class Dashboard extends Window implements StartFrame, Erasable
 				//System.out.println(bs);
 				try
 				{
-					modifiedQuery.deleteHopDong(bienSo);
-					frameRender.refreshTable(tableBriefs);
+					modify.deleteHopDong(bienSo);
+					frameControl.refreshTable(tableBriefs);
 					removeField();
 					visibleCalVehicle();
 				} catch (Exception e4)
@@ -321,8 +323,8 @@ public class Dashboard extends Window implements StartFrame, Erasable
 				
 				try
 				{
-					modifiedQuery.updateHopDong(tenChuXe, soDienThoai, soCMND, diaChi, thuDienTu, bienSo, trongTai, thoiGianGui, cachThanhToan, loaiXe);
-					frameRender.refreshTable(tableBriefs);
+					modify.updateHopDong(tenChuXe, soDienThoai, soCMND, diaChi, thuDienTu, bienSo, trongTai, thoiGianGui, cachThanhToan, loaiXe);
+					frameControl.refreshTable(tableBriefs);
 					//visibleCalVehicle();
 				} catch (SQLException se)
 				{
@@ -368,9 +370,9 @@ public class Dashboard extends Window implements StartFrame, Erasable
 				}
 				String value = textTimKiem.getText();
 				loaiSearch = boxLoaiSearch.getSelectedItem().toString();
-				if (loaiSearch == "Chủ xe") searchQuery.tenChuXeSearchResult(tableBriefs, value);
-				else if (loaiSearch == "Biển số xe") searchQuery.bienSoSearchResult(tableBriefs, value);
-				else if (loaiSearch == "Loại xe") searchQuery.loaiXeSearchResult(tableBriefs, value);
+				if (loaiSearch == "Chủ xe") search.tenChuXeSearchResult(tableBriefs, value);
+				else if (loaiSearch == "Biển số xe") search.bienSoSearchResult(tableBriefs, value);
+				else if (loaiSearch == "Loại xe") search.loaiXeSearchResult(tableBriefs, value);
 			}
 		});
 		btnTimKiem.setFont(new Font("Tahoma", Font.PLAIN, 16));
@@ -426,7 +428,7 @@ public class Dashboard extends Window implements StartFrame, Erasable
 					System.out.println(row);
 					String rowBienSo = (tableBriefs.getModel().getValueAt(row, 3).toString());
 					System.out.println(rowBienSo);
-					frameRender.selectRow(rowBienSo);
+					frameControl.selectRow(rowBienSo);
 					khachHang = frameRender.getTextFieldKhachHang();
 					hopDong = frameRender.getTextFieldHopDong();
 					xeCon = frameRender.getTextFieldXeCon();
