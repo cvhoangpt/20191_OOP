@@ -4,7 +4,7 @@ import java.sql.SQLException;
 
 import javax.swing.JTable;
 
-import database.export.FrameRender;
+import database.processing.FrameRender;
 
 /**
  * Lớp điều khiển việc thao tác giao diện

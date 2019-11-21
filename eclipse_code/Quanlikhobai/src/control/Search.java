@@ -4,7 +4,7 @@ import javax.swing.JCheckBox;
 import javax.swing.JTable;
 import javax.swing.JTextField;
 
-import database.export.SearchQuery;
+import database.processing.SearchQuery;
 import gui.form.Dialog;
 
 /**

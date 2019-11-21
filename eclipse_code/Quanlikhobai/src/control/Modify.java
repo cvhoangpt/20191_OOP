@@ -4,7 +4,7 @@ import java.sql.SQLException;
 import javax.swing.JComboBox;
 import javax.swing.JTextField;
 
-import database.export.ModifiedQuery;
+import database.processing.ModifiedQuery;
 import gui.form.Dialog;
 
 /**

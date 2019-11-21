@@ -2,7 +2,7 @@ package util;
 
 import java.sql.SQLException;
 
-import database.export.FrameRender;
+import database.processing.FrameRender;
 
 /**
  * Lớp chứa các phương thức tính toán
