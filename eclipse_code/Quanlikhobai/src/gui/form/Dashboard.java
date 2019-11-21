@@ -20,7 +20,7 @@ import entity.contract.Hopdong;
 import entity.user.*;
 import entity.vehicle.Xecon;
 import entity.vehicle.Xetai;
-import gui.can.Bootable;
+import gui.can.StartFrame;
 import gui.can.Erasable;
 import util.Calculate;
 import util.Modify;
@@ -42,7 +42,7 @@ import java.awt.event.MouseEvent;
  * @since 10/2019
  */
 @SuppressWarnings("rawtypes")
-public class Dashboard extends Window implements Bootable, Erasable
+public class Dashboard extends Window implements StartFrame, Erasable
 {
 	private JFrame frame;
 	
@@ -429,7 +429,8 @@ public class Dashboard extends Window implements Bootable, Erasable
 					frameRender.selectRow(rowBienSo);
 					khachHang = frameRender.getTextFieldKhachHang();
 					hopDong = frameRender.getTextFieldHopDong();
-					//
+					xeCon = frameRender.getTextFieldXeCon();
+					xeTai = frameRender.getTextFieldXeTai();
 					
 					//System.out.println("hung" + khachHang.getTenChuXe());
 					
@@ -440,10 +441,11 @@ public class Dashboard extends Window implements Bootable, Erasable
 					textSoCMND.setText(String.valueOf(khachHang.getSoCMND()));
 					textCachThanhToan.setText(hopDong.getHinhThucThanhToan());
 					System.out.println("otherQuery.getLoaiXe()=" + frameRender.getLoaiXe());
+					System.out.println("xeCon.getBienSo()"+xeCon.getBienSo());
 					
 					if (frameRender.getLoaiXe() == "Xe con") 
 					{
-						xeCon = frameRender.getTextFieldXeCon();
+//						xeCon = frameRender.getTextFieldXeCon();
 						//System.out.println("xeCon="+xeCon);
 						textBienSo.setText(xeCon.getBienSo());
 						System.out.println("xeCon.getBienSo()"+xeCon.getBienSo());
@@ -452,7 +454,7 @@ public class Dashboard extends Window implements Bootable, Erasable
 						boxLoaiXe.setSelectedItem(xeCon.getLoaiXe());
 					} else 
 					{
-						xeTai = frameRender.getTextFieldXeTai();
+//						xeTai = frameRender.getTextFieldXeTai();
 						textBienSo.setText(xeTai.getBienSo());
 						System.out.println("xeCon.getBienSo()"+xeTai.getBienSo());
 						textTrongTai.setText(String.valueOf(xeTai.getTrongTai()));

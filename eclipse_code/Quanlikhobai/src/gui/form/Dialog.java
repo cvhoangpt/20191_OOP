@@ -5,7 +5,7 @@ import java.awt.Font;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 
-import gui.can.Bootable;
+import gui.can.StartFrame;
 
 /**
  * Lớp chứa các hộp thoại thông báo

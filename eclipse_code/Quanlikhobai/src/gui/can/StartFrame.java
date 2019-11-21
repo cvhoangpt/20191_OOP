@@ -5,7 +5,7 @@ package gui.can;
  * @author hoangcv
  *
  */
-public interface Bootable
+public interface StartFrame
 {
 	public void startDashboard();
 }

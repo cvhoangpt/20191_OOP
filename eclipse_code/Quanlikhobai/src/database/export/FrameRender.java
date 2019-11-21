@@ -36,6 +36,7 @@ public class FrameRender extends Connector
 	private int thoiGianGui;
 	private String cachThanhToan;
 	private String loaiXe;
+
 	/**
 	 * Phương thức truy vấn trích xuất csdl và làm mới table
 	 * @param table
@@ -94,11 +95,12 @@ public class FrameRender extends Connector
 				thuDienTu = rs.getString("ThuDienTu");
 				soCMND = Integer.parseInt(rs.getString("SoCMND"));
 				bienSo = rs.getString("Bienso");
+				System.out.println("bienSo="+bienSo);
 				trongTai = Integer.parseInt(rs.getString("Trongtai"));
 				thoiGianGui = Integer.parseInt(rs.getString("Thoigiangui"));
 				cachThanhToan = rs.getString("Hinhthucthanhtoan");
 				loaiXe = rs.getString("Loaixe");
-				System.out.println("loaiXe="+loaiXe);
+				//System.out.println("loaiXe="+loaiXe);
 			}
 			rs.close();
 			pst.close();
@@ -123,24 +125,13 @@ public class FrameRender extends Connector
 	
 	public Xecon getTextFieldXeCon()
 	{
-		System.out.println("getTextFieldXeCon"+loaiXe);
-		if (loaiXe == "Xe con") {
-			xeCon = new Xecon(bienSo, loaiXe, trongTai, thoiGianGui);
-			System.out.println("Xe con: " + xeCon.getBienSo());
-		}
-		else return null;
-		//else if (loaiXe == "Xe tải") vehicle = new Xetai(bienSo, loaiXe, trongTai, thoiGianGui);
+		xeCon = new Xecon(bienSo, loaiXe, trongTai, thoiGianGui);
 		return xeCon;
 	}
 	
 	public Xetai getTextFieldXeTai()
 	{
-		System.out.println("getTextFieldXeTai"+loaiXe);
-		if (loaiXe == "Xe tải") {
-			xeTai = new Xetai(bienSo, loaiXe, trongTai, thoiGianGui);
-			System.out.println("Xe tai: " + xeTai.getBienSo());
-		}
-		else return null;
+		xeTai = new Xetai(bienSo, loaiXe, trongTai, thoiGianGui);
 		return xeTai;
 	}
 	
