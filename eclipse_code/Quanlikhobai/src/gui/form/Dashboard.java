@@ -21,8 +21,8 @@ import entity.contract.Hopdong;
 import entity.user.*;
 import entity.vehicle.Xecon;
 import entity.vehicle.Xetai;
-import gui.can.StartFrame;
-import gui.can.Erasable;
+import gui.can.StartForm;
+import gui.can.ErasableTextField;
 import util.Calculate;
 
 import javax.swing.JComboBox;
@@ -42,7 +42,7 @@ import java.awt.event.MouseEvent;
  * @since 10/2019
  */
 @SuppressWarnings("rawtypes")
-public class Dashboard extends Window implements StartFrame, Erasable
+public class Dashboard extends Window implements StartForm, ErasableTextField
 {
 	//private JFrame frame;
 	
@@ -115,7 +115,6 @@ public class Dashboard extends Window implements StartFrame, Erasable
 		FormRender frameRender = new FormRender();
 		Search search = new Search();
 		Dialog dialog = new Dialog();
-		
 		
 		setFrame(new JFrame());
 		getFrame().setTitle("Chương trình quản lí bãi gửi xe");

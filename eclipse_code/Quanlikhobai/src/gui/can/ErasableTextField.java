@@ -5,7 +5,7 @@ package gui.can;
  * @author hoangcv
  *
  */
-public interface Erasable 
+public interface ErasableTextField 
 {
 	public void removeField();
 }

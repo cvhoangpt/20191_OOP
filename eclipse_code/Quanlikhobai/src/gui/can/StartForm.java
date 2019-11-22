@@ -5,7 +5,7 @@ package gui.can;
  * @author hoangcv
  *
  */
-public interface StartFrame
+public interface StartForm
 {
 	public void startFrame();
 }
