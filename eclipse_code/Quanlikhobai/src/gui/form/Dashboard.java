@@ -13,10 +13,10 @@ import javax.swing.JButton;
 import javax.swing.JTextField;
 //import javax.swing.table.DefaultTableModel;
 
-import control.FrameControl;
+import control.FormControl;
 import control.Modify;
 import control.Search;
-import database.processing.FrameRender;
+import database.processing.FormRender;
 import entity.contract.Hopdong;
 import entity.user.*;
 import entity.vehicle.Xecon;
@@ -44,7 +44,7 @@ import java.awt.event.MouseEvent;
 @SuppressWarnings("rawtypes")
 public class Dashboard extends Window implements StartFrame, Erasable
 {
-	private JFrame frame;
+	//private JFrame frame;
 	
 	public JFrame getFrame() 
 	{
@@ -111,8 +111,8 @@ public class Dashboard extends Window implements StartFrame, Erasable
 	private void initialize() throws SQLException 
 	{
 		Modify modify = new Modify();
-		FrameControl frameControl = new FrameControl();
-		FrameRender frameRender = new FrameRender();
+		FormControl frameControl = new FormControl();
+		FormRender frameRender = new FormRender();
 		Search search = new Search();
 		Dialog dialog = new Dialog();
 		

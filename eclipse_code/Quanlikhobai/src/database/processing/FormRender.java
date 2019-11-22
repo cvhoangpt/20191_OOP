@@ -19,7 +19,7 @@ import net.proteanit.sql.DbUtils;
  * @author hoangcv
  *
  */
-public class FrameRender extends Connector
+public class FormRender extends Connector
 {
 	Dialog dialog = new Dialog();
 	Khachhang khachHang;
@@ -37,6 +37,10 @@ public class FrameRender extends Connector
 	private String cachThanhToan;
 	private String loaiXe;
 
+	public static final String SQL_UPDATE_TABLE = 
+			"SELECT khach_hang.MaKH, hop_dong.MaHD, khach_hang.TenKH, xe.Bienso, xe.Loaixe " + 
+					"FROM khach_hang, hop_dong, xe " + 
+					"WHERE (khach_hang.MaKH = hop_dong.MaKH AND hop_dong.Bienso = xe.Bienso)";
 	/**
 	 * Phương thức truy vấn trích xuất csdl và làm mới table
 	 * @param table
@@ -44,13 +48,10 @@ public class FrameRender extends Connector
 	 */
 	public void refreshTable(JTable table) throws SQLException
 	{
-		String sqlUpdateTable = 
-	"SELECT khach_hang.MaKH, hop_dong.MaHD, khach_hang.TenKH, xe.Bienso, xe.Loaixe " + 
-	"FROM khach_hang, hop_dong, xe " + 
-	"WHERE (khach_hang.MaKH = hop_dong.MaKH AND hop_dong.Bienso = xe.Bienso)";
+		
 		try
 		{
-			PreparedStatement pst = conn.prepareStatement(sqlUpdateTable);
+			PreparedStatement pst = conn.prepareStatement(SQL_UPDATE_TABLE);
 			ResultSet rs = pst.executeQuery();
 			table.setModel(DbUtils.resultSetToTableModel(rs));
 		} catch(Exception e)

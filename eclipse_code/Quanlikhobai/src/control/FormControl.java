@@ -4,22 +4,17 @@ import java.sql.SQLException;
 
 import javax.swing.JTable;
 
-import database.processing.FrameRender;
+import database.processing.FormRender;
 
 /**
  * Lớp điều khiển việc thao tác giao diện
  * @author hoangcv
  *
  */
-public class FrameControl 
+public class FormControl 
 {
 	public void refreshTable(JTable table) throws SQLException
 	{
-		new FrameRender().refreshTable(table);
-	}
-	
-	public void selectRow(String rowBienSo)
-	{
-		new FrameRender().selectRow(rowBienSo);
+		new FormRender().refreshTable(table);
 	}
 }

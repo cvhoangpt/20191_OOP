@@ -2,7 +2,7 @@ package util;
 
 import java.sql.SQLException;
 
-import database.processing.FrameRender;
+import database.processing.FormRender;
 
 /**
  * Lớp chứa các phương thức tính toán
@@ -19,7 +19,7 @@ public class Calculate
 	public int calVehicle() throws SQLException
 	{
 		int countXe;
-		FrameRender oe = new FrameRender();
+		FormRender oe = new FormRender();
 		
 		countXe = oe.sumVehicle().getInt("COUNT(Bienso)");
 		return countXe;
