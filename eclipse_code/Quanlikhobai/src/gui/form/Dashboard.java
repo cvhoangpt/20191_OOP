@@ -59,13 +59,13 @@ public class Dashboard extends Window implements StartForm, ErasableTextField
 			@Override
 			public void mouseClicked(MouseEvent e) 
 			{
-				tableBriefs.getSelectionModel().clearSelection();
+				tableBrief.getSelectionModel().clearSelection();
 			}
 		});
 		frame.getContentPane().setFont(new Font("Tahoma", Font.PLAIN, 16));
 	}
 	private JTextField textTimKiem;
-	private JTable tableBriefs;
+	private JTable tableBrief;
 	private JTextField textTenChuXe;
 	private JTextField textSoDienThoai;
 	private JTextField textDiaChi;
@@ -260,7 +260,7 @@ public class Dashboard extends Window implements StartForm, ErasableTextField
 				try 
 				{
 					modify.insertHopDong(tenChuXe, soDienThoai, soCMND, diaChi, thuDienTu, bienSo, trongTai, thoiGianGui, cachThanhToan, loaiXe);
-					frameControl.refreshTable(tableBriefs);
+					frameControl.refreshTable(tableBrief);
 					visibleCalVehicle();
 				} catch (SQLException e1) 
 				{	
@@ -285,7 +285,7 @@ public class Dashboard extends Window implements StartForm, ErasableTextField
 				try
 				{
 					modify.deleteHopDong(bienSo);
-					frameControl.refreshTable(tableBriefs);
+					frameControl.refreshTable(tableBrief);
 					removeField();
 					visibleCalVehicle();
 				} catch (Exception e4)
@@ -322,7 +322,7 @@ public class Dashboard extends Window implements StartForm, ErasableTextField
 				try
 				{
 					modify.updateHopDong(tenChuXe, soDienThoai, soCMND, diaChi, thuDienTu, bienSo, trongTai, thoiGianGui, cachThanhToan, loaiXe);
-					frameControl.refreshTable(tableBriefs);
+					frameControl.refreshTable(tableBrief);
 					//visibleCalVehicle();
 				} catch (SQLException se)
 				{
@@ -368,9 +368,9 @@ public class Dashboard extends Window implements StartForm, ErasableTextField
 				}
 				String value = textTimKiem.getText();
 				loaiSearch = boxLoaiSearch.getSelectedItem().toString();
-				if (loaiSearch == "Chủ xe") search.tenChuXeSearchResult(tableBriefs, value);
-				else if (loaiSearch == "Biển số xe") search.bienSoSearchResult(tableBriefs, value);
-				else if (loaiSearch == "Loại xe") search.loaiXeSearchResult(tableBriefs, value);
+				if (loaiSearch == "Chủ xe") search.tenChuXeSearchResult(tableBrief, value);
+				else if (loaiSearch == "Biển số xe") search.bienSoSearchResult(tableBrief, value);
+				else if (loaiSearch == "Loại xe") search.loaiXeSearchResult(tableBrief, value);
 			}
 		});
 		btnTimKiem.setFont(new Font("Tahoma", Font.PLAIN, 16));
@@ -414,17 +414,18 @@ public class Dashboard extends Window implements StartForm, ErasableTextField
 		
 		
 		//Khối Table----------------------------------
-		tableBriefs = new JTable();
-		tableBriefs.addMouseListener(new MouseAdapter() 
+		tableBrief = new JTable();
+		tableBrief.setFillsViewportHeight(true);
+		tableBrief.addMouseListener(new MouseAdapter() 
 		{
 			@Override
 			public void mouseClicked(MouseEvent e) 
 			{
 				try
 				{
-					int row = tableBriefs.getSelectedRow();
+					int row = tableBrief.getSelectedRow();
 					//System.out.println(row);
-					String rowBienSo = (tableBriefs.getModel().getValueAt(row, 3).toString());
+					String rowBienSo = (tableBrief.getModel().getValueAt(row, 3).toString());
 					//System.out.println(rowBienSo);
 					frameRender.selectRow(rowBienSo);
 					khachHang = frameRender.getTextFieldKhachHang();
@@ -467,10 +468,10 @@ public class Dashboard extends Window implements StartForm, ErasableTextField
 				}
 			}
 		});
-		scrollPane.setViewportView(tableBriefs);
-		tableBriefs.setFont(new Font("Tahoma", Font.PLAIN, 15));
+		scrollPane.setViewportView(tableBrief);
+		tableBrief.setFont(new Font("Tahoma", Font.PLAIN, 15));
 		
-		frameRender.refreshTable(tableBriefs);
+		frameRender.refreshTable(tableBrief);
 		
 		JLabel lblCTT = new JLabel("Cách thanh toán");
 		lblCTT.setFont(new Font("Tahoma", Font.PLAIN, 16));
@@ -502,7 +503,7 @@ public class Dashboard extends Window implements StartForm, ErasableTextField
 			{
 				try
 				{
-					frameRender.refreshTable(tableBriefs);
+					frameRender.refreshTable(tableBrief);
 				} catch (SQLException se)
 				{
 					se.printStackTrace();

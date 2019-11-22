@@ -1,9 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<class-diagram version="1.2.3" icons="true" automaticImage="PNG" always-add-relationships="false" generalizations="true" 
-  realizations="true" associations="true" dependencies="false" nesting-relationships="true" router="FAN">  
+<class-diagram version="1.2.3" icons="false" automaticImage="PNG" always-add-relationships="false" 
+  generalizations="true" realizations="true" associations="true" dependencies="true" nesting-relationships="true" 
+  router="FAN">  
   <class id="1" language="java" name="gui.form.Window" project="Quanlikhobai" 
     file="/Quanlikhobai/src/gui/form/Window.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="2274" y="773"/>    
+    <position height="141" width="160" x="1826" y="37"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -12,7 +13,7 @@
   </class>  
   <class id="2" language="java" name="database.connect.Connector" project="Quanlikhobai" 
     file="/Quanlikhobai/src/database/connect/Connector.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="2484" y="316"/>    
+    <position height="196" width="186" x="567" y="37"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -21,7 +22,7 @@
   </class>  
   <interface id="3" language="java" name="gui.can.ErasableTextField" project="Quanlikhobai" 
     file="/Quanlikhobai/src/gui/can/ErasableTextField.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="1172" y="1342"/>    
+    <position height="88" width="152" x="1003" y="1347"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -30,7 +31,7 @@
   </interface>  
   <class id="4" language="java" name="control.Modify" project="Quanlikhobai" 
     file="/Quanlikhobai/src/control/Modify.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="1930" y="283"/>    
+    <position height="196" width="769" x="1866" y="283"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -39,7 +40,7 @@
   </class>  
   <class id="5" language="java" name="entity.user.Khachhang" project="Quanlikhobai" 
     file="/Quanlikhobai/src/entity/user/Khachhang.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="1562" y="1468"/>    
+    <position height="340" width="245" x="718" y="1347"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -48,7 +49,7 @@
   </class>  
   <class id="6" language="java" name="gui.form.Dialog" project="Quanlikhobai" 
     file="/Quanlikhobai/src/gui/form/Dialog.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="2245" y="1467"/>    
+    <position height="340" width="169" x="1826" y="1347"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -57,7 +58,7 @@
   </class>  
   <class id="7" language="java" name="gui.form.Dashboard" project="Quanlikhobai" 
     file="/Quanlikhobai/src/gui/form/Dashboard.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="1384" y="746"/>    
+    <position height="1024" width="215" x="1062" y="283"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -66,7 +67,7 @@
   </class>  
   <interface id="8" language="java" name="gui.can.StartForm" project="Quanlikhobai" 
     file="/Quanlikhobai/src/gui/can/StartForm.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="1338" y="1342"/>    
+    <position height="88" width="123" x="1195" y="1347"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -75,7 +76,7 @@
   </interface>  
   <class id="9" language="java" name="util.Calculate" project="Quanlikhobai" 
     file="/Quanlikhobai/src/util/Calculate.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="2834" y="166"/>    
+    <position height="-1" width="-1" x="1375" y="89"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -84,7 +85,7 @@
   </class>  
   <class id="10" language="java" name="entity.contract.Hopdong" project="Quanlikhobai" 
     file="/Quanlikhobai/src/entity/contract/Hopdong.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="1933" y="1378"/>    
+    <position height="160" width="228" x="1358" y="1347"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -93,7 +94,7 @@
   </class>  
   <class id="11" language="java" name="entity.vehicle.Vehicle" project="Quanlikhobai" 
     file="/Quanlikhobai/src/entity/vehicle/Vehicle.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="2807" y="955"/>    
+    <position height="357" width="185" x="41" y="283"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -102,7 +103,7 @@
   </class>  
   <class id="12" language="java" name="common.Main" project="Quanlikhobai" file="/Quanlikhobai/src/common/Main.java" 
     binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="1404" y="133"/>    
+    <position height="-1" width="-1" x="927" y="88"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -111,7 +112,7 @@
   </class>  
   <class id="13" language="java" name="database.processing.SearchQuery" project="Quanlikhobai" 
     file="/Quanlikhobai/src/database/processing/SearchQuery.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="2502" y="593"/>    
+    <position height="142" width="267" x="546" y="283"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -120,7 +121,7 @@
   </class>  
   <class id="14" language="java" name="entity.vehicle.Xecon" project="Quanlikhobai" 
     file="/Quanlikhobai/src/entity/vehicle/Xecon.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="2555" y="1359"/>    
+    <position height="124" width="182" x="496" y="1347"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -129,7 +130,7 @@
   </class>  
   <class id="15" language="java" name="control.FormControl" project="Quanlikhobai" 
     file="/Quanlikhobai/src/control/FormControl.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="1579" y="118"/>    
+    <position height="-1" width="-1" x="1148" y="84"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -138,7 +139,7 @@
   </class>  
   <class id="16" language="java" name="database.processing.ModifiedQuery" project="Quanlikhobai" 
     file="/Quanlikhobai/src/database/processing/ModifiedQuery.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="2890" y="442"/>    
+    <position height="160" width="488" x="1317" y="283"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -147,7 +148,7 @@
   </class>  
   <class id="17" language="java" name="database.processing.FormRender" project="Quanlikhobai" 
     file="/Quanlikhobai/src/database/processing/FormRender.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="1717" y="620"/>    
+    <position height="556" width="240" x="266" y="283"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -156,7 +157,7 @@
   </class>  
   <class id="18" language="java" name="entity.vehicle.Xetai" project="Quanlikhobai" 
     file="/Quanlikhobai/src/entity/vehicle/Xetai.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="2818" y="1360"/>    
+    <position height="124" width="182" x="274" y="1347"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -165,7 +166,7 @@
   </class>  
   <class id="19" language="java" name="util.NumberProcessing" project="Quanlikhobai" 
     file="/Quanlikhobai/src/util/NumberProcessing.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="2692" y="196"/>    
+    <position height="178" width="160" x="1626" y="1347"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -174,211 +175,150 @@
   </class>  
   <class id="20" language="java" name="entity.user.Human" project="Quanlikhobai" 
     file="/Quanlikhobai/src/entity/user/Human.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="1202" y="1501"/>    
+    <position height="160" width="169" x="853" y="283"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <generalization id="21">    
-    <end type="SOURCE" refId="14"/>    
-    <end type="TARGET" refId="11"/>  
-  </generalization>  
-  <generalization id="22">    
-    <end type="SOURCE" refId="17"/>    
-    <end type="TARGET" refId="2"/>  
-  </generalization>  
-  <association id="23">    
-    <end type="SOURCE" refId="16" navigable="false">      
-      <attribute id="24" name="dialog">        
-        <position height="0" width="0" x="0" y="0"/>      
+  <association id="21">    
+    <end type="SOURCE" refId="7" navigable="false">      
+      <attribute id="22" name="khachHang">        
+        <position height="0" width="0" x="-1111" y="-25"/>      
       </attribute>      
-      <multiplicity id="25" minimum="0" maximum="1">        
-        <position height="0" width="0" x="0" y="0"/>      
+      <multiplicity id="23" minimum="0" maximum="1">        
+        <position height="0" width="0" x="-1111" y="-25"/>      
       </multiplicity>    
     </end>    
-    <end type="TARGET" refId="6" navigable="true"/>    
+    <end type="TARGET" refId="5" navigable="true"/>    
     <display labels="true" multiplicity="true"/>  
   </association>  
-  <realization id="26">    
-    <end type="SOURCE" refId="7"/>    
-    <end type="TARGET" refId="3"/>  
-  </realization>  
-  <realization id="27">    
-    <end type="SOURCE" refId="7"/>    
-    <end type="TARGET" refId="8"/>  
-  </realization>  
-  <generalization id="28">    
-    <end type="SOURCE" refId="16"/>    
-    <end type="TARGET" refId="2"/>  
-  </generalization>  
-  <association id="29">    
-    <end type="SOURCE" refId="4" navigable="false">      
-      <attribute id="30" name="d">        
-        <position height="0" width="0" x="0" y="0"/>      
-      </attribute>      
-      <multiplicity id="31" minimum="0" maximum="1">        
-        <position height="0" width="0" x="0" y="0"/>      
-      </multiplicity>    
-    </end>    
-    <end type="TARGET" refId="6" navigable="true"/>    
-    <display labels="true" multiplicity="true"/>  
-  </association>  
-  <generalization id="32">    
+  <generalization id="24">    
     <end type="SOURCE" refId="18"/>    
     <end type="TARGET" refId="11"/>  
   </generalization>  
-  <association id="33">    
-    <end type="SOURCE" refId="17" navigable="false">      
-      <attribute id="34" name="dialog">        
-        <position height="0" width="0" x="0" y="0"/>      
+  <association id="25">    
+    <end type="SOURCE" refId="2" navigable="false">      
+      <attribute id="26" name="instance">        
+        <position height="0" width="0" x="-1111" y="-25"/>      
       </attribute>      
-      <multiplicity id="35" minimum="0" maximum="1">        
-        <position height="0" width="0" x="0" y="0"/>      
+      <multiplicity id="27" minimum="0" maximum="1">        
+        <position height="0" width="0" x="-1111" y="-25"/>      
+      </multiplicity>    
+    </end>    
+    <end type="TARGET" refId="2" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="28">    
+    <end type="SOURCE" refId="7" navigable="false">      
+      <attribute id="29" name="xeTai">        
+        <position height="0" width="0" x="-1111" y="-25"/>      
+      </attribute>      
+      <multiplicity id="30" minimum="0" maximum="1">        
+        <position height="0" width="0" x="-1111" y="-25"/>      
+      </multiplicity>    
+    </end>    
+    <end type="TARGET" refId="18" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <generalization id="31">    
+    <end type="SOURCE" refId="16"/>    
+    <end type="TARGET" refId="2"/>  
+  </generalization>  
+  <generalization id="32">    
+    <end type="SOURCE" refId="17"/>    
+    <end type="TARGET" refId="2"/>  
+  </generalization>  
+  <generalization id="33">    
+    <end type="SOURCE" refId="14"/>    
+    <end type="TARGET" refId="11"/>  
+  </generalization>  
+  <realization id="34">    
+    <end type="SOURCE" refId="7"/>    
+    <end type="TARGET" refId="3"/>  
+  </realization>  
+  <generalization id="35">    
+    <bendpoint x="1835" y="283"/>    
+    <end type="SOURCE" refId="6"/>    
+    <end type="TARGET" refId="1"/>  
+  </generalization>  
+  <association id="36">    
+    <end type="SOURCE" refId="4" navigable="false">      
+      <attribute id="37" name="d">        
+        <position height="0" width="0" x="-1111" y="-25"/>      
+      </attribute>      
+      <multiplicity id="38" minimum="0" maximum="1">        
+        <position height="0" width="0" x="-1111" y="-25"/>      
       </multiplicity>    
     </end>    
     <end type="TARGET" refId="6" navigable="true"/>    
     <display labels="true" multiplicity="true"/>  
   </association>  
-  <generalization id="36">    
-    <end type="SOURCE" refId="6"/>    
-    <end type="TARGET" refId="1"/>  
+  <generalization id="39">    
+    <end type="SOURCE" refId="13"/>    
+    <end type="TARGET" refId="2"/>  
   </generalization>  
-  <association id="37">    
-    <end type="SOURCE" refId="17" navigable="false">      
-      <attribute id="38" name="hopDong">        
-        <position height="0" width="0" x="0" y="0"/>      
-      </attribute>      
-      <multiplicity id="39" minimum="0" maximum="1">        
-        <position height="0" width="0" x="0" y="0"/>      
-      </multiplicity>    
-    </end>    
-    <end type="TARGET" refId="10" navigable="true"/>    
-    <display labels="true" multiplicity="true"/>  
-  </association>  
   <association id="40">    
-    <end type="SOURCE" refId="17" navigable="false">      
+    <end type="SOURCE" refId="7" navigable="false">      
       <attribute id="41" name="xeCon">        
-        <position height="0" width="0" x="0" y="0"/>      
+        <position height="0" width="0" x="-1111" y="-25"/>      
       </attribute>      
       <multiplicity id="42" minimum="0" maximum="1">        
-        <position height="0" width="0" x="0" y="0"/>      
+        <position height="0" width="0" x="-1111" y="-25"/>      
       </multiplicity>    
     </end>    
     <end type="TARGET" refId="14" navigable="true"/>    
     <display labels="true" multiplicity="true"/>  
   </association>  
   <association id="43">    
-    <end type="SOURCE" refId="7" navigable="false">      
-      <attribute id="44" name="khachHang">        
-        <position height="0" width="0" x="0" y="0"/>      
+    <end type="SOURCE" refId="16" navigable="false">      
+      <attribute id="44" name="numProcess">        
+        <position height="0" width="0" x="-1111" y="-25"/>      
       </attribute>      
       <multiplicity id="45" minimum="0" maximum="1">        
-        <position height="0" width="0" x="0" y="0"/>      
-      </multiplicity>    
-    </end>    
-    <end type="TARGET" refId="5" navigable="true"/>    
-    <display labels="true" multiplicity="true"/>  
-  </association>  
-  <association id="46">    
-    <end type="SOURCE" refId="7" navigable="false">      
-      <attribute id="47" name="xeCon">        
-        <position height="0" width="0" x="0" y="0"/>      
-      </attribute>      
-      <multiplicity id="48" minimum="0" maximum="1">        
-        <position height="0" width="0" x="0" y="0"/>      
-      </multiplicity>    
-    </end>    
-    <end type="TARGET" refId="14" navigable="true"/>    
-    <display labels="true" multiplicity="true"/>  
-  </association>  
-  <association id="49">    
-    <bendpoint x="2192" y="1079"/>    
-    <end type="SOURCE" refId="7" navigable="false">      
-      <attribute id="50" name="xeTai">        
-        <position height="0" width="0" x="0" y="0"/>      
-      </attribute>      
-      <multiplicity id="51" minimum="0" maximum="1">        
-        <position height="0" width="0" x="0" y="0"/>      
-      </multiplicity>    
-    </end>    
-    <end type="TARGET" refId="18" navigable="true"/>    
-    <display labels="true" multiplicity="true"/>  
-  </association>  
-  <association id="52">    
-    <end type="SOURCE" refId="7" navigable="false">      
-      <attribute id="53" name="hopDong">        
-        <position height="0" width="0" x="0" y="0"/>      
-      </attribute>      
-      <multiplicity id="54" minimum="0" maximum="1">        
-        <position height="0" width="0" x="0" y="0"/>      
-      </multiplicity>    
-    </end>    
-    <end type="TARGET" refId="10" navigable="true"/>    
-    <display labels="true" multiplicity="true"/>  
-  </association>  
-  <generalization id="55">    
-    <end type="SOURCE" refId="13"/>    
-    <end type="TARGET" refId="2"/>  
-  </generalization>  
-  <association id="56">    
-    <end type="SOURCE" refId="2" navigable="false">      
-      <attribute id="57" name="instance">        
-        <position height="0" width="0" x="0" y="0"/>      
-      </attribute>      
-      <multiplicity id="58" minimum="0" maximum="1">        
-        <position height="0" width="0" x="0" y="0"/>      
-      </multiplicity>    
-    </end>    
-    <end type="TARGET" refId="2" navigable="true"/>    
-    <display labels="true" multiplicity="true"/>  
-  </association>  
-  <association id="59">    
-    <end type="SOURCE" refId="16" navigable="false">      
-      <attribute id="60" name="numProcess">        
-        <position height="0" width="0" x="0" y="0"/>      
-      </attribute>      
-      <multiplicity id="61" minimum="0" maximum="1">        
-        <position height="0" width="0" x="0" y="0"/>      
+        <position height="0" width="0" x="-1111" y="-25"/>      
       </multiplicity>    
     </end>    
     <end type="TARGET" refId="19" navigable="true"/>    
     <display labels="true" multiplicity="true"/>  
   </association>  
-  <generalization id="62">    
-    <bendpoint x="1812" y="1083"/>    
+  <generalization id="46">    
     <end type="SOURCE" refId="7"/>    
     <end type="TARGET" refId="1"/>  
   </generalization>  
-  <association id="63">    
-    <end type="SOURCE" refId="17" navigable="false">      
-      <attribute id="64" name="khachHang">        
-        <position height="0" width="0" x="0" y="0"/>      
+  <association id="47">    
+    <end type="SOURCE" refId="7" navigable="false">      
+      <attribute id="48" name="hopDong">        
+        <position height="0" width="0" x="-1111" y="-25"/>      
       </attribute>      
-      <multiplicity id="65" minimum="0" maximum="1">        
-        <position height="0" width="0" x="0" y="0"/>      
+      <multiplicity id="49" minimum="0" maximum="1">        
+        <position height="0" width="0" x="-1111" y="-25"/>      
       </multiplicity>    
     </end>    
-    <end type="TARGET" refId="5" navigable="true"/>    
+    <end type="TARGET" refId="10" navigable="true"/>    
     <display labels="true" multiplicity="true"/>  
   </association>  
-  <association id="66">    
-    <end type="SOURCE" refId="17" navigable="false">      
-      <attribute id="67" name="xeTai">        
-        <position height="0" width="0" x="0" y="0"/>      
-      </attribute>      
-      <multiplicity id="68" minimum="0" maximum="1">        
-        <position height="0" width="0" x="0" y="0"/>      
-      </multiplicity>    
-    </end>    
-    <end type="TARGET" refId="18" navigable="true"/>    
-    <display labels="true" multiplicity="true"/>  
-  </association>  
-  <generalization id="69">    
+  <generalization id="50">    
     <end type="SOURCE" refId="5"/>    
     <end type="TARGET" refId="20"/>  
   </generalization>  
+  <association id="51">    
+    <end type="SOURCE" refId="16" navigable="false">      
+      <attribute id="52" name="dialog">        
+        <position height="0" width="0" x="-1111" y="-25"/>      
+      </attribute>      
+      <multiplicity id="53" minimum="0" maximum="1">        
+        <position height="0" width="0" x="-1111" y="-25"/>      
+      </multiplicity>    
+    </end>    
+    <end type="TARGET" refId="6" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <realization id="54">    
+    <end type="SOURCE" refId="7"/>    
+    <end type="TARGET" refId="8"/>  
+  </realization>  
   <classifier-display autosize="true" stereotype="true" package="true" initial-value="true" signature="true" 
     sort-features="false" accessors="true" visibility="true">    
     <attributes public="true" package="true" protected="true" private="true" static="true"/>    
