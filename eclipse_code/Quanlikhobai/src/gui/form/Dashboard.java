@@ -23,7 +23,7 @@ import entity.vehicle.Xecon;
 import entity.vehicle.Xetai;
 import gui.can.StartForm;
 import gui.can.ErasableTextField;
-import util.Calculate;
+import util.Calculator;
 
 import javax.swing.JComboBox;
 import javax.swing.JCheckBox;
@@ -514,7 +514,7 @@ public class Dashboard extends Window implements StartForm, ErasableTextField
 		btnRt.setBounds(410, 569, 59, 46);
 		frame.getContentPane().add(btnRt);
 		
-		Calculate c = new Calculate();
+		Calculator c = new Calculator();
 		lblcalVehicle = new JLabel("Bãi gửi xe đang có "+c.calVehicle()+" xe.");
 		lblcalVehicle.setFont(new Font("Tahoma", Font.PLAIN, 16));
 		lblcalVehicle.setBounds(497, 88, 200, 30);
