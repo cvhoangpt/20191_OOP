@@ -40,6 +40,7 @@ public class Connector
         	System.out.println(e);
 		} catch (SQLException e) 
 		{
+			System.err.print("Connector notice: Connection failed.");
         	Dialog d = new Dialog();
         	d.databaseError();
             e.printStackTrace();
