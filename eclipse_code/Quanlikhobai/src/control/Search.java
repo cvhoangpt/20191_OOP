@@ -39,9 +39,9 @@ public class Search
 		} else return false;
 	}
 	
-	public boolean checkBoxChecked(JCheckBox fff)
+	public boolean checkBoxChecked(JCheckBox checkBox)
 	{
-		if (fff.isSelected()) return true;
+		if (checkBox.isSelected()) return true;
 		else return false;
 	}
 }

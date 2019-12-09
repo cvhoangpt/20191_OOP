@@ -397,17 +397,17 @@ public class Dashboard extends Window implements StartForm, ErasableTextField
 		boxLoaiSearch.setBounds(956, 15, 111, 37);
 		getFrame().getContentPane().add(boxLoaiSearch);
 		
-		JCheckBox chckbxPhi2 = new JCheckBox("Xe có phí gửi >2 tr/tháng");
-		chckbxPhi2.addActionListener(new ActionListener() {
+		JCheckBox checkBoxFee = new JCheckBox("Xe có phí gửi >2 tr/tháng");
+		checkBoxFee.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) 
 			{
-				if (chckbxPhi2.isSelected()) System.out.println("Đã được check");
+				if (search.checkBoxChecked(checkBoxFee)) System.out.println("Đã được check");
 				else System.out.println("Chưa được check");
 			}
 		});
-		chckbxPhi2.setFont(new Font("Tahoma", Font.PLAIN, 16));
-		chckbxPhi2.setBounds(956, 72, 236, 25);
-		getFrame().getContentPane().add(chckbxPhi2);
+		checkBoxFee.setFont(new Font("Tahoma", Font.PLAIN, 16));
+		checkBoxFee.setBounds(956, 72, 236, 25);
+		getFrame().getContentPane().add(checkBoxFee);
 		JScrollPane scrollPane = new JScrollPane();
 		scrollPane.setBounds(497, 120, 839, 554);
 		frame.getContentPane().add(scrollPane);

@@ -10,20 +10,29 @@ import gui.form.Dialog;
  * Phương thức liên kết cơ sở dữ liệu thông qua Java Database Connectivity API.
  * Sử dụng cách khởi tạo Lazy initialization (đơn luồng) của mẫu thiết kế Singleton pattern.
  * @author hoangcv
- * @param DB_URL liên kết đến localhost qua JDBC
- * @param USERNAME tên người dùng (mặc định là root)
- * @param PASSWORD mật khẩu (bỏ trống)
- * @param conn đối tượng thuộc lớp Connection
- * @param instance đối tượng thuộc lớp Connector
  */
 public class Connector
 {
+	/**
+	 * Liên kết đến localhost qua JDBC
+	 */
 	private static String DB_URL = "jdbc:mysql://localhost:3306/oop20191?useLegacyDatetimeCode=false&serverTimezone=UTC";
+	/**
+	 * Tên người dùng (mặc định là root)
+	 */
 	private static String USERNAME = "root";
+	/**
+	 * Mật khẩu (bỏ trống)
+	 */
 	private static String PASSWORD = "";
+	/**
+	 * Đối tượng thuộc lớp Connection
+	 */
 	protected Connection conn;
+	/**
+	 * Đối tượng thuộc lớp Connector
+	 */
 	private static Connector instance;
-	
 	/**
 	 * Hàm khởi tạo
 	 */
