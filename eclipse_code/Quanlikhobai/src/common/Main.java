@@ -2,7 +2,7 @@ package common;
 
 import java.sql.SQLException;
 
-import database.connect.Connector;
+//import database.connect.Connector;
 import gui.form.Dashboard;
 
 /**
@@ -13,10 +13,17 @@ import gui.form.Dashboard;
  */
 public class Main 
 {
-	public static void main(String[] args) throws SQLException
+	public static void main(String[] args)
 	{
-		Connector.getInstance();
-		Dashboard begin = new Dashboard();
-		begin.startFrame();
+		//Connector.getInstance();
+		try
+		{
+			Dashboard begin = new Dashboard();
+			begin.startFrame();
+		} catch (SQLException se)
+		{
+			se.printStackTrace();
+		}
+		
 	}
 }
