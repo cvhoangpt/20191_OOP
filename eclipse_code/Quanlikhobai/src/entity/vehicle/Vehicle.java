@@ -20,7 +20,14 @@ public abstract class Vehicle
 		countXe++;
 	}
 	
-	public abstract double tinhTongTienGui(int thoiGianGui);
+	protected double donGia()
+	{
+		return 0;
+	}
+	protected double tinhTongTienGui()
+	{
+		return 0;
+	}
 	
 	public String getBienSo() {
 		return bienSo;

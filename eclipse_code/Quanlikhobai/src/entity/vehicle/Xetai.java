@@ -7,9 +7,14 @@ public class Xetai extends Vehicle
 	{
 		super(bienSo, loaiXe, trongTai, thoiGianGui);
 	}
-	@Override
-	public double tinhTongTienGui(int thoiGianGui) 
+	//overloading
+	public double donGia(int trongTai)
 	{
-		return thoiGianGui * 700000;
+		return 700000;
+	}
+	//overloading
+	public double tinhTongTienGui(int trongTai) 
+	{
+		return trongTai * 700000;
 	}
 }

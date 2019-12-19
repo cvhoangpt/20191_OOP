@@ -44,7 +44,7 @@ import java.awt.event.MouseEvent;
 @SuppressWarnings("rawtypes")
 public class Dashboard extends Window implements StartForm, ErasableTextField
 {
-	//private JFrame frame;
+	private JFrame frame;
 	
 	public JFrame getFrame() 
 	{
@@ -89,6 +89,7 @@ public class Dashboard extends Window implements StartForm, ErasableTextField
 	public static String cachThanhToan;
 	public static String loaiXe;
 	public static String loaiSearch;
+	JCheckBox checkBoxFee;
 	Khachhang khachHang = new Khachhang();
 	Xecon xeCon = new Xecon();
 	Xetai xeTai = new Xetai();
@@ -368,9 +369,9 @@ public class Dashboard extends Window implements StartForm, ErasableTextField
 				}
 				String value = textTimKiem.getText();
 				loaiSearch = boxLoaiSearch.getSelectedItem().toString();
-				if (loaiSearch == "Chủ xe") search.tenChuXeSearchResult(tableBrief, value);
-				else if (loaiSearch == "Biển số xe") search.bienSoSearchResult(tableBrief, value);
-				else if (loaiSearch == "Loại xe") search.loaiXeSearchResult(tableBrief, value);
+				if (loaiSearch == "Chủ xe") search.tenChuXeSearchResult(tableBrief, checkBoxFee, value);
+				else if (loaiSearch == "Biển số xe") search.bienSoSearchResult(tableBrief, checkBoxFee, value);
+				else if (loaiSearch == "Loại xe") search.loaiXeSearchResult(tableBrief, checkBoxFee, value);
 			}
 		});
 		btnTimKiem.setFont(new Font("Tahoma", Font.PLAIN, 16));
@@ -397,7 +398,7 @@ public class Dashboard extends Window implements StartForm, ErasableTextField
 		boxLoaiSearch.setBounds(956, 15, 111, 37);
 		getFrame().getContentPane().add(boxLoaiSearch);
 		
-		JCheckBox checkBoxFee = new JCheckBox("Xe có phí gửi >2 tr/tháng");
+		checkBoxFee = new JCheckBox("Xe có phí gửi >2 tr/tháng");
 		checkBoxFee.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) 
 			{

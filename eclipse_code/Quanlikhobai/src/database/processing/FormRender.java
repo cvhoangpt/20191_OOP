@@ -38,7 +38,7 @@ public class FormRender extends Connector
 	private String loaiXe;
 
 	public static final String SQL_UPDATE_TABLE = 
-			"SELECT khach_hang.MaKH, hop_dong.MaHD, khach_hang.TenKH, xe.Bienso, xe.Loaixe " + 
+			"SELECT khach_hang.MaKH, hop_dong.MaHD, khach_hang.TenKH, xe.Bienso, xe.Loaixe, hop_dong.Dongia, hop_dong.Sotien " + 
 					"FROM khach_hang, hop_dong, xe " + 
 					"WHERE (khach_hang.MaKH = hop_dong.MaKH AND hop_dong.Bienso = xe.Bienso)";
 	/**

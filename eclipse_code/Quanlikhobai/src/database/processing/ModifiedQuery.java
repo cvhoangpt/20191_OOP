@@ -6,6 +6,7 @@ import java.sql.SQLException;
 
 import database.connect.Connector;
 import gui.form.*;
+import entity.vehicle.*;
 import util.NumberProcessing;
 
 /**
@@ -19,6 +20,10 @@ public class ModifiedQuery extends Connector
 	//PreparedStatement pst = null;
 	Dialog dialog = new Dialog();
 	NumberProcessing numProcess = new NumberProcessing();
+	Vehicle vh1 = new Xecon();
+	Xecon xecon = (Xecon) vh1;
+	Vehicle vh2 = new Xetai();
+	Xetai xetai = (Xetai) vh2;
 	public void test() throws SQLException
 	{
 		System.out.println(Dashboard.tenChuXe);
@@ -26,22 +31,23 @@ public class ModifiedQuery extends Connector
 	
 	/**
 	 * Phương thức truy vấn thêm hợp đồng
-	 * @param tcx
-	 * @param sdt
-	 * @param cmt
-	 * @param dc
-	 * @param tdt
-	 * @param bs
-	 * @param tt
-	 * @param tgg
-	 * @param ctt
-	 * @param lx
+	 * @param tcx tên chủ xe
+	 * @param sdt số điện thoại
+	 * @param cmt chứng minh thư
+	 * @param dc địa chỉ
+	 * @param tdt thư điện tử
+	 * @param bs biển số
+	 * @param tt trọng tải
+	 * @param tgg thời gian gửi
+	 * @param ctt cách thanh toán
+	 * @param lx loại xe
 	 * @throws SQLException
 	 */
 	public void insertHopDong(String tcx, int sdt, int cmt, String dc, String tdt, String bs, String tt, String tgg, String ctt, String lx) throws SQLException
 	{
 		String valueKH = "KH" + String.valueOf(numProcess.randomMKH());
 		String valueHD = "HD" + String.valueOf(numProcess.randomMHD());
+		
 		try
 		{
 			//Khối chèn bảng khach_hang
@@ -63,19 +69,30 @@ public class ModifiedQuery extends Connector
 			PreparedStatement pst2 = conn.prepareStatement(sqlInsertHD2);
 			pst2.setString(1, bs);
 			pst2.setString(2, lx);
-			pst2.setString(3, tt);
+			if (lx == "Xe con") pst2.setString(3, "0");
+			else pst2.setString(3, tt);
 			pst2.executeUpdate();
 			//--
 			
 			//Khối chèn bảng hop_dong
 			String sqlInsertHD3 = 
-	"INSERT INTO hop_dong (MaHD, Hinhthucthanhtoan, Thoigiangui, MaKH, Bienso) VALUES (?,?,?,?,?)";
+	"INSERT INTO hop_dong (MaHD, Hinhthucthanhtoan, Thoigiangui, MaKH, Bienso, Sotien, Dongia) VALUES (?,?,?,?,?,?,?)";
 			PreparedStatement pst3 = conn.prepareStatement(sqlInsertHD3);
 			pst3.setString(1, valueHD);
 			pst3.setString(2, ctt);
 			pst3.setString(3, tgg);
 			pst3.setString(4, valueKH);
 			pst3.setString(5, bs);
+			if (lx == "Xe con") 
+			{
+				pst3.setDouble(6, xecon.tinhTongTienGui(Integer.parseInt(tgg)));
+				pst3.setDouble(7, xecon.donGia(Integer.parseInt(tgg)));
+			}
+			else if (lx == "Xe tải")
+			{
+				pst3.setDouble(6, xetai.tinhTongTienGui(Integer.parseInt(tt)));
+				pst3.setDouble(7, xetai.donGia(Integer.parseInt(tt)));
+			}
 			pst3.executeUpdate();
 			//---
 			
@@ -210,9 +227,21 @@ public class ModifiedQuery extends Connector
 			e.printStackTrace();
 		}
 		
+		double soTien = 0;
+		double donGia = 0;
+		if (loaiXe == "Xe con") 
+		{
+			soTien = xecon.tinhTongTienGui(Integer.parseInt(thoiGianGui));
+			donGia = xecon.donGia(Integer.parseInt(thoiGianGui));
+		}
+		else if (loaiXe == "Xe tải") 
+		{
+			soTien = xetai.tinhTongTienGui(Integer.parseInt(trongTai));
+			donGia = xetai.donGia(Integer.parseInt(trongTai));
+		}
 		String sqlUpdateHD3 =
 	"UPDATE hop_dong " +
-	"SET Hinhthucthanhtoan='"+cachThanhToan+"', Thoigiangui='"+thoiGianGui+"'" +
+	"SET Hinhthucthanhtoan='"+cachThanhToan+"', Thoigiangui='"+thoiGianGui+"', Sotien='"+soTien+"', Dongia='"+donGia+"'" +
 	"WHERE MaKH='"+getMaKH+"'";
 		try
 		{

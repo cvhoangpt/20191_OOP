@@ -14,7 +14,7 @@ import gui.form.Dialog;
  */
 public class Modify 
 {
-	Dialog d = new Dialog();
+	Dialog dialog = new Dialog();
 	
 	public void insertHopDong(String tcx, int sdt, int cmt, String dc, String tdt, String bs, String tt, String tgg, String ctt, String lx) throws SQLException
 	{
@@ -36,12 +36,12 @@ public class Modify
 		
 		if (textFieldTCX.getText().isEmpty())
 		{
-			d.deleteException();
+			dialog.deleteException();
 			return true;
 		}
 		if (textFieldBS.getText().isEmpty())
 		{
-			d.deleteException();
+			dialog.deleteException();
 			return true;
 		}
 		return false;
@@ -52,12 +52,12 @@ public class Modify
 		
 		if (textFieldTCX.getText().isEmpty())
 		{
-			d.updateException();
+			dialog.updateException();
 			return true;
 		}
 		if (textFieldBS.getText().isEmpty())
 		{
-			d.updateException();
+			dialog.updateException();
 			return true;
 		}
 		return false;
@@ -69,42 +69,42 @@ public class Modify
 		
 		if (textFieldTCX.getText().isEmpty())
 		{
-			d.emptyBlank();
+			dialog.emptyBlank();
 			return true;
 		}
 		if (textFieldSDT.getText().isEmpty())
 		{
-			d.emptyBlank();
+			dialog.emptyBlank();
 			return true;
 		}
 		if (textFieldDC.getText().isEmpty())
 		{
-			d.emptyBlank();
+			dialog.emptyBlank();
 			return true;
 		}
 		if (textFieldCMT.getText().isEmpty())
 		{
-			d.emptyBlank();
+			dialog.emptyBlank();
 			return true;
 		}
 		if (textFieldBS.getText().isEmpty())
 		{
-			d.emptyBlank();
+			dialog.emptyBlank();
 			return true;
 		}
 		if (textFieldTGG.getText().isEmpty())
 		{
-			d.emptyBlank();
+			dialog.emptyBlank();
 			return true;
 		}
 		if (textFieldCTT.getText().isEmpty())
 		{
-			d.emptyBlank();
+			dialog.emptyBlank();
 			return true;
 		}
 		if ((comboBoxLX.getSelectedItem().toString() == "Xe tải") && textFieldTT.getText().isEmpty()) 
 		{
-			d.checkTrongTai();
+			dialog.checkTrongTai();
 			return true;
 		}
 		return false;

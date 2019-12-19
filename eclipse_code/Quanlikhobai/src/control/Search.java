@@ -14,19 +14,19 @@ import gui.form.Dialog;
  */
 public class Search 
 {
-	public void tenChuXeSearchResult(JTable table, String tcx)
+	public void tenChuXeSearchResult(JTable table, JCheckBox checkBox, String tcx)
 	{
-		new SearchQuery().tenChuXeSearchResult(table, tcx);
+		new SearchQuery().tenChuXeSearchResult(table, checkBox, tcx);
 	}
 	
-	public void bienSoSearchResult(JTable table, String bs)
+	public void bienSoSearchResult(JTable table, JCheckBox checkBox, String bs)
 	{
-		new SearchQuery().bienSoSearchResult(table, bs);
+		new SearchQuery().bienSoSearchResult(table, checkBox, bs);
 	}
 	
-	public void loaiXeSearchResult(JTable table, String lx)
+	public void loaiXeSearchResult(JTable table, JCheckBox checkBox, String lx)
 	{
-		new SearchQuery().loaiXeSearchResult(table, lx);
+		new SearchQuery().loaiXeSearchResult(table, checkBox, lx);
 	}
 	
 	public boolean searchIsEmpty(JTextField txtTimKiem)
